@@ -1,0 +1,45 @@
+{
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "label": "Naaukerige beschryving der uitwendige godtsdienst-plichten, kerk-zerden en gewoontens van alle volkeren der waereldt; in een historisch verhaal, met eenige naaukeurige verhandelingen ontvouwen, door verschedien aanmerkingen opgeheldert; en in kumstige tafereelen afgemaalt",
+  "@id": "https://iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz1sx86j1",
+  "@type": "sc:Collection",
+  "viewingHint": "multi-part",
+  "metadata": [
+    {
+      "label": "Rights contact",
+      "value": "UCLA Charles E. Young Research Library Department of Special Collections, A1713 Young Research Library, Box 951575, Los Angeles, CA 90095-1575. E-mail: spec-coll@library.ucla.edu. Phone: (310)825-4988"
+    }
+  ],
+  "manifests": [
+    {
+      "@type": "sc:Manifest",
+      "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fzz001hh48q/manifest",
+      "label": "Derde Deel, Behelzende de Godsdienstige Plechtigheden der Amerikaansche en Oostindiaansche Volkeren"
+    },
+    {
+      "@type": "sc:Manifest",
+      "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fzz001hg0k0/manifest",
+      "label": "Eerste Deel"
+    },
+    {
+      "@type": "sc:Manifest",
+      "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fzz001hgmzc/manifest",
+      "label": "Tweede Deel, Behelzende de Plechtigheden der Roomsche Kerke"
+    },
+    {
+      "@type": "sc:Manifest",
+      "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fzz001hhsg0/manifest",
+      "label": "Vierde Deel, Behelzende de Godsdienstige Plechtigheden der Oostindiaansche Afgodische, Persische en Afrikaansche Volkeren"
+    },
+    {
+      "@type": "sc:Manifest",
+      "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fzz001hjhk4/manifest",
+      "label": "Vyfde Deel, Waar in de Godsdienst-Pflichten en Gewoontens der Grieken en der Protestanten verhandelt worden"
+    },
+    {
+      "@type": "sc:Manifest",
+      "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fzz001hk1x0/manifest",
+      "label": "Zesden Deels Eerste Stuk, Waar in de Godsdienst-Pflichten en Gewoontens der Anglicaanen of Episcopalen, Quaakers, Wederdoopers, Adamiten, Preadamiten, Mystique Secten, Quietisten, Unitarissen, Anti-Trinitarissen, Socinianen, Collegianten en Rhynsburgers, Godisten, enz. verhandelten worden"
+    }
+  ]
+}
