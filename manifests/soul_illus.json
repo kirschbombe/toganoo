@@ -1,0 +1,80 @@
+{
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "label": "SOUL Illustrated",
+  "@id": "https://iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz1d53csb",
+  "@type": "sc:Collection",
+  "behavior": "multi-part",
+  "metadata": [{
+    "label": "Rights contact",
+    "value": "UCLA Charles E. Young Research Library Department of Special Collections, A1713 Young Research Library, Box 951575, Los Angeles, CA 90095-1575. E-mail: spec-coll@library.ucla.edu. Phone: (310)825-4988"
+  }],
+  "manifests": [{
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz18h1bj7/manifest",
+    "label": "Vol. 1, No. 1"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz14r0ks2/manifest",
+    "label": "Vol. 1, No. 2"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz10z9v43/manifest",
+    "label": "Vol. 1, No. 3"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz1w69bmn/manifest",
+    "label": "Vol. 1, No. 4"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz1rf8kwx/manifest",
+    "label": "Vol. 1, No. 5"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz1mp7v3q/manifest",
+    "label": "Vol. 1, No. 6"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz1gx73cc/manifest",
+    "label": "Vol. 2, No. 1"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz1c85251/manifest",
+    "label": "Vol. 2, No. 2"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz17h49dv/manifest",
+    "label": "Vol. 2, No. 3"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz13r3jqk/manifest",
+    "label": "Vol. 2, No. 4"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz1002t0k/manifest",
+    "label": "Vol. 2, No. 5"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz1v729gt/manifest",
+    "label": "Vol. 2, No. 6"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz1qg1jr3/manifest",
+    "label": "Vol. 3, No. 1"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz1kq0t0b/manifest",
+    "label": "Vol. 3, No. 2"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz1g18rpp/manifest",
+    "label": "Vol. 3, No. 3"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz1b88106/manifest",
+    "label": "Vol. 3, No. 4"
+  }, {
+    "@type": "sc:Manifest",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz16h788g/manifest",
+    "label": "Vol. 3, No. 5"
+  }]
+}
