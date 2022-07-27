@@ -6,15 +6,27 @@
   "viewingHint": "multi-part",
   "metadata": [{
     "label": "Rights contact",
-    "value": "UCLA Charles E. Young Research Library Department of Special Collections, A1713 Young Research Library, Box 951575, Los Angeles, CA 90095-1575. E-mail: spec-coll@library.ucla.edu. Phone: (310)825-4988"
-  }],
+    "value": "UCLA Charles E. Young Research Library Department of Special Collections, A1713 Young Research Library, Box 951575, Los Angeles, CA 90095-1575. E-mail: spec-coll@library.ucla.edu. Phone: (310)825-4988",
+
   "collections": [{
     "@type": "sc:Collection",
-    "@id": "https://dawnchildress.com/toganoo/manifests/soul_illus.json",
-    "label": "Soul Illustrated"
-  }, {
-    "@type": "sc:Collection",
-    "@id": "https://dawnchildress.com/toganoo/manifests/dutch.json",
-    "label": "Picart (Dutch)"
+    "@id": "https://dawnchildress.com/toganoo/coll1",
+    "label": "Composite",
+
+    "members": [
+      {
+        "@type": "sc:Collection",
+        "@id": "https://dawnchildress.com/toganoo/manifests/soul_illus.json",
+        "label": "SOUL Illustrated",
+        "viewingHint": "multi-part"
+      },
+      {
+        "@type": "sc:Collection",
+        "@id": "https://dawnchildress.com/toganoo/manifests/dutch.json",
+        "label": "Picart (Dutch)",
+        "viewingHint": "multi-part"
+      }
+    ]
   }]
+}]
 }
