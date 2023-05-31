@@ -5146,7 +5146,6 @@
           "@id": "https://iiif.library.ucla.edu/uto/range/r0",
           "@type": "sc:Range",
           "label": "Gospel of Matthew. New Testament",
-          "viewingHint": "top",
           "canvases": [
             "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1gx4mjp/canvas/canvas-1",
             "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1gx4mjp/canvas/canvas-2",
