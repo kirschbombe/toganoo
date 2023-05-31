@@ -1,6 +1,6 @@
 {
     "@context": "http://iiif.io/api/presentation/2/context.json",
-    "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1gx4mjp/manifest",
+    "@id": "https://raw.githubusercontent.com/kirschbombe/toganoo/master/manifests/syriac-nf-m-37-uto3manifest.json",
     "@type": "sc:Manifest",
     "label": "Syriac NF 37",
     "metadata": [
@@ -38,12 +38,12 @@
     "logo": "https://sinai-images.library.ucla.edu/images/logos/iiif_logo.png",
     "sequences": [
         {
-            "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1gx4mjp/sequence/sequence-0",
+            "@id": "https://raw.githubusercontent.com/kirschbombe/toganoo/master/manifests/sequence/sequence-0",
             "@type": "sc:Sequence",
             "label": "ark:/21198/z1gx4mjp",
             "canvases": [
                 {
-                    "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1gx4mjp/canvas/canvas-1",
+                    "@id": "https://raw.githubusercontent.com/kirschbombe/toganoo/master/manifests/canvas/canvas-1",
                     "@type": "sc:Canvas",
                     "label": "SyrNF-37_001r_26-001",
                     "thumbnail": {
@@ -472,7 +472,7 @@
                     ]
                 },
                 {
-                    "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1gx4mjp/canvas/canvas-2",
+                    "@id": "https://raw.githubusercontent.com/kirschbombe/toganoo/master/manifests/canvas/canvas-2",
                     "@type": "sc:Canvas",
                     "label": "SyrNF-37_001v_26-002",
                     "thumbnail": {
@@ -4281,7 +4281,7 @@
                     ]
                 },
                 {
-                    "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1gx4mjp/canvas/canvas-11",
+                    "@id": "https://raw.githubusercontent.com/kirschbombe/toganoo/master/manifests/canvas/canvas-11",
                     "@type": "sc:Canvas",
                     "label": "SyrNF-37_006r_26-011",
                     "thumbnail": {
@@ -4723,7 +4723,7 @@
                     ]
                 },
                 {
-                    "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1gx4mjp/canvas/canvas-12",
+                    "@id": "https://raw.githubusercontent.com/kirschbombe/toganoo/master/manifests/canvas/canvas-12",
                     "@type": "sc:Canvas",
                     "label": "SyrNF-37_006v_26-012",
                     "thumbnail": {
@@ -5147,10 +5147,10 @@
           "@type": "sc:Range",
           "label": "Gospel of Matthew. New Testament",
           "canvases": [
-            "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1gx4mjp/canvas/canvas-1",
-            "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1gx4mjp/canvas/canvas-2",
-            "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1gx4mjp/canvas/canvas-11",
-            "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1gx4mjp/canvas/canvas-12"
+            "https://raw.githubusercontent.com/kirschbombe/toganoo/master/manifests/canvas/canvas-1",
+            "https://raw.githubusercontent.com/kirschbombe/toganoo/master/manifests/canvas/canvas-2",
+            "https://raw.githubusercontent.com/kirschbombe/toganoo/master/manifests/canvas/canvas-11",
+            "https://raw.githubusercontent.com/kirschbombe/toganoo/master/manifests/canvas/canvas-12"
           ]
         }
     ]
