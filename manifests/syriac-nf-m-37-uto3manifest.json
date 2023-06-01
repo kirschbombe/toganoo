@@ -62,19 +62,32 @@
                             "resource": {
                                 "@type": "oa:Choice",
                                 "default": {
-                                    "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1xd12b3",
+                                    "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1p26ztd",
                                     "@type": "dctypes:Image",
-                                    "label": "SyrNF-37_001r_26-001_PSH_color",
+                                    "label": "SyrNF-37_001r_26-001_KTK_pseudo_avgUV-VIS",
                                     "format": "image/jpeg",
                                     "height": 8176,
                                     "width": 6132,
                                     "service": {
                                         "@context": "http://iiif.io/api/image/2/context.json",
-                                        "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1xd12b3",
+                                        "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1p26ztd",
                                         "profile": "http://iiif.io/api/image/2/level0.json"
                                     }
                                 },
                                 "item": [
+                                    {
+                                        "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1xd12b3",
+                                        "@type": "dctypes:Image",
+                                        "label": "SyrNF-37_001r_26-001_PSH_color",
+                                        "format": "image/jpeg",
+                                        "height": 8176,
+                                        "width": 6132,
+                                        "service": {
+                                            "@context": "http://iiif.io/api/image/2/context.json",
+                                            "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1xd12b3",
+                                            "profile": "http://iiif.io/api/image/2/level0.json"
+                                        }
+                                    },
                                     {
                                         "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1p26ztd",
                                         "@type": "dctypes:Image",
