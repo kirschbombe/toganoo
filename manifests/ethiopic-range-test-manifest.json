@@ -247,7 +247,7 @@
     {
       "id": "https://iiif.io/api/cookbook/recipe/0024-book-4-toc/range/r0",
       "type": "Range",
-      "behavior": "sequence"
+      "behavior": "sequence",
       "label": {
         "en": [
           "Table of Contents"
