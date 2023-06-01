@@ -16,9 +16,9 @@
                 {
                     "@id": "https://raw.githubusercontent.com/kirschbombe/toganoo/master/manifests/canvas/canvas-1",
                     "@type": "sc:Canvas",
-                    "label": "SyrNF-37_001r_26-001",
+                    "label": "f. 1r",
                     "thumbnail": {
-                        "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz1xd12b3/0,1022,6132,6132/150,150/0/default.jpg",
+                        "@id": "https://sinai-images.library.ucla.edu/iiif/ark:%2F21198%2Fz17w6cwh/0,1022,6132,6132/150,150/0/default.jpg",
                         "@type": "dctypes:Image",
                         "height": 150,
                         "width": 150
