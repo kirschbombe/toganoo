@@ -3,7 +3,7 @@
     "@id": "https://raw.githubusercontent.com/kirschbombe/toganoo/master/manifests/syriac-nf-m-37-uto3manifest.json",
     "@type": "sc:Manifest",
     "label": "Gospel of Matthew (Syriac NF M 37, UTO 3)",
-    "viewingHint": "paged",
+    "viewingHint": "individuals",
     "viewingDirection": "right-to-left",
     "attribution": "Images: Contact the Monastery of St. Catherine's of the Sinai. Metadata: Unless otherwise indicated all metadata associated with this manuscript is copyright the authors and released under Creative Commons Attribution 4.0 International License.",
     
