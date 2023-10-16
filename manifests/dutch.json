@@ -4,11 +4,6 @@
   "@id": "https://iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz1sx86j1",
   "@type": "sc:Collection",
   "viewingHint": "multi-part",
-   "rendering": {
-    "@id": "https://example.org/pdfs/16712418.pdf",
-    "label": "Download as PDF",
-    "format": "application/pdf"
-  },
   "metadata": [
     {
       "label": "Rights contact",
