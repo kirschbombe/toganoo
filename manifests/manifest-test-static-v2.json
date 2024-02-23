@@ -3,7 +3,10 @@
     "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd/manifest",
     "@type": "sc:Manifest",
     "label": "Protest (Static image test)",
-    "thumbnail": "https://d7rm5xoig729r.cloudfront.net/collectiveaccess/images/7/2/32824_ca_object_representations_media_7214_original.jpg",
+    "thumbnail": {
+        "@id": "https://d7rm5xoig729r.cloudfront.net/collectiveaccess/images/7/2/32824_ca_object_representations_media_7214_original.jpg",
+        "height": 600
+      },
     "attribution": "Attribution statement here",
     "sequences": [
         {
