@@ -1,0 +1,35 @@
+{
+    "@context": "http://iiif.io/api/presentation/2/context.json",
+    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd/manifest",
+    "@type": "sc:Manifest",
+    "label": "View looking east from top of tomb showing general geography of area.",
+    "attribution": "Users must agree to abide by the terms and conditions of the CC BY NC SA license before using ARCE materials and must provide the following credit line: \"Reproduction courtesy of the American Research Center in Egypt, Inc. (ARCE). This project was funded by the United States Agency for International Development (USAID).\"",
+    "sequences": [
+        {
+            "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd/manifest/sequence/normal",
+            "@type": "sc:Sequence",
+            "canvases": [
+                {
+                    "@type": "sc:Canvas",
+                    "label": "View looking east from top of tomb showing general geography of area.",
+                    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd/manifest/canvas/z19w49nd",
+                    "width": 2838,
+                    "height": 4246,
+                    "images": [
+                        {
+                            "@type": "oa:Annotation",
+                            "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd/annotation/z19w49nd",
+                            "motivation": "sc:painting",
+                            "on": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd/manifest/canvas/z19w49nd",
+                            "resource": {
+                                "@id": "https://d7rm5xoig729r.cloudfront.net/collectiveaccess/images/7/2/83227_ca_object_representations_media_7214_original.jpg",
+                                "@type": "dctypes:Image",
+                                "format": "image/jpeg"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
