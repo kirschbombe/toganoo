@@ -2,7 +2,7 @@
     "@context": "http://iiif.io/api/presentation/2/context.json",
     "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd/manifest",
     "@type": "sc:Manifest",
-    "label": "Protest (Static image test)",
+    "label": "Static image test",
     "thumbnail": "https://d7rm5xoig729r.cloudfront.net/collectiveaccess/images/7/2/32824_ca_object_representations_media_7214_original.jpg",
     "attribution": "Attribution statement here",
     "sequences": [
@@ -12,7 +12,7 @@
             "canvases": [
                 {
                     "@type": "sc:Canvas",
-                    "label": "Static image of a poster",
+                    "label": "Protest",
                     "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd/manifest/canvas/z19w49nd",
                     "height": 4246,
                     "width": 2838,
@@ -32,8 +32,32 @@
                             }
                         }
                     ]
+                },
+                {
+                    "@type": "sc:Canvas",
+                    "label": "A Figure of a Palestinian Fighter",
+                    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd-2/manifest/canvas/z19w49nd-2",
+                    "height": 4047,
+                    "width": 2831,
+                    "thumbnail": "https://d7rm5xoig729r.cloudfront.net/collectiveaccess/images/7/2/94346_ca_object_representations_media_7215_original.jpg",
+                    "images": [
+                        {
+                            "@type": "oa:Annotation",
+                            "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd-2/annotation/z19w49nd-2",
+                            "motivation": "sc:painting",
+                            "on": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd-2/manifest/canvas/z19w49nd-2",
+                            "resource": {
+                                "@id": "https://d7rm5xoig729r.cloudfront.net/collectiveaccess/images/7/2/94346_ca_object_representations_media_7215_original.jpg",
+                                "@type": "dctypes:Image",
+                                "format": "image/jpeg",
+                                "height": 4047,
+                                "width": 2831
+                            }
+                        }
+                    ]
                 }
             ]
-        }
+        },
+        
     ]
 }
