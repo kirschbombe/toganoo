@@ -3,7 +3,7 @@
     "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd/manifest",
     "@type": "sc:Manifest",
     "label": "Static image test",
-    "thumbnail": "https://d7rm5xoig729r.cloudfront.net/collectiveaccess/images/7/2/32824_ca_object_representations_media_7214_original.jpg",
+    "thumbnail": "https://d7rm5xoig729r.cloudfront.net/collectiveaccess/images/7/2/32824_ca_object_representations_media_7214_preview.jpg",
     "attribution": "Attribution statement here",
     "sequences": [
         {
@@ -29,29 +29,6 @@
                                 "format": "image/jpeg",
                                 "height": 4246,
                                 "width": 2838
-                            }
-                        }
-                    ]
-                },
-                {
-                    "@type": "sc:Canvas",
-                    "label": "A Figure of a Palestinian Fighter",
-                    "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd/manifest/canvas/z19w49nd-2",
-                    "height": 4047,
-                    "width": 2831,
-                    "thumbnail": "https://d7rm5xoig729r.cloudfront.net/collectiveaccess/images/7/2/94346_ca_object_representations_media_7215_original.jpg",
-                    "images": [
-                        {
-                            "@type": "oa:Annotation",
-                            "@id": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd/annotation/z19w49nd-2",
-                            "motivation": "sc:painting",
-                            "on": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz19w49nd/manifest/canvas/z19w49nd-2",
-                            "resource": {
-                                "@id": "https://d7rm5xoig729r.cloudfront.net/collectiveaccess/images/7/2/94346_ca_object_representations_media_7215_original.jpg",
-                                "@type": "dctypes:Image",
-                                "format": "image/jpeg",
-                                "height": 4047,
-                                "width": 2831
                             }
                         }
                     ]
