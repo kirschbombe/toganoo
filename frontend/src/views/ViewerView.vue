@@ -352,6 +352,7 @@ function parseCanvases(manifest) {
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-auto-rows: 200px;
   gap: 10px;
   padding: 16px;
   overflow-y: auto;
@@ -362,24 +363,21 @@ function parseCanvases(manifest) {
   border: 2px solid transparent;
   transition: border-color 0.15s;
   overflow: hidden;
-  aspect-ratio: 3/5;
   display: flex;
   flex-direction: column;
 }
 .gallery-item:hover    { border-color: rgba(255,255,255,0.2); }
 .gallery-item.active   { border-color: var(--vermillion); }
 .gallery-item-img {
-  width: 100%;
   flex: 1;
   min-height: 0;
   background: #111;
   overflow: hidden;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .gallery-item-img img {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
