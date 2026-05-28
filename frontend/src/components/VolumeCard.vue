@@ -1,5 +1,5 @@
 <template>
-  <div class="vol-card" role="button" tabindex="0" @keydown.enter="$emit('click')">
+  <div class="vol-card" role="button" tabindex="0" @click="$emit('click')" @keydown.enter="$emit('click')">
     <div class="vol-card-thumb">
       <img
         v-if="volume.thumbnail"

@@ -21,7 +21,7 @@
     <details class="form-section" open>
       <summary class="form-section-title">Physical</summary>
       <div class="form-section-body">
-        <div class="form-row">
+        <div class="form-row" v-if="showPhysical">
           <div class="form-group">
             <label class="form-label">Shape</label>
             <select v-model="form.shape" class="form-input">
@@ -30,12 +30,19 @@
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label">Ink color</label>
+            <label class="form-label">Ink / color</label>
             <select v-model="form.inkColor" class="form-input">
               <option value=""></option>
               <option v-for="c in INK_COLORS" :key="c.v" :value="c.v">{{ c.l }}</option>
             </select>
           </div>
+        </div>
+        <div class="form-group" v-if="showLabel">
+          <label class="form-label">Label color</label>
+          <select v-model="form.inkColor" class="form-input">
+            <option value=""></option>
+            <option v-for="c in LABEL_COLORS" :key="c" :value="c">{{ c }}</option>
+          </select>
         </div>
         <div class="form-row">
           <div class="form-group" v-if="showScript">
@@ -153,6 +160,7 @@ const INK_COLORS  = [
   { v: 'blue', l: 'Blue' }, { v: 'green', l: 'Green' },
   { v: 'brown', l: 'Brown' }, { v: 'gold', l: 'Gold' }, { v: 'other', l: 'Other' },
 ]
+const LABEL_COLORS = ['yellow-green', 'white', 'pink', 'red', 'blue', 'other']
 const SCRIPT_TYPES = [
   { v: 'tensho', l: 'Tensho (篆書)' }, { v: 'reisho', l: 'Reisho (隷書)' },
   { v: 'kaisho', l: 'Kaisho (楷書)' }, { v: 'gyosho', l: 'Gyosho (行書)' },
@@ -180,9 +188,7 @@ const OWNER_TYPES  = [
   { v: 'individual',        l: 'Individual' },
 ]
 
-const INSCRIPTION_TYPES = new Set([
-  'handwritten-inscription', 'signature', 'catalogue-entry',
-])
+const PHYSICAL_TYPES = new Set(['collectors-seal', 'institutional-stamp'])
 
 const form = reactive({
   markType:          props.initial.mark_type          ?? '',
@@ -201,7 +207,9 @@ const form = reactive({
   notes:             props.initial.notes              ?? '',
 })
 
-const showScript      = computed(() => INSCRIPTION_TYPES.has(form.markType))
+const showPhysical    = computed(() => PHYSICAL_TYPES.has(form.markType))
+const showLabel       = computed(() => form.markType === 'sticker-label')
+const showScript      = computed(() => form.markType !== 'trace-remnant' && form.markType !== '')
 const hasTranscription = computed(() => !!form.transcription)
 const hasOwner         = computed(() => !!form.ownerName)
 

@@ -155,7 +155,7 @@ function thumbnailUrl(svcId) {
 }
 
 function tileSource(svcId) {
-  return svcId ? { type: 'image', url: `${svcId.replace(/\/$/, '')}/info.json` } : null
+  return svcId ? `${svcId.replace(/\/$/, '')}/info.json` : null
 }
 
 function parseCanvases(manifest) {

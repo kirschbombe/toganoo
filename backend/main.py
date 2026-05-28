@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.sessions import SessionMiddleware
 
@@ -64,5 +65,17 @@ async def health():
         return {"status": "error", "detail": str(e)}
 
 
-# Serve built frontend — must be last so API routes take priority
-app.mount("/", StaticFiles(directory="frontend/dist", html=True), name="static")
+_DIST_DIR = "frontend/dist"
+
+# Serve hashed JS/CSS/image assets
+app.mount("/assets", StaticFiles(directory=f"{_DIST_DIR}/assets"), name="assets")
+
+
+# SPA catch-all — returns index.html for any path not matched above,
+# or a static file if one exists at that path (e.g. favicon.ico)
+@app.get("/{full_path:path}")
+async def serve_spa(full_path: str):
+    candidate = os.path.join(_DIST_DIR, full_path)
+    if full_path and os.path.isfile(candidate):
+        return FileResponse(candidate)
+    return FileResponse(os.path.join(_DIST_DIR, "index.html"))
