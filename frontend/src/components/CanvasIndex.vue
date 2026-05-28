@@ -89,15 +89,15 @@ onUnmounted(() => observer?.disconnect())
 .canvas-index-list {
   flex: 1;
   overflow-y: auto;
-  padding: 8px;
+  padding: 8px 12px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 .canvas-thumb {
   cursor: pointer;
   border-radius: 4px;
-  padding: 4px;
+  padding: 4px 2px;
   border: 1px solid transparent;
   transition: border-color 0.15s;
 }

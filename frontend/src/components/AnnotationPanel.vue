@@ -4,7 +4,12 @@
     <!-- Header -->
     <div class="panel-header">
       <span class="panel-label">{{ panelTitle }}</span>
-      <button v-if="editing" class="panel-close-btn" @click="cancelEdit">✕</button>
+      <div class="panel-header-actions">
+        <button v-if="!editing && user && volume" class="add-anno-btn" @click="$emit('startDrawing')">
+          + Add annotation
+        </button>
+        <button v-if="editing" class="panel-close-btn" @click="cancelEdit">✕</button>
+      </div>
     </div>
 
     <!-- Form: new or edit -->
@@ -28,8 +33,6 @@
       <p>Select a volume from the collection to begin annotating.</p>
     </div>
 
-    <!-- New region drawn but no form yet (shouldn't happen — form auto-opens) -->
-
     <!-- Annotation list -->
     <div v-else class="panel-body">
 
@@ -37,10 +40,10 @@
       <div v-if="annotations.length" class="panel-exports">
         <a :href="exportUrl('tei', volume.manifest_url)" target="_blank" class="export-panel-btn">↓ TEI XML</a>
         <a :href="exportUrl('linked-art', volume.manifest_url)" target="_blank" class="export-panel-btn">↓ Linked Art</a>
-        <a :href="exportUrl('annotations', volume.manifest_url)" target="_blank" class="export-panel-btn">↓ W3C Annotations</a>
+        <a :href="exportUrl('annotations', volume.manifest_url)" target="_blank" class="export-panel-btn">↓ IIIF Annotations</a>
       </div>
 
-      <!-- Draw hint -->
+      <!-- Empty state -->
       <div v-if="!annotations.length" class="panel-empty">
         <div class="panel-empty-icon">✏️</div>
         <p>No annotations yet for this volume.<br>
@@ -53,12 +56,16 @@
           v-for="(a, i) in annotations"
           :key="a.id"
           class="anno-card"
-          :class="{ selected: editingId === a.id }"
+          :class="{ selected: selectedId === a.id }"
+          @click="toggleSelected(a.id)"
         >
           <div class="anno-card-head">
             <span class="anno-seq">#{{ i + 1 }}</span>
             <span class="mark-badge">{{ markTypeLabel(a.mark_type) }}</span>
+            <span class="anno-expand-icon">{{ selectedId === a.id ? '▲' : '▼' }}</span>
           </div>
+
+          <!-- Compact summary (always visible) -->
           <div class="anno-detail">
             <div v-if="a.transcription" class="ja">{{ a.transcription }}</div>
             <div v-if="a.owner_name">👤 {{ a.owner_name }}</div>
@@ -66,7 +73,47 @@
             <div>📄 {{ locationLabel(a.location_on_object) }}</div>
             <div class="anno-by">by {{ a.annotator_name || a.annotator_orcid }}</div>
           </div>
-          <div class="anno-actions">
+
+          <!-- Expanded details -->
+          <div v-if="selectedId === a.id" class="anno-expanded">
+            <dl class="anno-fields">
+              <template v-if="a.shape">
+                <dt>Shape</dt><dd>{{ a.shape }}</dd>
+              </template>
+              <template v-if="a.ink_color">
+                <dt>Color</dt><dd>{{ a.ink_color }}</dd>
+              </template>
+              <template v-if="a.script_type">
+                <dt>Script</dt><dd>{{ a.script_type }}</dd>
+              </template>
+              <template v-if="a.condition">
+                <dt>Condition</dt><dd>{{ a.condition }}</dd>
+              </template>
+              <template v-if="a.transcription_rom">
+                <dt>Romanization</dt><dd>{{ a.transcription_rom }}</dd>
+              </template>
+              <template v-if="a.owner_type">
+                <dt>Owner type</dt><dd>{{ a.owner_type }}</dd>
+              </template>
+              <template v-if="a.owner_authority_uri">
+                <dt>Owner URI</dt>
+                <dd><a :href="a.owner_authority_uri" target="_blank" rel="noopener" class="anno-uri">{{ a.owner_authority_uri }}</a></dd>
+              </template>
+              <template v-if="a.place_authority_uri">
+                <dt>Place URI</dt>
+                <dd><a :href="a.place_authority_uri" target="_blank" rel="noopener" class="anno-uri">{{ a.place_authority_uri }}</a></dd>
+              </template>
+              <template v-if="a.notes">
+                <dt>Notes</dt><dd>{{ a.notes }}</dd>
+              </template>
+              <template v-if="a.canvas_label">
+                <dt>Canvas</dt><dd>{{ a.canvas_label }}</dd>
+              </template>
+            </dl>
+          </div>
+
+          <!-- Actions stop propagation so clicks don't toggle expand -->
+          <div class="anno-actions" @click.stop>
             <button class="anno-action-btn" @click="startEdit(a)">Edit</button>
             <button
               v-if="a.annotator_orcid === user?.orcid"
@@ -88,16 +135,17 @@ import { exportUrl } from '../api/index.js'
 import { createAnnotation, updateAnnotation, deleteAnnotation } from '../api/index.js'
 
 const props = defineProps({
-  user:        Object,
-  volume:      Object,   // { slug, manifest_url, title, ... }
-  annotations: Array,
-  pendingRegion: Object, // { canvasId, canvasLabel, xywh } — set when a region is drawn
+  user:          Object,
+  volume:        Object,
+  annotations:   Array,
+  pendingRegion: Object,
 })
 
-const emit = defineEmits(['annotationsChanged', 'clearPendingRegion'])
+const emit = defineEmits(['annotationsChanged', 'clearPendingRegion', 'startDrawing'])
 
 const editingId         = ref(null)
 const editingAnnotation = ref({})
+const selectedId        = ref(null)
 
 const editing    = computed(() => editingId.value !== null)
 const panelTitle = computed(() => {
@@ -107,14 +155,18 @@ const panelTitle = computed(() => {
   return 'Annotations'
 })
 
-// Auto-open form when a new region is drawn
 watch(() => props.pendingRegion, (region) => {
   if (region) { editingId.value = 'new'; editingAnnotation.value = {} }
 })
 
+function toggleSelected(id) {
+  selectedId.value = selectedId.value === id ? null : id
+}
+
 function startEdit(a) {
   editingId.value         = a.id
   editingAnnotation.value = a
+  selectedId.value        = null
 }
 
 function cancelEdit() {
@@ -208,6 +260,7 @@ function locationLabel(v)  { return LOCATION_LABELS[v]  ?? v  }
   padding: 10px 14px;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
+  gap: 8px;
 }
 .panel-label {
   font-size: 12px;
@@ -216,6 +269,20 @@ function locationLabel(v)  { return LOCATION_LABELS[v]  ?? v  }
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+.panel-header-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.add-anno-btn {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--vermillion);
+  background: var(--vermillion);
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+.add-anno-btn:hover { opacity: 0.85; }
 .panel-close-btn {
   background: none;
   border: none;
@@ -259,10 +326,11 @@ function locationLabel(v)  { return LOCATION_LABELS[v]  ?? v  }
 .anno-card {
   padding: 10px 14px;
   border-bottom: 1px solid var(--border);
+  cursor: pointer;
   transition: background 0.1s;
 }
 .anno-card:hover    { background: rgba(255,255,255,0.03); }
-.anno-card.selected { background: rgba(180,40,30,0.08); }
+.anno-card.selected { background: rgba(180,40,30,0.06); border-left: 3px solid var(--vermillion); padding-left: 11px; }
 .anno-card-head { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
 .anno-seq { font-size: 11px; color: var(--ink-3); }
 .mark-badge {
@@ -272,10 +340,33 @@ function locationLabel(v)  { return LOCATION_LABELS[v]  ?? v  }
   background: var(--vermillion);
   color: #fff;
 }
+.anno-expand-icon { font-size: 9px; color: var(--ink-3); margin-left: auto; }
 .anno-detail { font-size: 12px; color: var(--ink-2); line-height: 1.6; }
 .anno-detail .ja { font-size: 14px; color: var(--ink-1); }
 .anno-by { font-size: 10px; color: var(--ink-3); margin-top: 2px; }
-.anno-actions { display: flex; gap: 6px; margin-top: 6px; }
+.anno-expanded {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+.anno-fields {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3px 10px;
+}
+.anno-fields dt {
+  color: var(--ink-3);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  padding-top: 1px;
+}
+.anno-fields dd { color: var(--ink-2); font-size: 11px; word-break: break-word; }
+.anno-uri { color: var(--ink-3); word-break: break-all; font-size: 10px; }
+.anno-uri:hover { color: var(--ink-1); }
+.anno-actions { display: flex; gap: 6px; margin-top: 8px; }
 .anno-action-btn {
   font-size: 11px;
   padding: 3px 10px;

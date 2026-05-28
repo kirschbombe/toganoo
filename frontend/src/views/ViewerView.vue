@@ -44,14 +44,9 @@
           <button class="nav-btn" :disabled="pageIndex >= canvases.length - 1" @click="goToPage(pageIndex + 1)">→</button>
         </div>
         <div class="viewer-hint">
-          {{ auth.user ? 'Click "+ Add annotation" then draw a region on the image' : 'Sign in with ORCID to annotate' }}
+          {{ auth.user ? 'Draw a region on the image after clicking "+ Add annotation"' : 'Sign in with ORCID to annotate' }}
         </div>
-        <button
-          v-if="auth.user"
-          class="draw-btn"
-          :class="{ active: drawing }"
-          @click="toggleDrawing"
-        >+ Add annotation</button>
+        <button class="gallery-btn" @click="galleryOpen = true" title="Browse all pages">⊞ Gallery</button>
       </div>
     </div>
 
@@ -63,7 +58,35 @@
       :pending-region="pendingRegion"
       @annotationsChanged="reloadAnnotations"
       @clearPendingRegion="pendingRegion = null"
+      @startDrawing="toggleDrawing"
     />
+
+    <!-- Gallery overlay -->
+    <Teleport to="body">
+      <div v-if="galleryOpen" class="gallery-overlay" @click.self="galleryOpen = false">
+        <div class="gallery-modal">
+          <div class="gallery-modal-header">
+            <span class="gallery-modal-title">{{ volume?.title }} — All pages</span>
+            <button class="gallery-modal-close" @click="galleryOpen = false">✕</button>
+          </div>
+          <div class="gallery-grid">
+            <div
+              v-for="(canvas, i) in canvases"
+              :key="canvas.id"
+              class="gallery-item"
+              :class="{ active: i === pageIndex }"
+              @click="goToPage(i); galleryOpen = false"
+            >
+              <div class="gallery-item-img">
+                <img v-if="canvas.thumbnail" :src="canvas.thumbnail" :alt="canvas.label" loading="lazy" />
+                <span v-else class="gallery-item-num">{{ i + 1 }}</span>
+              </div>
+              <div class="gallery-item-label">{{ canvas.label || i + 1 }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Teleport>
 
   </div>
 </template>
@@ -88,6 +111,7 @@ const annotations   = ref([])
 const pendingRegion = ref(null)
 const drawing       = ref(false)
 const osdViewer     = ref(null)
+const galleryOpen   = ref(false)
 
 const volume = computed(() => volStore.bySlug(route.params.slug))
 const currentCanvas = computed(() => canvases.value[pageIndex.value] ?? null)
@@ -269,5 +293,100 @@ function parseCanvases(manifest) {
   background: var(--vermillion);
   color: #fff;
   border-color: var(--vermillion);
+}
+
+.gallery-btn {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  border: 1px solid var(--border);
+  background: var(--sidebar-bg);
+  color: var(--ink-2);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.gallery-btn:hover { color: var(--ink-1); }
+
+/* Gallery overlay */
+.gallery-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.gallery-modal {
+  background: var(--sidebar-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  width: min(90vw, 960px);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.gallery-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.gallery-modal-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-1);
+}
+.gallery-modal-close {
+  background: none;
+  border: none;
+  color: var(--ink-3);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+.gallery-modal-close:hover { color: var(--ink-1); }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  padding: 16px;
+  overflow-y: auto;
+}
+.gallery-item {
+  cursor: pointer;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  transition: border-color 0.15s;
+  overflow: hidden;
+}
+.gallery-item:hover    { border-color: rgba(255,255,255,0.2); }
+.gallery-item.active   { border-color: var(--vermillion); }
+.gallery-item-img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: #111;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery-item-num { font-size: 12px; color: var(--ink-3); }
+.gallery-item-label {
+  font-size: 10px;
+  color: var(--ink-3);
+  text-align: center;
+  padding: 4px 4px 6px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>
