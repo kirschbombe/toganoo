@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+from xml.sax.saxutils import escape as xml_escape
 
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import Response
@@ -11,29 +12,34 @@ router = APIRouter()
 
 # ── TEI export ───────────────────────────────────────────────────────────────
 
-@router.get("/tei/{ark_path:path}", response_class=Response)
-async def export_tei(ark_path: str, db=Depends(get_db)):
+@router.get("/tei/{volume_id:path}", response_class=Response)
+async def export_tei(volume_id: str, db=Depends(get_db)):
     """Export annotations for a volume as TEI XML."""
-    volume_ark = f"ark:/{ark_path}"
     rows = db.execute(
-        "SELECT * FROM annotations WHERE volume_ark = ? ORDER BY created_at",
-        (volume_ark,),
+        "SELECT * FROM annotations WHERE volume_id = ? ORDER BY created_at",
+        (volume_id,),
     ).fetchall()
     annotations = [dict(r) for r in rows]
 
     if not annotations:
         raise HTTPException(status_code=404, detail="No annotations found for this volume")
 
-    tei = _build_tei(volume_ark, annotations)
-    filename = f"toganoo-{ark_path.replace('/', '-')}-provenance.xml"
+    tei = _build_tei(volume_id, annotations)
+    safe_name = volume_id.replace("/", "-").replace(":", "-").replace("http-", "").replace("https-", "")
+    filename = f"toganoo-{safe_name}-provenance.xml"
     return Response(
         content=tei,
-        media_type="application/xml",
+        media_type="application/xml; charset=utf-8",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
 
 
-def _build_tei(volume_ark: str, annotations: list) -> str:
+def _x(value) -> str:
+    """Escape a value for safe XML interpolation."""
+    return xml_escape(str(value)) if value else ""
+
+
+def _build_tei(volume_id: str, annotations: list) -> str:
     seal_elements, zone_elements, prov_elements = [], [], []
 
     for i, a in enumerate(annotations, 1):
@@ -42,52 +48,55 @@ def _build_tei(volume_ark: str, annotations: list) -> str:
 
         parts = []
         if a.get("shape"):
-            parts.append(f'      <decoNote type="shape">{a["shape"]}</decoNote>')
+            parts.append(f'      <decoNote type="shape">{_x(a["shape"])}</decoNote>')
         if a.get("ink_color"):
-            parts.append(f'      <decoNote type="color">{a["ink_color"]}</decoNote>')
+            parts.append(f'      <decoNote type="color">{_x(a["ink_color"])}</decoNote>')
         if a.get("script_type"):
-            parts.append(f'      <decoNote type="script">{a["script_type"]}</decoNote>')
+            parts.append(f'      <decoNote type="script">{_x(a["script_type"])}</decoNote>')
         if a.get("condition"):
-            parts.append(f'      <decoNote type="condition">{a["condition"]}</decoNote>')
+            parts.append(f'      <decoNote type="condition">{_x(a["condition"])}</decoNote>')
         if a.get("transcription"):
-            parts.append(f'      <ab xml:lang="ja">{a["transcription"]}</ab>')
+            parts.append(f'      <ab xml:lang="ja">{_x(a["transcription"])}</ab>')
         if a.get("transcription_rom"):
-            parts.append(f'      <ab xml:lang="ja-Latn">{a["transcription_rom"]}</ab>')
+            parts.append(f'      <ab xml:lang="ja-Latn">{_x(a["transcription_rom"])}</ab>')
         if a.get("location_on_object"):
-            parts.append(f'      <note type="location">{a["location_on_object"]}</note>')
+            parts.append(f'      <note type="location">{_x(a["location_on_object"])}</note>')
         if a.get("annotator_orcid"):
-            parts.append(f'      <note type="annotator" resp="{a["annotator_orcid"]}">{a.get("annotator_name","")}</note>')
+            parts.append(
+                f'      <note type="annotator" resp="{_x(a["annotator_orcid"])}">'
+                f'{_x(a.get("annotator_name",""))}</note>'
+            )
 
         seal_elements.append(
-            f'    <seal xml:id="{seal_id}" type="{a.get("mark_type","")}" n="{i}" facs="#{zone_id}">\n'
+            f'    <seal xml:id="{seal_id}" type="{_x(a.get("mark_type",""))}" n="{i}" facs="#{zone_id}">\n'
             + "\n".join(parts)
             + "\n    </seal>"
         )
 
         zone_elements.append(
-            f'    <surface xml:id="canvas-{i:03d}" source="{a.get("canvas_id","")}">\n'
+            f'    <surface xml:id="canvas-{i:03d}" source="{_x(a.get("canvas_id",""))}">\n'
             f'      <zone xml:id="{zone_id}" corresp="#{seal_id}"\n'
             f'            ulx="" uly="" lrx="" lry=""\n'
-            f'            n="{a.get("region_xywh","")}" />\n'
+            f'            n="{_x(a.get("region_xywh",""))}" />\n'
             f'    </surface>'
         )
 
         prov_parts = []
         if a.get("owner_name"):
-            ref = f' ref="{a["owner_authority_uri"]}"' if a.get("owner_authority_uri") else ""
-            tag = "orgName" if a.get("owner_type") in {"temple","school","library","other-institution"} else "persName"
-            prov_parts.append(f'<{tag}{ref} xml:lang="ja">{a["owner_name"]}</{tag}>')
+            ref = f' ref="{_x(a["owner_authority_uri"])}"' if a.get("owner_authority_uri") else ""
+            tag = "orgName" if a.get("owner_type") in {"temple", "school", "library", "other-institution"} else "persName"
+            prov_parts.append(f'<{tag}{ref} xml:lang="ja">{_x(a["owner_name"])}</{tag}>')
         if a.get("place_name"):
-            ref = f' ref="{a["place_authority_uri"]}"' if a.get("place_authority_uri") else ""
-            prov_parts.append(f'<placeName{ref} xml:lang="ja">{a["place_name"]}</placeName>')
+            ref = f' ref="{_x(a["place_authority_uri"])}"' if a.get("place_authority_uri") else ""
+            prov_parts.append(f'<placeName{ref} xml:lang="ja">{_x(a["place_name"])}</placeName>')
 
         if prov_parts:
-            loc = a.get("location_on_object","")
+            loc = _x(a.get("location_on_object", ""))
             prov_elements.append(
-                f'    <stamp xml:id="prov-{i:03d}" corresp="#{seal_id}" type="{a.get("mark_type","")}">\n'
+                f'    <stamp xml:id="prov-{i:03d}" corresp="#{seal_id}" type="{_x(a.get("mark_type",""))}">\n'
                 f'      {", ".join(prov_parts)}'
-                + (f': {loc}.' if loc else "")
-                + f'\n    </stamp>'
+                + (f": {loc}." if loc else "")
+                + "\n    </stamp>"
             )
 
     today = datetime.now().strftime("%Y-%m-%d")
@@ -118,10 +127,7 @@ def _build_tei(volume_ark: str, annotations: list) -> str:
       <sourceDesc>
         <msDesc>
           <msIdentifier>
-            <country>USA</country>
-            <repository>UCLA Library</repository>
-            <collection>Toganoo Collection</collection>
-            <idno type="ARK">{volume_ark}</idno>
+            <idno type="URI">{_x(volume_id)}</idno>
           </msIdentifier>
           <physDesc>
             <sealDesc>
@@ -149,20 +155,19 @@ def _build_tei(volume_ark: str, annotations: list) -> str:
 
 # ── Linked Art export ─────────────────────────────────────────────────────────
 
-@router.get("/linked-art/{ark_path:path}")
-async def export_linked_art(ark_path: str, db=Depends(get_db)):
+@router.get("/linked-art/{volume_id:path}")
+async def export_linked_art(volume_id: str, db=Depends(get_db)):
     """Export annotations as a Linked Art JSON-LD document."""
-    volume_ark = f"ark:/{ark_path}"
     rows = db.execute(
-        "SELECT * FROM annotations WHERE volume_ark = ? ORDER BY created_at",
-        (volume_ark,),
+        "SELECT * FROM annotations WHERE volume_id = ? ORDER BY created_at",
+        (volume_id,),
     ).fetchall()
     annotations = [dict(r) for r in rows]
 
     if not annotations:
         raise HTTPException(status_code=404, detail="No annotations found for this volume")
 
-    base_uri = f"https://toganoo.library.ucla.edu/objects/{ark_path}"
+    base_uri = volume_id
     used_for = []
 
     for a in annotations:
@@ -230,12 +235,13 @@ async def export_linked_art(ark_path: str, db=Depends(get_db)):
         "@context": "https://linked.art/ns/v1/linked-art.json",
         "id": base_uri,
         "type": "HumanMadeObject",
-        "_label": f"Toganoo Collection: {volume_ark}",
-        "identified_by": [{"type": "Identifier", "content": volume_ark, "classified_as": [{"id": "http://vocab.getty.edu/aat/300404704", "_label": "ARK identifier"}]}],
+        "_label": f"Provenance annotations: {volume_id}",
+        "identified_by": [{"type": "Identifier", "content": volume_id, "classified_as": [{"id": "http://vocab.getty.edu/aat/300404704", "_label": "URI"}]}],
         "used_for": used_for,
     }
 
-    filename = f"toganoo-{ark_path.replace('/', '-')}-linked-art.json"
+    safe_name = volume_id.replace("/", "-").replace(":", "-").replace("http-", "").replace("https-", "")
+    filename = f"toganoo-{safe_name}-linked-art.json"
     return Response(
         content=json.dumps(doc, ensure_ascii=False, indent=2),
         media_type="application/ld+json",
@@ -245,13 +251,12 @@ async def export_linked_art(ark_path: str, db=Depends(get_db)):
 
 # ── W3C Web Annotation export ─────────────────────────────────────────────────
 
-@router.get("/annotations/{ark_path:path}")
-async def export_web_annotations(ark_path: str, db=Depends(get_db)):
+@router.get("/annotations/{volume_id:path}")
+async def export_web_annotations(volume_id: str, db=Depends(get_db)):
     """Export annotations as a W3C Web Annotation collection."""
-    volume_ark = f"ark:/{ark_path}"
     rows = db.execute(
-        "SELECT * FROM annotations WHERE volume_ark = ? ORDER BY created_at",
-        (volume_ark,),
+        "SELECT * FROM annotations WHERE volume_id = ? ORDER BY created_at",
+        (volume_id,),
     ).fetchall()
     annotations = [dict(r) for r in rows]
 
@@ -315,14 +320,15 @@ async def export_web_annotations(ark_path: str, db=Depends(get_db)):
 
     collection = {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": f"https://toganoo.library.ucla.edu/annotations/volume/{ark_path}",
+        "id": f"https://toganoo.library.ucla.edu/annotations/volume/{volume_id}",
         "type": "AnnotationCollection",
-        "label": f"Provenance annotations for {volume_ark}",
+        "label": f"Provenance annotations for {volume_id}",
         "total": len(items),
         "items": items,
     }
 
-    filename = f"toganoo-{ark_path.replace('/', '-')}-annotations.json"
+    safe_name = volume_id.replace("/", "-").replace(":", "-").replace("http-", "").replace("https-", "")
+    filename = f"toganoo-{safe_name}-annotations.json"
     return Response(
         content=json.dumps(collection, ensure_ascii=False, indent=2),
         media_type="application/ld+json",

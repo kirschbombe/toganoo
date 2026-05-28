@@ -6,10 +6,8 @@ export async function getUser() {
   return data.user;
 }
 
-export async function getVolumeAnnotations(ark) {
-  // ark is like "ark:/21198/n1mk86" — strip the "ark:/" prefix for the URL
-  const path = ark.replace(/^ark:\//, '');
-  const res = await fetch(`/api/annotations/volume/${path}`);
+export async function getVolumeAnnotations(manifestUrl) {
+  const res = await fetch(`/api/annotations/volume/${encodeURIComponent(manifestUrl)}`);
   if (!res.ok) return [];
   return res.json();
 }
@@ -46,7 +44,6 @@ export async function fetchManifest(url) {
   return res.json();
 }
 
-export function exportUrl(type, ark) {
-  const path = ark.replace(/^ark:\//, '');
-  return `/api/export/${type}/${path}`;
+export function exportUrl(type, manifestUrl) {
+  return `/api/export/${type}/${encodeURIComponent(manifestUrl)}`;
 }

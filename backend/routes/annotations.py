@@ -12,7 +12,7 @@ router = APIRouter()
 
 
 class AnnotationCreate(BaseModel):
-    volume_ark: str
+    volume_id: str
     canvas_id: str
     canvas_label: Optional[str] = None
     region_xywh: str
@@ -39,12 +39,12 @@ def require_user(request: Request):
     return user
 
 
-@router.get("/volume/{ark_path:path}")
-async def get_volume_annotations(ark_path: str, db=Depends(get_db)):
-    """Return all annotations for a given volume ARK."""
+@router.get("/volume/{volume_id:path}")
+async def get_volume_annotations(volume_id: str, db=Depends(get_db)):
+    """Return all annotations for a given volume_id (manifest URL or ARK)."""
     rows = db.execute(
-        "SELECT * FROM annotations WHERE volume_ark = ? ORDER BY created_at",
-        (f"ark:/{ark_path}",),
+        "SELECT * FROM annotations WHERE volume_id = ? ORDER BY created_at",
+        (volume_id,),
     ).fetchall()
     return [dict(r) for r in rows]
 
@@ -61,7 +61,7 @@ async def create_annotation(
 
     db.execute(
         """INSERT INTO annotations (
-               id, volume_ark, canvas_id, canvas_label, region_xywh,
+               id, volume_id, canvas_id, canvas_label, region_xywh,
                mark_type, shape, ink_color, script_type, condition,
                transcription, transcription_rom,
                owner_name, owner_type, owner_authority_uri,
@@ -70,7 +70,7 @@ async def create_annotation(
                annotator_orcid, annotator_name, created_at, updated_at
            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
         (
-            anno_id, data.volume_ark, data.canvas_id, data.canvas_label, data.region_xywh,
+            anno_id, data.volume_id, data.canvas_id, data.canvas_label, data.region_xywh,
             data.mark_type, data.shape, data.ink_color, data.script_type, data.condition,
             data.transcription, data.transcription_rom,
             data.owner_name, data.owner_type, data.owner_authority_uri,

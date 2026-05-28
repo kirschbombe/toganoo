@@ -128,7 +128,7 @@ async function selectVolume(vol) {
     state.canvases = [];
   }
 
-  state.annotations = await getVolumeAnnotations(vol.ark);
+  state.annotations = await getVolumeAnnotations(vol.manifestUrl);
   loadPage(0);
   renderPanel();
   renderExportButtons();
@@ -290,11 +290,11 @@ function renderExportButtons() {
   if (!state.selectedVol || !state.annotations.length) { btns.style.display = 'none'; return; }
   btns.style.display = 'flex';
   document.getElementById('export-tei-btn').onclick = () =>
-    window.open(exportUrl('tei', state.selectedVol.ark), '_blank');
+    window.open(exportUrl('tei', state.selectedVol.manifestUrl), '_blank');
   document.getElementById('export-la-btn').onclick = () =>
-    window.open(exportUrl('linked-art', state.selectedVol.ark), '_blank');
+    window.open(exportUrl('linked-art', state.selectedVol.manifestUrl), '_blank');
   document.getElementById('export-anno-btn').onclick = () =>
-    window.open(exportUrl('annotations', state.selectedVol.ark), '_blank');
+    window.open(exportUrl('annotations', state.selectedVol.manifestUrl), '_blank');
 }
 
 // ── Panel ─────────────────────────────────────────────────────────────────────
@@ -346,13 +346,13 @@ function renderPanel() {
   body.innerHTML = `
     <div style="padding:8px 8px 0">
       <div style="display:flex;gap:5px;flex-wrap:wrap">
-        <a class="export-panel-btn" href="${exportUrl('tei', state.selectedVol.ark)}" target="_blank">
+        <a class="export-panel-btn" href="${exportUrl('tei', state.selectedVol.manifestUrl)}" target="_blank">
           ↓ TEI XML
         </a>
-        <a class="export-panel-btn" href="${exportUrl('linked-art', state.selectedVol.ark)}" target="_blank">
+        <a class="export-panel-btn" href="${exportUrl('linked-art', state.selectedVol.manifestUrl)}" target="_blank">
           ↓ Linked Art
         </a>
-        <a class="export-panel-btn" href="${exportUrl('annotations', state.selectedVol.ark)}" target="_blank">
+        <a class="export-panel-btn" href="${exportUrl('annotations', state.selectedVol.manifestUrl)}" target="_blank">
           ↓ W3C Annotations
         </a>
       </div>
@@ -443,7 +443,7 @@ function renderPanelForm(isNew) {
     if (isNew) {
       if (!state.pendingRegion) { alert('No region drawn — please draw a region on the image first.'); return; }
       await createAnnotation({
-        volume_ark:          state.selectedVol.ark,
+        volume_id:           state.selectedVol.manifestUrl,
         canvas_id:           state.pendingRegion.canvasId,
         canvas_label:        state.pendingRegion.canvasLabel,
         region_xywh:         state.pendingRegion.xywh,
@@ -464,7 +464,7 @@ function renderPanelForm(isNew) {
       });
     } else {
       await updateAnnotation(state.editingId, {
-        volume_ark:          state.selectedVol.ark,
+        volume_id:           state.selectedVol.manifestUrl,
         canvas_id:           state.annotations.find(a => a.id === state.editingId)?.canvas_id ?? '',
         region_xywh:         state.annotations.find(a => a.id === state.editingId)?.region_xywh ?? '',
         mark_type:           formData.markType,

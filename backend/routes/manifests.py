@@ -1,23 +1,33 @@
 from urllib.parse import urlparse
 
 import httpx
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import JSONResponse
+
+from ..database import get_db
 
 router = APIRouter()
 
-ALLOWED_DOMAINS = [
+# Fallback domains used before any volumes are added to the database
+_FALLBACK_DOMAINS = [
     "iiif.library.ucla.edu",
     "digital.library.ucla.edu",
-    "iiif.library.ucla.edu",
 ]
 
 
+def _allowed_domains(db) -> set[str]:
+    """Derive allowed domains from manifest URLs already in the volumes table."""
+    rows = db.execute("SELECT manifest_url FROM volumes").fetchall()
+    domains = {urlparse(r["manifest_url"]).netloc for r in rows if r["manifest_url"]}
+    return domains or set(_FALLBACK_DOMAINS)
+
+
 @router.get("/proxy")
-async def proxy_manifest(url: str):
+async def proxy_manifest(url: str, db=Depends(get_db)):
     """Proxy a IIIF manifest to avoid CORS issues in the browser."""
     parsed = urlparse(url)
-    if not any(parsed.netloc.endswith(d) for d in ALLOWED_DOMAINS):
+    allowed = _allowed_domains(db)
+    if not any(parsed.netloc == d or parsed.netloc.endswith(f".{d}") for d in allowed):
         raise HTTPException(status_code=400, detail=f"Domain not in allowlist: {parsed.netloc}")
 
     async with httpx.AsyncClient(follow_redirects=True, timeout=30.0) as client:
