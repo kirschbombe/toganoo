@@ -362,22 +362,27 @@ function parseCanvases(manifest) {
   border: 2px solid transparent;
   transition: border-color 0.15s;
   overflow: hidden;
+  aspect-ratio: 3/5;
+  display: flex;
+  flex-direction: column;
 }
 .gallery-item:hover    { border-color: rgba(255,255,255,0.2); }
 .gallery-item.active   { border-color: var(--vermillion); }
 .gallery-item-img {
   width: 100%;
-  aspect-ratio: 3/4;
+  flex: 1;
+  min-height: 0;
   background: #111;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
 }
 .gallery-item-img img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .gallery-item-num { font-size: 12px; color: var(--ink-3); }
 .gallery-item-label {
