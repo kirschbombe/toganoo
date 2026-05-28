@@ -1,0 +1,290 @@
+<template>
+  <aside class="anno-panel">
+
+    <!-- Header -->
+    <div class="panel-header">
+      <span class="panel-label">{{ panelTitle }}</span>
+      <button v-if="editing" class="panel-close-btn" @click="cancelEdit">✕</button>
+    </div>
+
+    <!-- Form: new or edit -->
+    <div v-if="editing" class="panel-body">
+      <AnnotationForm
+        :initial="editingAnnotation"
+        @save="handleSave"
+        @cancel="cancelEdit"
+      />
+    </div>
+
+    <!-- Not signed in -->
+    <div v-else-if="!user" class="panel-body panel-empty">
+      <div class="panel-empty-icon">🔒</div>
+      <p>Sign in with ORCID to create and view annotations.</p>
+    </div>
+
+    <!-- No volume selected -->
+    <div v-else-if="!volume" class="panel-body panel-empty">
+      <div class="panel-empty-icon">📖</div>
+      <p>Select a volume from the collection to begin annotating.</p>
+    </div>
+
+    <!-- New region drawn but no form yet (shouldn't happen — form auto-opens) -->
+
+    <!-- Annotation list -->
+    <div v-else class="panel-body">
+
+      <!-- Export links -->
+      <div v-if="annotations.length" class="panel-exports">
+        <a :href="exportUrl('tei', volume.manifest_url)" target="_blank" class="export-panel-btn">↓ TEI XML</a>
+        <a :href="exportUrl('linked-art', volume.manifest_url)" target="_blank" class="export-panel-btn">↓ Linked Art</a>
+        <a :href="exportUrl('annotations', volume.manifest_url)" target="_blank" class="export-panel-btn">↓ W3C Annotations</a>
+      </div>
+
+      <!-- Draw hint -->
+      <div v-if="!annotations.length" class="panel-empty">
+        <div class="panel-empty-icon">✏️</div>
+        <p>No annotations yet for this volume.<br>
+           Click "+ Add annotation" then draw a region on the image.</p>
+      </div>
+
+      <!-- Annotation cards -->
+      <div class="anno-list">
+        <div
+          v-for="(a, i) in annotations"
+          :key="a.id"
+          class="anno-card"
+          :class="{ selected: editingId === a.id }"
+        >
+          <div class="anno-card-head">
+            <span class="anno-seq">#{{ i + 1 }}</span>
+            <span class="mark-badge">{{ markTypeLabel(a.mark_type) }}</span>
+          </div>
+          <div class="anno-detail">
+            <div v-if="a.transcription" class="ja">{{ a.transcription }}</div>
+            <div v-if="a.owner_name">👤 {{ a.owner_name }}</div>
+            <div v-if="a.place_name">📍 {{ a.place_name }}</div>
+            <div>📄 {{ locationLabel(a.location_on_object) }}</div>
+            <div class="anno-by">by {{ a.annotator_name || a.annotator_orcid }}</div>
+          </div>
+          <div class="anno-actions">
+            <button class="anno-action-btn" @click="startEdit(a)">Edit</button>
+            <button
+              v-if="a.annotator_orcid === user?.orcid"
+              class="anno-action-btn danger"
+              @click="handleDelete(a.id)"
+            >Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+</template>
+
+<script setup>
+import { ref, computed, watch } from 'vue'
+import AnnotationForm from './AnnotationForm.vue'
+import { exportUrl } from '../api/index.js'
+import { createAnnotation, updateAnnotation, deleteAnnotation } from '../api/index.js'
+
+const props = defineProps({
+  user:        Object,
+  volume:      Object,   // { slug, manifest_url, title, ... }
+  annotations: Array,
+  pendingRegion: Object, // { canvasId, canvasLabel, xywh } — set when a region is drawn
+})
+
+const emit = defineEmits(['annotationsChanged', 'clearPendingRegion'])
+
+const editingId         = ref(null)
+const editingAnnotation = ref({})
+
+const editing    = computed(() => editingId.value !== null)
+const panelTitle = computed(() => {
+  if (editingId.value === 'new') return 'New annotation'
+  if (editing.value)             return 'Edit annotation'
+  if (props.annotations?.length) return `Annotations (${props.annotations.length})`
+  return 'Annotations'
+})
+
+// Auto-open form when a new region is drawn
+watch(() => props.pendingRegion, (region) => {
+  if (region) { editingId.value = 'new'; editingAnnotation.value = {} }
+})
+
+function startEdit(a) {
+  editingId.value         = a.id
+  editingAnnotation.value = a
+}
+
+function cancelEdit() {
+  editingId.value = null
+  editingAnnotation.value = {}
+  emit('clearPendingRegion')
+}
+
+async function handleSave(formData) {
+  if (!formData.markType) return alert('Mark type is required.')
+
+  const payload = {
+    mark_type:           formData.markType,
+    shape:               formData.shape               || null,
+    ink_color:           formData.inkColor            || null,
+    script_type:         formData.scriptType          || null,
+    condition:           formData.condition           || null,
+    transcription:       formData.transcription       || null,
+    transcription_rom:   formData.transcriptionRom    || null,
+    owner_name:          formData.ownerName           || null,
+    owner_type:          formData.ownerType           || null,
+    owner_authority_uri: formData.ownerAuthorityUri   || null,
+    place_name:          formData.placeName           || null,
+    place_authority_uri: formData.placeAuthorityUri   || null,
+    location_on_object:  formData.locationOnObject    || null,
+    notes:               formData.notes               || null,
+  }
+
+  if (editingId.value === 'new') {
+    if (!props.pendingRegion) return alert('No region drawn — please draw a region first.')
+    await createAnnotation({
+      ...payload,
+      volume_id:    props.volume.manifest_url,
+      canvas_id:    props.pendingRegion.canvasId,
+      canvas_label: props.pendingRegion.canvasLabel,
+      region_xywh:  props.pendingRegion.xywh,
+    })
+  } else {
+    const existing = props.annotations.find(a => a.id === editingId.value)
+    await updateAnnotation(editingId.value, {
+      ...payload,
+      volume_id:   props.volume.manifest_url,
+      canvas_id:   existing?.canvas_id    ?? '',
+      region_xywh: existing?.region_xywh  ?? '',
+    })
+  }
+
+  editingId.value = null
+  editingAnnotation.value = {}
+  emit('clearPendingRegion')
+  emit('annotationsChanged')
+}
+
+async function handleDelete(id) {
+  if (!confirm('Delete this annotation?')) return
+  await deleteAnnotation(id)
+  emit('annotationsChanged')
+}
+
+const MARK_TYPE_LABELS = {
+  'collectors-seal': "Collector's seal", 'institutional-stamp': 'Institutional stamp',
+  'sticker-label': 'Sticker / label', 'handwritten-inscription': 'Handwritten inscription',
+  'signature': 'Signature', 'catalogue-entry': 'Catalogue entry',
+  'trace-remnant': 'Trace / remnant', 'other': 'Other',
+}
+const LOCATION_LABELS = {
+  'front-cover': 'Front cover', 'back-cover': 'Back cover', 'title-slip': 'Title slip',
+  'spine': 'Spine', 'first-leaf-recto': 'First leaf recto', 'first-leaf-verso': 'First leaf verso',
+  'last-leaf-recto': 'Last leaf recto', 'last-leaf-verso': 'Last leaf verso',
+  'throughout': 'Throughout', 'endpaper-front': 'Front endpaper',
+  'endpaper-back': 'Back endpaper', 'other': 'Other',
+}
+
+function markTypeLabel(v) { return MARK_TYPE_LABELS[v] ?? v }
+function locationLabel(v)  { return LOCATION_LABELS[v]  ?? v  }
+</script>
+
+<style scoped>
+.anno-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--panel-bg);
+  border-left: 1px solid var(--border);
+  overflow: hidden;
+}
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.panel-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.panel-close-btn {
+  background: none;
+  border: none;
+  color: var(--ink-3);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 6px;
+}
+.panel-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.panel-empty {
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.panel-empty-icon { font-size: 2rem; margin-bottom: 12px; opacity: 0.4; }
+.panel-exports {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.export-panel-btn {
+  font-size: 11px;
+  color: var(--ink-3);
+  text-decoration: none;
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  transition: color 0.15s;
+}
+.export-panel-btn:hover { color: var(--ink-1); }
+.anno-list { display: flex; flex-direction: column; gap: 1px; }
+.anno-card {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+.anno-card:hover    { background: rgba(255,255,255,0.03); }
+.anno-card.selected { background: rgba(180,40,30,0.08); }
+.anno-card-head { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+.anno-seq { font-size: 11px; color: var(--ink-3); }
+.mark-badge {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: var(--vermillion);
+  color: #fff;
+}
+.anno-detail { font-size: 12px; color: var(--ink-2); line-height: 1.6; }
+.anno-detail .ja { font-size: 14px; color: var(--ink-1); }
+.anno-by { font-size: 10px; color: var(--ink-3); margin-top: 2px; }
+.anno-actions { display: flex; gap: 6px; margin-top: 6px; }
+.anno-action-btn {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--ink-3);
+  cursor: pointer;
+}
+.anno-action-btn:hover { color: var(--ink-1); }
+.anno-action-btn.danger { color: var(--vermillion); border-color: var(--vermillion); }
+</style>

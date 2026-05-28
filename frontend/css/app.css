@@ -16,9 +16,19 @@
   --border:     rgba(0,0,0,0.10);
   --border-mid: rgba(0,0,0,0.16);
   --sidebar-w:  240px;
-  --panel-w:    300px;
+  --panel-w:    320px;
   --topbar-h:   46px;
   --footer-h:   44px;
+
+  /* Semantic aliases used by Vue components */
+  --bg:         #111;
+  --ink-1:      #ddd;
+  --ink-2:      #aaa;
+  --ink-3:      #666;
+  --sidebar-bg: #242426;
+  --panel-bg:   var(--paper);
+  /* Override border for dark backgrounds */
+  --border:     rgba(255,255,255,0.10);
 }
 
 html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', sans-serif; font-size: 13px; color: var(--ink); background: var(--ink); }

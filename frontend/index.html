@@ -1,88 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Toganoo Provenance Annotation Tool</title>
-  <link rel="stylesheet" href="/css/app.css">
-
-  <!-- OpenSeadragon -->
+  <!-- OSD + Annotorious loaded via CDN so they share a single global instance -->
   <script src="https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/openseadragon.min.js"></script>
-
-  <!-- Annotorious v2 for OpenSeadragon -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@recogito/annotorious-openseadragon@2.7.14/dist/annotorious.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@recogito/annotorious-openseadragon@2.7.14/dist/openseadragon-annotorious.min.js"></script>
 </head>
 <body>
-
-<div id="app">
-
-  <!-- Top bar -->
-  <header id="topbar">
-    <div id="topbar-left">
-      <span id="app-title">Toganoo Provenance</span>
-      <span id="app-subtitle">UCLA Library · Toganoo Collection of Esoteric Buddhism</span>
-    </div>
-    <nav id="topbar-right">
-      <div id="auth-status"></div>
-    </nav>
-  </header>
-
-  <!-- Main layout -->
-  <main id="main">
-
-    <!-- Left: Volume browser -->
-    <aside id="sidebar">
-      <div id="sidebar-header">
-        <span class="panel-label">Volumes <span id="vol-count"></span></span>
-        <input type="search" id="vol-search" placeholder="Search volumes…" autocomplete="off">
-      </div>
-      <div id="vol-list"></div>
-    </aside>
-
-    <!-- Center: IIIF viewer -->
-    <section id="viewer-section">
-      <div id="vol-info-bar" style="display:none">
-        <div id="vol-info-title"></div>
-        <div id="vol-info-meta"></div>
-        <div id="vol-info-note"></div>
-      </div>
-      <div id="viewer-wrap">
-        <div id="viewer-placeholder">
-          <div class="placeholder-icon">&#128218;</div>
-          <p>Select a volume from the list to begin</p>
-        </div>
-        <div id="osd-viewer"></div>
-      </div>
-      <div id="viewer-footer" style="display:none">
-        <div id="page-nav">
-          <button id="prev-page" class="nav-btn" aria-label="Previous page">&#8592;</button>
-          <span id="page-indicator"></span>
-          <button id="next-page" class="nav-btn" aria-label="Next page">&#8594;</button>
-        </div>
-        <div id="viewer-hint"></div>
-        <button id="draw-btn" class="draw-btn" style="display:none">+ Add annotation</button>
-        <div id="export-btns" style="display:none">
-          <button class="export-btn" id="export-tei-btn">Export TEI</button>
-          <button class="export-btn" id="export-la-btn">Export Linked Art</button>
-          <button class="export-btn" id="export-anno-btn">Export Annotations</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Right: Annotation panel -->
-    <aside id="anno-panel">
-      <div id="panel-header">
-        <span class="panel-label" id="panel-title">Annotations</span>
-        <button id="panel-close-btn" style="display:none" aria-label="Close form">&#x2715;</button>
-      </div>
-      <div id="panel-body"></div>
-    </aside>
-
-  </main>
-
-</div>
-
-<script type="module" src="/js/app.js"></script>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

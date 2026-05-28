@@ -64,5 +64,5 @@ async def health():
         return {"status": "error", "detail": str(e)}
 
 
-# Serve frontend — must be last so API routes take priority
-app.mount("/", StaticFiles(directory="frontend", html=True), name="static")
+# Serve built frontend — must be last so API routes take priority
+app.mount("/", StaticFiles(directory="frontend/dist", html=True), name="static")
