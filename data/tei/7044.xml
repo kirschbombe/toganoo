@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+
+      <fileDesc>
+         <titleStmt>
+            <title>大乗伝通要録7044</title>
+            <title type="original" sameAs="応理大乗伝通要録"></title>
+         </titleStmt>
+
+         <publicationStmt>
+            <publisher> University California Los Angeles East Asian Library</publisher>
+            <pubPlace>Los Angeles</pubPlace>
+            <availability xml:id="metadataRights" status="restricted">
+               <licence target="http://creativecommons.org/licenses/by-nc-sa/4.0/">This metadata is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.</licence>
+            </availability>
+         </publicationStmt>
+
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <country>USA</country>
+                  <repository>UCLA Library</repository>
+                  <collection>Toganoo collection</collection>
+                  <idno>BQ8118.4.R96 1806</idno>
+                  <altIdentifier type="seal">
+                     <idno>Toganoo collector seal "K8 1"</idno>
+                  </altIdentifier>
+               </msIdentifier>
+
+               <head>Ōri Daijō denzū yōroku</head>
+
+               <msContents>
+                  <msItem>
+                     <title type="uniform">法相／大乗傳通要録（外題)</title>
+                     <title type="supplied">應理大乗傳通要録（内題)</title>
+                     <title type="transliterated">Ōri Daijō denzū yōroku</title>
+                     <note>printing</note>
+                     <note>Number of maki 上下巻</note>
+                     <colophon>
+                        <date when="1806">文化三年丙寅</date>春三月<origPlace>薬師寺地蔵院</origPlace>法相末資<persName>乗範</persName>識
+                     </colophon>
+                  </msItem>
+               </msContents>
+
+               <physDesc>
+                  <objectDesc form="codex">
+                     <supportDesc material="paper">
+                        <support>料紙　楮紙</support>
+                        <extent>
+                           <measure unit="sheets" quantity="49">49丁 (49 sheets)</measure>
+                           <dimensions type="leaf" unit="cm">
+                              <height>26</height>
+                              <width>18</width>
+                           </dimensions>
+                        </extent>
+                        <collation></collation>
+                        <condition>
+                           <p>良</p>
+                        </condition>
+                     </supportDesc>
+                  </objectDesc>
+                  <handDesc>
+                     <handNote scope="major">
+                        <p>Kanji text 要確認</p>
+                     </handNote>
+                  </handDesc>
+                  <additions>刊記に訓点</additions>
+                  <bindingDesc>
+                     <binding>
+                        <p>Fukurotozi 袋綴 bag binding</p>
+                     </binding>
+                  </bindingDesc>
+                  <sealDesc>
+                     <seal n="K8" type="sticker">
+                        <p>yellow-green sticker "K8"</p>
+                     </seal>
+                  </sealDesc>
+               </physDesc>
+               <history>
+                  <origin>
+                     釈<persName>良遍</persName>字信願始住於<placeName>興福寺勝願院</placeName>中渉於<placeName>東大寺</placeName>知足之別處終隠於<placeName>生馬山大聖竹林寺</placeName>事跡具在別記矣実法相相中興之龍象也其所著之抄頗多焉諸宗義虎所競珍翫也蓋惟世已像季而唯識之学業遂年益襄故不耐其憂而所以製之也同門末葉誰不同志乎是故欲寿梓以令流布于世冀諸後学各省己心於此付刊人云爾 <date when="1717">享保二丁酉歳</date>孟冬中澣南京<origPlace>薬師寺</origPlace>沙門<persName>高範</persName>識 南都西京 <origPlace>薬師寺</origPlace> 大経蔵板
+                  </origin>
+                  <provenance>
+                     <p>"<placeName>西讃仁保邑</placeName><orgName>覚城院</orgName><persName>仁純理玄</persName>求之" on back cover</p>
+                  </provenance>
+                  <acquisition>
+                     <p>Acquired from <name type="person" ref="https://viaf.org/viaf/35853152">
+<persName>栂尾祥瑞</persName></name> in 1962. 祥瑞 acquired from <name type="person" ref="https://viaf.org/viaf/22464118"><persName>栂尾祥雲</persName></name></p>
+                  </acquisition>
+               </history>
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <revisionDesc>
+         <change when="2018-02-09">
+            <persName>Hiroyuki Ikuura</persName>
+         </change>
+      </revisionDesc>
+			<hasWitness>
+   </teiHeader>
+   <text>
+      <body>
+         <p>Some text here.</p>
+      </body>
+   </text>
+</TEI>

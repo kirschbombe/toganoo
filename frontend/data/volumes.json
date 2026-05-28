@@ -1,0 +1,1580 @@
+[
+  {
+    "bibId": "2997885",
+    "ark": "ark:/21198/n1mk86",
+    "parentArks": [
+      "ark:/21198/n1r89q",
+      "ark:/21198/n11s67"
+    ],
+    "title": "Ōri Daijō denzū yōroku",
+    "titleJa": "應理大乘傳通要錄",
+    "altTitles": [
+      "応理大乗伝通要録 [variant title]",
+      "Hossō Daijō denzū yōroku | 法相大乗伝通要録 [variant title]",
+      "Hossō: Daijō denzū yōroku: jōge | 法相: 大乘傳通要錄: 上下 [title slip]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Ryōhen, -1252",
+      "良遍, -1252"
+    ],
+    "placeOfOrigin": "[Nara-shi] : Yakushiji Jizōin|~|[奈良市] : 藥師寺地藏院",
+    "dateCreation": "Bunka 3 [1806]|~|文化3",
+    "dateNormalized": "1806",
+    "colophon": "（刊記）「南都西京／薬師寺大蔵経板」",
+    "genre": "",
+    "language": "chi",
+    "callNumber": "BQ8118.4 .R96 1806",
+    "references": "Jun Suzuki, no. 0093",
+    "note": "On back of container: J 7,044; on back cover: 西讃仁保邑覚城院 仁純理玄求之",
+    "adminNote": "On back of container: J 7,044; on back cover: 西讃仁保邑覚城院 仁純理玄求之",
+    "toganooContainer": "J 7,044",
+    "manifestUrl": "http://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1mk86/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1mk86%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "http://catalog.library.ucla.edu/vwebv/holdingsInfo?bibId=2997885"
+  },
+  {
+    "bibId": "3680034",
+    "ark": "ark:/21198/n1gs4h",
+    "parentArks": [
+      "ark:/21198/n1r89q",
+      "ark:/21198/n11s67"
+    ],
+    "title": "Himitsu mandarakyō kaien genjo ; Kyōsō taigi",
+    "titleJa": "秘密曼荼羅敎開演玄叙 ; 敎相大義",
+    "altTitles": [
+      "秘密曼荼羅教開演玄叙 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Yūkei, fl. 1841-1846",
+      "宥圭, fl. 1841-1846"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Kōka 3-4 [1846-1847]|~|弘化3-4",
+    "dateNormalized": "1846/1847",
+    "colophon": "（奥書）「弘化四丁未春於予州西条写得功了／西讃仁保村覚城院理玄（花押）」「同（弘化三年）六月十三日以本書写得畢／西讃仁保邑覚城御院之資仁純理玄」",
+    "genre": "Manuscript",
+    "language": "jpn",
+    "callNumber": "BQ8968.2 .Y84",
+    "references": "Jun Suzuki, no. 0129",
+    "note": "2 inserts in the 14th and 19th leaves in the 1st work",
+    "adminNote": "2 inserts in the 14th and 19th leaves in the 1st work",
+    "toganooContainer": "",
+    "manifestUrl": "http://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1gs4h/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1gs4h%2Fzr288h9w/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://catalog.library.ucla.edu/vwebv/holdingsInfo?bibId=3680034"
+  },
+  {
+    "bibId": "2002310",
+    "ark": "ark:/21198/n1v328",
+    "parentArks": [
+      "ark:/21198/n1r89q",
+      "ark:/21198/n11s67"
+    ],
+    "title": "Kotsuzui shō",
+    "titleJa": "骨髓鈔",
+    "altTitles": [
+      "骨髓鈔 [title slip]",
+      "Rurai shōji no daiji | 流來生死大事 [caption title]"
+    ],
+    "altUniform": "Shūkotsu shō. Dai 10|~|宗骨抄. 第十",
+    "authors": [
+      "Kenjin, 1192-1263",
+      "憲深, 1192-1263"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Hōreki 5 [1755]~|宝曆5|",
+    "dateNormalized": "1755",
+    "colophon": "（奥書）「同（宝暦）五乙亥菊月廿七日書之了／宝珠山金光寺　行範」",
+    "genre": "Manuscript",
+    "language": "jpn",
+    "callNumber": "BQ8968 .K463 1755",
+    "references": "Jun Suzuki, no. 140",
+    "note": "On a piece of sheet on front cover: 観瑞行範",
+    "adminNote": "On a piece of sheet on front cover: 観瑞行範",
+    "toganooContainer": "",
+    "manifestUrl": "http://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1v328/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1v328%2Ffx532f6z/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://catalog.library.ucla.edu/vwebv/holdingsInfo?bibId=2002310"
+  },
+  {
+    "bibId": "2471672",
+    "ark": "ark:/21198/n1q90b",
+    "parentArks": [
+      "ark:/21198/n1r89q",
+      "ark:/21198/n11s67"
+    ],
+    "title": "Mitsurin yozai",
+    "titleJa": "密林餘材",
+    "altTitles": [],
+    "altUniform": "",
+    "authors": [],
+    "placeOfOrigin": "",
+    "dateCreation": "[18--?]",
+    "dateNormalized": "1801/1900",
+    "colophon": "",
+    "genre": "Manuscript",
+    "language": "jpn",
+    "callNumber": "BQ8915.2 .M58",
+    "references": "Jun Suzuki, no. 151",
+    "note": "On front and back covers: 蔵書印: 讃別 覚城院 仁保",
+    "adminNote": "On front and back covers: 蔵書印: 讃別 覚城院 仁保",
+    "toganooContainer": "",
+    "manifestUrl": "http://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1q90b/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1q90b%2Fhc14pc37/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://catalog.library.ucla.edu/vwebv/holdingsInfo?bibId=2471672"
+  },
+  {
+    "bibId": "3680644",
+    "ark": "ark:/21198/n1kk7h",
+    "parentArks": [
+      "ark:/21198/n1r89q",
+      "ark:/21198/n11s67"
+    ],
+    "title": "Mitsuzō yōgi",
+    "titleJa": "密藏要義",
+    "altTitles": [
+      "Mitsuzō yōgi: zen | 密藏要義: 全 [cover]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Yūzen, fl. 1398",
+      "宥全, fl. 1398"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Kōka 4 [1847]|~|弘化4",
+    "dateNormalized": "1847",
+    "colophon": "（奥書）「干時弘化四丁未八月十日於播州加東郡稲実山神咒寺以件本写得畢西讃州仁保村覚城院理玄仁純（花押）」",
+    "genre": "Manuscript",
+    "language": "jpn",
+    "callNumber": "BQ8918 .Y89 1847",
+    "references": "Jun Suzuki, no. 122",
+    "note": "On front cover: 仁純所秘; on back cover: 西讃仁保覚城院□□",
+    "adminNote": "On front cover: 仁純所秘; on back cover: 西讃仁保覚城院□□",
+    "toganooContainer": "",
+    "manifestUrl": "http://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1kk7h/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1kk7h%2F1p20nc27/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://catalog.library.ucla.edu/vwebv/holdingsInfo?bibId=3680644"
+  },
+  {
+    "bibId": "1240881",
+    "ark": "ark:/21198/n1bd0z",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Sokushingi kikigaki furoku",
+    "titleJa": "即身義聞書附録",
+    "altTitles": [
+      "即身義聞書附錄 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Dōhan, 1179-1252 | 道範, 1184-1252"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "[between 1781 and 1829?]",
+    "dateNormalized": "1781/1829",
+    "colophon": "（奥書）「（略）元亀二年卯月廿日於大薬院書之　求深十九歳」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8999.K854 S64433",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1bd0z/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1bd0z%2Ffs04fr8c/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9912408813606533"
+  },
+  {
+    "bibId": "1242791",
+    "ark": "ark:/21198/n16p8h",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Donin yōki",
+    "titleJa": "度人要軌",
+    "altTitles": [],
+    "altUniform": "",
+    "authors": [
+      "Shūhan, active 1721 | 秀範, active 1721",
+      "Hōgon | 寶嚴"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Kyōhō 6 [1721] | 享保6",
+    "dateNormalized": "1721",
+    "colophon": "（奥書）「享保六辛丑星九月二日讃州中郡新浜遍照庵以宝厳和尚真筆書写了秀範」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ5220 .D66 1721",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn16p8h/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn16p8h%2Fhj69004j/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9912427913606533"
+  },
+  {
+    "bibId": "1266484",
+    "ark": "ark:/21198/n12w4t",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Daisho denju shiki",
+    "titleJa": "大疏伝授私記",
+    "altTitles": [
+      "大疏傳授私記 [variant title]",
+      "大日經疏傳授私記 [variant title]"
+    ],
+    "altUniform": "Dainichikyō sho denju shiki | 大日経疏伝授私記",
+    "authors": [
+      "Egi, 1679-1747 | 慧曦, 1679-1747",
+      "Kuwata, Chijin | 桑田知仁"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Keiō 2 [1866] | 慶應2",
+    "dateNormalized": "1866",
+    "colophon": "（奥書）「慶応二年歳次丙寅夏五月二十七日写畢／西讃多度津新町写本所／大島屋内　桑田定五郎知仁」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ5030.P73 G46 1691",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn12w4t/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn12w4t%2Ftt45dr7x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9915044753606533"
+  },
+  {
+    "bibId": "1488224",
+    "ark": "ark:/21198/n1z63m",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Sōfukuki",
+    "titleJa": "僧服記",
+    "altTitles": [
+      "Sōfuku ki [variant title]",
+      "Sōbuku ki [variant title]",
+      "Sōbukuki [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Funabashi, Tsunekata, active 1688-1703 | 舟橋經賢, active 1688-1703"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "[between 1748 and 1750?]",
+    "dateNormalized": "1748/1750",
+    "colophon": "（奥書）「右元文二丁巳年改捧物扣　御室仁和寺記録」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ5080 .F86",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1z63m/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1z63m%2Ffx532f6z/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9914882243606533"
+  },
+  {
+    "bibId": "1503474",
+    "ark": "ark:/21198/n1tc9c",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Gendan shū",
+    "titleJa": "玄談集",
+    "altTitles": [],
+    "altUniform": "",
+    "authors": [
+      "Toganoo, Chūdō | 栂尾仲道"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "1888-[1900?]",
+    "dateNormalized": "1888/1900",
+    "colophon": "",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ4070 .G46",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1tc9c/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1tc9c%2Fmw278m6x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9915034743606533"
+  },
+  {
+    "bibId": "1504475",
+    "ark": "ark:/21198/n1pp8v",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Dai segaki shūrui bunge",
+    "titleJa": "大施餓鬼集類分解",
+    "altTitles": [
+      "Daisegaki shūrui bunge [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Genko, Shikei, 1400-1475 | 原古志稽, 1400-1475"
+    ],
+    "placeOfOrigin": "Japan : [s.n.]",
+    "dateCreation": "Genroku 4 [1691] | 元禄4",
+    "dateNormalized": "1691",
+    "colophon": "（刊記）「元禄辛未大呂穀旦」",
+    "genre": "Printing",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ5030.P73 G46 1691",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1pp8v/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1pp8v%2F0c08672q/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9915044753606533"
+  },
+  {
+    "bibId": "1748661",
+    "ark": "ark:/21198/n1jw45",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Bussetsu himitsu giki shūhōkyō sōmoku",
+    "titleJa": "仏説秘密儀軌衆法経総目",
+    "altTitles": [
+      "佛說秘密儀軌衆法經總目 [variant title]",
+      "Himitsu giki sōmoku | 秘密儀軌総目 [vareient title]"
+    ],
+    "altUniform": "Himitsu giki sōmoku | 秘密儀軌総目",
+    "authors": [],
+    "placeOfOrigin": "Kyoto : Ōbakusan Hōzōin | 京都 : 黃檗山寶藏院",
+    "dateCreation": "Kanbun 13 [1673] | 寛文13",
+    "dateNormalized": "1673",
+    "colophon": "",
+    "genre": "Printing",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8920 .H5653",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1jw45/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1jw45%2F4h41f87c/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9917486613606533"
+  },
+  {
+    "bibId": "1787560",
+    "ark": "ark:/21198/n1105x",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Rishukyō jūshichidan jūhasshu hōmandara shosetsu fudō ki",
+    "titleJa": "理趣経十七段十八種法曼茶羅諸説不同記",
+    "altTitles": [
+      "理趣經十七叚十八種法曼荼羅諸說不同記 [variant title]",
+      "理趣經法曼荼羅諸說不同記 [variant title]"
+    ],
+    "altUniform": "Rishukyō hōmandara shosetsu fudō ki | 理趣経法曼茶羅諸説不同記",
+    "authors": [
+      "Ihō, 1687-1747 | 維寶, 1687-1747",
+      "Kyōō, 1672-1751 | 恭翁, 1672-1751"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Kyōhō 15 [1730] | 享保15",
+    "dateNormalized": "1730",
+    "colophon": "（奥書）「享保九年甲辰秋九月十九宵授与諸徒之刻聊記師承之旨専写古来之図也沙門維宝識」「享保十五歳次辛亥五月十日以維宝之本書写之／持明院主恭翁六十歳」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ5125.M3 R5735 1730",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1105x/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1105x%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9917875603606533"
+  },
+  {
+    "bibId": "1972914",
+    "ark": "ark:/21198/n1w617",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Sho giki denju shidai mokurku",
+    "titleJa": "諸儀軌伝授次第目録",
+    "altTitles": [
+      "諸儀軌傳授次第目錄 [variant title]",
+      "諸儀軌傳授目錄 [variant title]"
+    ],
+    "altUniform": "Sho giki denju mokuroku | 諸儀軌伝授目録",
+    "authors": [
+      "Jōgon, 1639-1702 | 淨嚴, 1639-1702",
+      "Jakushō, active 1722-1739 | 寂照, active 1722-1739"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Genbun 4 [1739] | 元文4",
+    "dateNormalized": "1739",
+    "colophon": "",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8920 .J64 1739",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1w617/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1w617%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9919729143606533"
+  },
+  {
+    "bibId": "1975487",
+    "ark": "ark:/21198/n1rh0q",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Jōgan seiyō kyakushikimoku : sōkan",
+    "titleJa": "貞観政要格式目 : 僧官",
+    "altTitles": [
+      "Jōgan kyaku [variant title] | 貞観格 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [],
+    "placeOfOrigin": "Kyoto : Nakano Kozaemon | 京都 : 中野小左衛門",
+    "dateCreation": "Shōho 5 [1648] | 正保5",
+    "dateNormalized": "1648",
+    "colophon": "（刊記）「正保五年仲春吉旦／中野小左衛門梓刊」",
+    "genre": "Printing",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ678 .J64",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1rh0q/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1rh0q%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9919754873606533"
+  },
+  {
+    "bibId": "1986247",
+    "ark": "ark:/21198/n1mp6g",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Jūsanbutsu shō",
+    "titleJa": "十三仏抄",
+    "altTitles": [
+      "十三佛抄 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [],
+    "placeOfOrigin": "Kyoto : Ōwada Ikan | 京都 : 大和田意閑",
+    "dateCreation": "Kanʼei 19 [1642] | 寬永19",
+    "dateNormalized": "1642",
+    "colophon": "（刊記）「寛永拾九壬午歳九月吉日／大和田意閑板行」",
+    "genre": "",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ4660.J3 J87 1642",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1mp6g/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1mp6g%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9919862473606533"
+  },
+  {
+    "bibId": "1988639",
+    "ark": "ark:/21198/n1h058",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Shittan denshō nikki kusetsu",
+    "titleJa": "悉曇伝承日記口説",
+    "altTitles": [
+      "悉曇傳承日記口說 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Kaichō, active 1759-1828 | 快澄, active 1759-1828",
+      "Ryōjitsu, active 1813 | 良實, active 1813"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Bunka 10 [1813] | 文化10",
+    "dateNormalized": "1813",
+    "colophon": "（奥書）「文化十癸酉年九月十八日於西蔭草堂書写功畢（略）」",
+    "genre": "Manuscript",
+    "language": "jpn",
+    "callNumber": "BQ4570.L3 K353 1813",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1h058/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1h058%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9919886393606533"
+  },
+  {
+    "bibId": "1988640",
+    "ark": "ark:/21198/n1c62z",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Shittan denshō nikki",
+    "titleJa": "悉曇伝承日記",
+    "altTitles": [
+      "悉曇傳承日記 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Kaichō, active 1759-1828 | 快澄, active 1759-1828",
+      "Ryōjitsu, active 1813 | 良實, active 1813"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Bunka 5 [1808] | 文化5",
+    "dateNormalized": "1808",
+    "colophon": "（奥書）「右文化五年戊辰五月尽日　妙智観理述之」",
+    "genre": "Manuscript",
+    "language": "jpn",
+    "callNumber": "BQ4570.L3 K35 1808",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1c62z/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1c62z%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9919886403606533"
+  },
+  {
+    "bibId": "1999304",
+    "ark": "ark:/21198/n17h02",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Sōjō hasso",
+    "titleJa": "相承八祖",
+    "altTitles": [],
+    "altUniform": "Kechimyaku | 血脈",
+    "authors": [
+      "Gyōhan, active 1733-1765 | 行範, active 1733-1765"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Kyōhō 18 [1733] | 享保18",
+    "dateNormalized": "1733",
+    "colophon": "（奥書）「于時享保十八歳三月十二日書写之了／金剛乗行範」",
+    "genre": "Manuscript",
+    "language": "jpn",
+    "callNumber": "BQ8998 .K43 1733",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn17h02/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn17h02%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9919993043606533"
+  },
+  {
+    "bibId": "1999305",
+    "ark": "ark:/21198/n13p76",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Kechimyaku",
+    "titleJa": "血脈",
+    "altTitles": [
+      "血脉 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Gyōhan, active 1733-1765 | 行範, active 1733-1765"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Meiwa 2 [1765] | 明和2",
+    "dateNormalized": "1765",
+    "colophon": "（奥書）「明和二乙酉菊月七日書之了　宝珠山金光寺行範」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8998 .K43 1765",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn13p76/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn13p76%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9919993053606533"
+  },
+  {
+    "bibId": "2002041",
+    "ark": "ark:/21198/n1005m",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Kenbun bassui roku",
+    "titleJa": "見聞抜推録",
+    "altTitles": [
+      "見聞拔推錄 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Yūmyō | 宥明"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "[between 1800 and 1868?]",
+    "dateNormalized": "1800/1868",
+    "colophon": "",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8965 .K46",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1005m/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1005m%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9920020413606533"
+  },
+  {
+    "bibId": "2002311",
+    "ark": "ark:/21198/n1v63p",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Shūkotsu shō",
+    "titleJa": "宗骨抄",
+    "altTitles": [],
+    "altUniform": "",
+    "authors": [
+      "Kenjin, 1192-1263 | 憲深, 1192-1263",
+      "Kanjun, active 1691-1718 | 寬順, active 1691-1718"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "[between 1691 and 1718?]",
+    "dateNormalized": "1691/1718",
+    "colophon": "（奥書）「此ノ一巻以　師主前法務御自毫令書写畢／法務寛順」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8968 .K46",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1v63p/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1v63p%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9920023113606533"
+  },
+  {
+    "bibId": "2027738",
+    "ark": "ark:/21198/n1b919",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Kōso sentoku kinbun ki",
+    "titleJa": "高祖先徳禁文記",
+    "altTitles": [
+      "高祖先德禁文記 [variable title]"
+    ],
+    "altUniform": "",
+    "authors": [],
+    "placeOfOrigin": "",
+    "dateCreation": "[between 1830 and 1868?]",
+    "dateNormalized": "1830/1868",
+    "colophon": "（奥書）「（略）天明四甲辰三月廿七日／於同所同寺書写之　仏子良皓」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8995 .K67",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1b919/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1b919%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9920277383606533"
+  },
+  {
+    "bibId": "2029257",
+    "ark": "ark:/21198/n16g8f",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Kōyasan gakuryo gyōnin hijiri sanpa no raiyu",
+    "titleJa": "高野山学侶行人非事吏三派之来由",
+    "altTitles": [
+      "高野山学侶行人非事吏三派之來由 [variable title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Gyōhan, active 1733-1765 | 行範, active 1733-1765"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Anʼei 7 [1778] | 安永7",
+    "dateNormalized": "1778",
+    "colophon": "（奥書）「于時安永七戌八月八日塩飽浦以西光寺本書也／宝珠山遍照院金光寺行範」",
+    "genre": "Manuscript",
+    "language": "jpn",
+    "callNumber": "BQ6353.K7 K69 1778",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn16g8f/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn16g8f%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9920292573606533"
+  },
+  {
+    "bibId": "2037296",
+    "ark": "ark:/21198/n12s7x",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Kōya zappitsushū",
+    "titleJa": "高野雑筆集",
+    "altTitles": [
+      "高野雑筆  [variant title]",
+      "拾遺性霊集 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Kūkai, 774-835 | 空海, 774-835"
+    ],
+    "placeOfOrigin": "Kyoto : Nakano Sōzaemon | 京都 : 中野宗左衛門",
+    "dateCreation": "Enpō 9 [1681] | 延宝9",
+    "dateNormalized": "1681",
+    "colophon": "（刊記）「延宝九辛酉年四月下旬／中野宗左衛門板行」",
+    "genre": "",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8999.K854 K69 1681",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn12s7x/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn12s7x%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9920372963606533"
+  },
+  {
+    "bibId": "2495317",
+    "ark": "ark:/21198/n1z03j",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Muensō sahō",
+    "titleJa": "無縁葬作法",
+    "altTitles": [
+      "无緣葬作法 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Kenshō, 1597-1678 | 顯證, 1597-1678",
+      "Kyōben, active 1299-1305 | 經弁, active 1299-1305"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Keian 1 [1648] | 慶安1",
+    "dateNormalized": "1648",
+    "colophon": "（奥書）「尓時慶安改元之戊子秋八月日於高山寺菴室写出了　金剛仏子顕証五十二」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ5020 .M84 1648",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1z03j/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1z03j%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9924953173606533"
+  },
+  {
+    "bibId": "2504615",
+    "ark": "ark:/21198/n1t921",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Sokushin jōbutsu gi mondai",
+    "titleJa": "即身成仏義問題",
+    "altTitles": [
+      "即身成佛義問題 [variant title]",
+      "Sokushin jōbutsugi mondai [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Myōhan, active 1240-1255 | 明範, active 1240-1255"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "[between 1800 and 1868?]",
+    "dateNormalized": "1800/1868",
+    "colophon": "",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8999.K854 S64436",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1t921/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1t921%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9925046153606533"
+  },
+  {
+    "bibId": "2750450",
+    "ark": "ark:/21198/n1992c",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Kongōchō bodaishinron ryakki",
+    "titleJa": "金剛頂菩提心論略記",
+    "altTitles": [],
+    "altUniform": "Jin gang ding pu ti xin lun lue ji | 金剛頂菩提心論略記",
+    "authors": [
+      "P'ien-man | 遍滿"
+    ],
+    "placeOfOrigin": "Kōyasan : Shōchiin | 高野山 : 正智院",
+    "dateCreation": "Kaei 6 [1853] | 嘉永6",
+    "dateNormalized": "1853",
+    "colophon": "（刊記）「高野山／正智院蔵」",
+    "genre": "",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ3340.V335 P54 1853",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1992c/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1992c%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9927504503606533"
+  },
+  {
+    "bibId": "2794289",
+    "ark": "ark:/21198/n15g9h",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Teian mondō",
+    "titleJa": "貞安問答",
+    "altTitles": [],
+    "altUniform": "",
+    "authors": [
+      "Raikei, 1562-1610 | 賴慶, 1562-1610",
+      "Teian, 1539-1615 | 貞安, 1539-1615"
+    ],
+    "placeOfOrigin": "Kyoto : Miura Kanbē | 京都 : 三浦勘兵衛",
+    "dateCreation": "Shōho 5 [1648] | 正保4",
+    "dateNormalized": "1648",
+    "colophon": "（刊記）「正保五戊子暦閏正月上旬　三浦勘兵衛開板」",
+    "genre": "Printing",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8968 .R35 1648",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn15g9h/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn15g9h%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9927942893606533"
+  },
+  {
+    "bibId": "2997900",
+    "ark": "ark:/21198/n11s7m",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Ōtsuka monketsu",
+    "titleJa": "大塚問決",
+    "altTitles": [],
+    "altUniform": "",
+    "authors": [
+      "Ryōnen | 亮然",
+      "Kanjaku | 還寂",
+      "Seihonbō | 静本房"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Tenpō 13 [1842] | 天保13",
+    "dateNormalized": "1842",
+    "colophon": "（奥書）「天保十三年壬寅二月初二日書写校了真言末葉静氏房　行寿十八」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8970.2 .R96 1842",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn11s7m/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn11s7m%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9929979003606533"
+  },
+  {
+    "bibId": "3003635",
+    "ark": "ark:/21198/n1x050",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Shaku Makaenron ketsugi hanan eshaku shō",
+    "titleJa": "釈摩訶衍論決疑破難会釈鈔",
+    "altTitles": [
+      "釈摩訶衍論決疑破難會釈鈔 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Saisen, 1025-1115 | 濟暹, 1025-1115"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Tenpō 5 [1834] | 天保5",
+    "dateNormalized": "1834",
+    "colophon": "（奥書）「天保五甲午秋於大坂三津寺大福院(略)／高野山西院谷戒厳院呼敞了義房生歳廿四」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ2995.S553 S45 1834",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1x050/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1x050%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9930036353606533"
+  },
+  {
+    "bibId": "3045195",
+    "ark": "ark:/21198/n1s91b",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Sentoku gozokushō nado no koto",
+    "titleJa": "先徳御俗姓等事",
+    "altTitles": [
+      "先德御俗姓等事 [variant title]",
+      "Kosho sakusha no koto | 古書作者事",
+      "Kōyasan shodō no koto | 高野山諸堂事",
+      "Honchō ni buppō hajimete wataru koto narabini reibutsu torai tō | 本朝仏法初渡事并霊佛渡来等",
+      "本朝仏法初渡事并霊仏渡来等 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [],
+    "placeOfOrigin": "",
+    "dateCreation": "[between 1781 and 1829?]",
+    "dateNormalized": "1781/1829",
+    "colophon": "",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8998 .S46",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1s91b/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1s91b%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9930451953606533"
+  },
+  {
+    "bibId": "3045196",
+    "ark": "ark:/21198/n1nk8h",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Sentoku ryakumyōmoku tō",
+    "titleJa": "先徳略名目等",
+    "altTitles": [
+      "先德略名目等 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Shinkyō, active 1714 | 心鏡, active 1714"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Shōtoku 4 [1714] | 正德4",
+    "dateNormalized": "1714",
+    "colophon": "（奥書）「峕正徳四稔一陽廿七日書写之雖文字不詳後日得正本応校合耳/備中鷲峯山心鏡」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8998 .S463 1714",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1nk8h/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1nk8h%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9930451963606533"
+  },
+  {
+    "bibId": "3058717",
+    "ark": "ark:/21198/n1hs6k",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Shingonshū sanbukyō narabini Dainichikyō sho engi",
+    "titleJa": "真言宗三部経并大日経疏縁起",
+    "altTitles": [
+      "真言宗三部經并大日經疏緣起 [variant title]",
+      "Dainichikyō oku no sho yurai | 大日經奥疏由來",
+      "大日経奥疏由来 [variant title]",
+      "Jikkan gishaku uragaki tō | 十巻義釈裏書等",
+      "十卷義釈裹書等 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Yūki | 宥基",
+      "Yūtoku | 宥得",
+      "Misshi | 密資",
+      "Eihen, active 1418 | 永遍, active 1418",
+      "Kaizen, -1424 | 快全, -1424"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Bunsei 9 [1826] | 文政9",
+    "dateNormalized": "1826",
+    "colophon": "（奥書）「文政九丙戌正月小松尾山密柱大和上之以御本写焉畢　小資法山房」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ1875 .S55 1826",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1hs6k/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1hs6k%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9930587173606533"
+  },
+  {
+    "bibId": "3058737",
+    "ark": "ark:/21198/n1d33m",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Shinko jikka shōmon",
+    "titleJa": "新古十箇證文",
+    "altTitles": [
+      "Dainichi jōbutsu jinpen kaji daishaku jishō kaji nidan | 大日成仏神変加持題釈自證加持二段"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Junzen | 純善"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Anʾei 7 [1778] | 安永7",
+    "dateNormalized": "1778",
+    "colophon": "（奥書）「安永七戌年春三月於三島宇仁師講演砌書写一校了　純善」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8968 .S45 1778",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1d33m/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1d33m%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9930587373606533"
+  },
+  {
+    "bibId": "3059516",
+    "ark": "ark:/21198/n18909",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Shittan gusho mokuroku",
+    "titleJa": "悉曇具書目録",
+    "altTitles": [
+      "悉曇具書目錄 [variant title]",
+      "Bongaku shinryō shichisen sōmoku | 梵學津梁七詮總目",
+      "梵学津梁七詮総目 [variant title]",
+      "Bongaku shinryō sōmoku | 梵学津梁総目 [variant title]",
+      "Annen Sonja shittan jūnirei no ryaku | 安然尊者悉曇十二例之畧",
+      "安然尊者悉曇十二例之略 [variant title]",
+      "Annen Sonja jūnirei no ryaku | 安然尊者十二例之略 [variant title]",
+      "Shittan jūnirei ryakki | 悉曇十二例畧記 [variant title]",
+      "悉曇十二例略記 [variant title]",
+      "Sango mata ben | 三五摩多辨",
+      "三五摩多弁 [variant title]",
+      "Hattenjō shūshaku | 八囀聲集釋",
+      "八転声集釈 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Enga, active 1842 | 圓雅, active 1842",
+      "Jiun, 1718-1804 | 慈雲, 1718-1804",
+      "Kanri, active 1793 | 観理, active 1793",
+      "Annen, 841- | 安然, 841-",
+      "Jakugon, 1702-1771 | 寂嚴, 1702-1771"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Kōka 3 [1846]~|弘化3",
+    "dateNormalized": "1846",
+    "colophon": "（奥書）「天保十三壬寅霜月中旬日於七宝山閣書写了　円雅生年廿三／弘化三丙午之夏譲受円雅上人者　七宝山中隠者実雅（花押）」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ4570.L3 S55 1842",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn18909/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn18909%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9930595163606533"
+  },
+  {
+    "bibId": "3059813",
+    "ark": "ark:/21198/n14k97",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Sho giki denju hōsei",
+    "titleJa": "諸儀軌伝授法制",
+    "altTitles": [
+      "諸儀軌傳授法制 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Shinjō, 1719-1802 | 真常, 1719-1802"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Kanʼen 3-Kansei 13 [1750-1801] | 寬延3-寬政13",
+    "dateNormalized": "1750/1801",
+    "colophon": "",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8920.2 .S56",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn14k97/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn14k97%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9930598133606533"
+  },
+  {
+    "bibId": "3060003",
+    "ark": "ark:/21198/n10s5j",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Nanten tettō shukkō yurai no koto",
+    "titleJa": "南天鉄塔出興由来之事",
+    "altTitles": [
+      "南天鐵塔出興由來之事 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Shōkai, -1800 | 性海, -1800",
+      "Gōhō, 1306-1362 | 杲寶, 1306-1362"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Tenmei 8 [1788] | 天明8",
+    "dateNormalized": "1788",
+    "colophon": "（奥書）「天明八年歳次戊申二月廿一日／沙門性海記」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8962.2 .S46 1788",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn10s5j/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn10s5j%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9930600033606533"
+  },
+  {
+    "bibId": "3060650",
+    "ark": "ark:/21198/n1w34b",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Tendai Shingon nishū dōi shō",
+    "titleJa": "天台真言二宗同異章",
+    "altTitles": [
+      "天台眞言二宗同異章 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Shōshin, active 1165-1207 | 證眞, active 1165-1207"
+    ],
+    "placeOfOrigin": "Kyoto : Chigusa Ichibē | 京都 : 千種市兵衛",
+    "dateCreation": "Genroku 10 [1697] | 元禄10",
+    "dateNormalized": "1697",
+    "colophon": "（刊記）「元禄十丁丑年／五月吉辰／千種市兵衛」",
+    "genre": "Printing",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ9118 .S56 1697",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1w34b/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1w34b%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9930606503606533"
+  },
+  {
+    "bibId": "3061497",
+    "ark": "ark:/21198/n1r90n",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Shūgi origami sōden",
+    "titleJa": "宗義折紙相伝",
+    "altTitles": [
+      "宗義折紙相傳 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Gyokujitsu, j, active 1672 | 玉日, j, active 1672",
+      "Yūnin, active 1730-1732 | 祐忍, active 1730-1732",
+      "Myōhen, 1142-1224 | 明遍, 1142-1224"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Kyōhō 15 [1730] | 享保15",
+    "dateNormalized": "1730",
+    "colophon": "（奥書）「享保十五庚戌年六月下旬就于效覚院通阿しり伝授之砌　以釈迦文院蔵本模写之了／千本院渓雨宝院祐忍暁直房」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8968 .S478 1730",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1r90n/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1r90n%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9930614973606533"
+  },
+  {
+    "bibId": "3061987",
+    "ark": "ark:/21198/n1c34p",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Shūshaku hiji kanshū",
+    "titleJa": "宗釈秘事巻集",
+    "altTitles": [
+      "宗釋秘事卷集 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [],
+    "placeOfOrigin": "",
+    "dateCreation": "[between 1800 and 1868?]",
+    "dateNormalized": "1800/1868",
+    "colophon": "",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8918.2 .S58",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1c34p/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1c34p%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9930619873606533"
+  },
+  {
+    "bibId": "3276172",
+    "ark": "ark:/21198/n1zs70",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Taishū kenbun yōki",
+    "titleJa": "台宗見聞要記",
+    "altTitles": [],
+    "altUniform": "",
+    "authors": [
+      "Yūchō, active 1851 | 宥澄, active 1851"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "[between 1830 and 1868?]",
+    "dateNormalized": "1830/1868",
+    "colophon": "",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ9118 .T35",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1zs70/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1zs70%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9932761723606533"
+  },
+  {
+    "bibId": "3554567",
+    "ark": "ark:/21198/n1v33n",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Wa-shū Kumedera ruki",
+    "titleJa": "和州久米寺流記",
+    "altTitles": [
+      "Kumedera ruki | 久米寺流記 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Chizan, active 1827 | 智山, active 1827"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Bunsei 10 [1827] | 文政10",
+    "dateNormalized": "1827",
+    "colophon": "（奥書）「文政十丁亥秋七月三日彼義海大徳之以本書写了／西予智山」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ6353.K372 K86 1827",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1v33n/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1v33n%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9935545673606533"
+  },
+  {
+    "bibId": "3680022",
+    "ark": "ark:/21198/n1qd0c",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Dainichikyō sho kuden shiki",
+    "titleJa": "大日経疏口伝私記",
+    "altTitles": [
+      "大日經疏口傳私記 [variant title]",
+      "Shingonshū sanbukyō narabini Dainichikyō sho engi | 真言宗三部経并大日経疏縁記",
+      "真言宗三部經并大日經疏緣記 [variant title]",
+      "Daisho denju shiki | 大疏傳授私記",
+      "大疏傳授私記 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Yūkai, 1345-1416 |  宥快, 1345-1416",
+      "Ekō, 1666-1734 | 慧光, 1666-1734",
+      "Egi, 1679-1747 | 慧曦, 1679-1747"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Bunsei 8 [1825] | 文政8",
+    "dateNormalized": "1825",
+    "colophon": "（奥書）「文政八乙酉歳五月備後尾之道於転法輪山浄土寺良厳和尚大日経疏講伝之砌書写之者也」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ1875.I373 Y8525 1825",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1qd0c/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1qd0c%2Fh008p740/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9936800223606533"
+  },
+  {
+    "bibId": "3680035",
+    "ark": "ark:/21198/n1kk8w",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Jikyō gūwa",
+    "titleJa": "事教偶話",
+    "altTitles": [
+      "事敎偶話 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Yūkei, active 1841-1846 | 宥圭, active 1841-1846"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "[between 1830 and 1868?]",
+    "dateNormalized": "1830/1868",
+    "colophon": "",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8968.2 .Y85",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1kk8w/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1kk8w%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9936800353606533"
+  },
+  {
+    "bibId": "3680506",
+    "ark": "ark:/21198/n1fw5m",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Tōji Shingonshū kechimyaku",
+    "titleJa": "東寺真言宗血脈",
+    "altTitles": [
+      "東寺真言宗血脉 [variant title]"
+    ],
+    "altUniform": "",
+    "authors": [
+      "Yūshin, -1432 | 宥信, -1432",
+      "Yūu, active 1748-1769 | 宥宇, active 1748-1769",
+      "Yūkai, 1345-1416 | 宥快, 1345-1416"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Kanʼen 1 [1748] | 寬延1",
+    "dateNormalized": "1748",
+    "colophon": "（奥書）「寛延元辰象頭山以光岳之本書写之[畢]　三宝院末資宥宇」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8998 .Y87 1748",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1fw5m/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1fw5m%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9936805063606533"
+  },
+  {
+    "bibId": "3680507",
+    "ark": "ark:/21198/n1b32m",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Tōji Shingonshū kechimyakuki",
+    "titleJa": "東寺真言宗血脈記",
+    "altTitles": [
+      "東寺真言宗血脉記 [variant title]"
+    ],
+    "altUniform": "Tōji Shingonshū kechimyaku | 東寺真言宗血脈",
+    "authors": [
+      "Yūshin, -1432 | 宥信, -1432",
+      "Yūjin, active 1862 | 宥仁, active 1862",
+      "Yūkai, 1345-1416 | 宥快, 1345-1416"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Bunkyū 2 [1862] | 文久2",
+    "dateNormalized": "1862",
+    "colophon": "（奥書）「文久二壬戌年於覚城蘭若憲深方伝授之砌借得御本書写畢　寂光山住宥仁二十三」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ8998 .Y87 1862",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn1b32m/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn1b32m%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9936805073606533"
+  },
+  {
+    "bibId": "3680508",
+    "ark": "ark:/21198/n16d13",
+    "parentArks": [
+      "ark:/21198/n1r89q"
+    ],
+    "title": "Daisho randatsu",
+    "titleJa": "大疏爛脱",
+    "altTitles": [
+      "大疏爛脫 [variant title]"
+    ],
+    "altUniform": "Dainichikyō sho randatsu | 大日経疏爛脱",
+    "authors": [
+      "Yūshō, active 13th century-14th century | 宥祥, active 13th century-14th century",
+      "Yūu, active 1748-1769 | 宥宇, active 1748-1769",
+      "Yixing, 673?-727 | 一行, 673?-727"
+    ],
+    "placeOfOrigin": "",
+    "dateCreation": "Meiwa 3 [1766] | 明和3",
+    "dateNormalized": "1766",
+    "colophon": "（奥書）「明和三歳次丙戌年七月下旬於讃州北田山如意輪寺以右御本書写之　金剛宝蓮閣宥宇」",
+    "genre": "Manuscript",
+    "language": "jpn|~|chi",
+    "callNumber": "BQ1875 .Y87 1766",
+    "references": "",
+    "note": "",
+    "adminNote": "",
+    "toganooContainer": "",
+    "manifestUrl": "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fn16d13/manifest",
+    "thumbnail": "https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fn16d13%2Fsw43zc5x/full/120,/0/default.jpg",
+    "viewingHint": "paged",
+    "textDirection": "right-to-left",
+    "opacUrl": "https://search.library.ucla.edu/permalink/01UCS_LAL/17p22dp/alma9936805083606533"
+  }
+]

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+
+      <fileDesc>
+         <titleStmt>
+            <title>密林余材7221</title>
+            <title type="original" sameAs="">密林余材</title>
+
+
+
+         </titleStmt>
+         <publicationStmt>
+            <publisher> University California Los Angeles East Asian Library</publisher>
+            <pubPlace>Los Angeles</pubPlace>
+
+
+            <availability xml:id="metadataRights" status="restricted">
+               <licence target="http://creativecommons.org/licenses/by-nc-sa/4.0/"> This metadata is
+                  licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+                  International. </licence>
+            </availability>
+         </publicationStmt>
+
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <country>USA</country>
+                  <collection>Toganoo collection</collection>
+                  <idno>BQ8915.2.M58</idno>
+                  <altIdentifier>
+                     <idno>Toganoo collecter seal "K10 1"</idno>
+                  </altIdentifier>
+               </msIdentifier>
+               <msContents>
+                  <msItem>
+                     <title>Mitsurin yozai<title type="uniform">
+                        密林餘材（外題）</title>
+                        <orig>なし（内題）</orig>
+                     </title>
+                     <note>handwriting</note>
+                     <note>Number of maki合綴一冊</note>
+                     <colophon>
+                        
+                     </colophon>
+                  </msItem>
+               </msContents>
+               <physDesc>
+                  <objectDesc form="codex">
+                     <supportDesc material="paper">
+                        <support>料紙　楮紙</support>
+                        <extent> 80丁　80sheets
+                          <dimensions type="leaf" unit="cm">
+                              <height>26.0</height>
+                              <width>19.0</width>
+                           </dimensions>
+                        </extent>
+                        <collation></collation>
+                        <condition>良</condition>
+                     </supportDesc>
+                  </objectDesc>
+                  <handDesc>
+                     <handNote scope="major">
+                        <p>Kanji text要確認</p>
+                     </handNote>
+                  </handDesc>
+                  <additions></additions>
+                  <bindingDesc>
+                     <binding>
+                        <p>Fukurotozi袋綴 bag binding</p>
+                        <p></p>
+                     </binding>
+                  </bindingDesc>
+                  <sealDesc>
+                     <p>yellow-green sticker unknown</p>
+                     <p></p>
+                  </sealDesc>
+               </physDesc>
+               <history>
+                  <origin>
+                  </origin>
+                  <provenance>
+                     <p>"日"on front cover</p>
+                     <p>collector's seal"<placeName>讃州</placeName><orgName>覺城院</orgName><placeName>仁保</placeName>"on front and back cover and the first sheet</p>
+                     <p>"南月堂"and"三等" written on spine back</p>
+                  </provenance>
+                  <acquisition>
+                     <p>Acquired from <name type="person" ref="https://viaf.org/viaf/35853152">
+                           <persName> 栂尾祥瑞 </persName>
+                        </name> in 1962. 祥瑞 acquired from <name type="person"
+                           ref="https://viaf.org/viaf/22464118">
+                           <persName> 栂尾祥雲 </persName>
+                        </name>
+                     </p>
+                  </acquisition>
+               </history>
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <revisionDesc>
+         <change when="2018-03-05">
+            <persName>Hiroyuki Ikuura</persName>
+         </change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <p>Some text here.</p>
+      </body>
+   </text>
+</TEI>

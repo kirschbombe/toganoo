@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - ORCID_CLIENT_ID=${ORCID_CLIENT_ID}
+      - ORCID_CLIENT_SECRET=${ORCID_CLIENT_SECRET}
+      - SECRET_KEY=${SECRET_KEY}
+      - DB_PATH=/app/data/annotations.db
+      - BASE_URL=${BASE_URL:-http://localhost:8000}
+    restart: unless-stopped

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+
+      <fileDesc>
+         <titleStmt>
+            <title>秘密曼荼羅教開演玄叙／教相大義7358</title>
+            <title type="original" sameAs="">秘密曼荼羅教開演玄叙</title>
+
+
+
+         </titleStmt>
+         <publicationStmt>
+            <publisher> University California Los Angeles East Asian Library</publisher>
+            <pubPlace>Los Angeles</pubPlace>
+
+
+            <availability xml:id="metadataRights" status="restricted">
+               <licence target="http://creativecommons.org/licenses/by-nc-sa/4.0/"> This metadata is
+                  licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+                  International. </licence>
+            </availability>
+         </publicationStmt>
+
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <country>USA</country>
+                  <collection>Toganoo collection</collection>
+                  <idno>BQ8968.2.Y848</idno>
+                  <altIdentifier>
+                     <idno>Toganoo collecter seal"K24 1"</idno>
+                  </altIdentifier>
+               </msIdentifier>
+               <msContents>
+                  <msItem>
+                     <title>Himitsu mandarakyō kaien genjo
+                        Kyōsō taigi<title type="uniform">
+                        秘密曼荼羅教開演玄叙　南山宥圭述
+                        教相大義　　　　　　　　　　同述（外題）</title>
+                        <orig>秘密曼荼羅教開演玄叙（内題）</orig>
+                     </title>
+                     <note>handwriting</note>
+                     <note>Number of maki 合冊</note>
+                     <colophon>
+                        秘密曼荼羅教開演玄叙
+                        <date when="1847">弘化四</date>丁未春於<placeName>豫州西條</placeName>写得功了
+                        <placeName>西讃仁保村</placeName><orgName>覚城院</orgName><persName>理玄</persName>（花押）
+                        教相大義
+                        <date when="1846">同</date>六月十三日以本書写得畢
+                        <placeName>西讃仁保邑</placeName><orgName sameAs="覚城院">覚城御院</orgName>之資<persName>仁純理玄</persName>
+                     </colophon>
+                  </msItem>
+               </msContents>
+               <physDesc>
+                  <objectDesc form="codex">
+                     <supportDesc material="paper">
+                        <support>料紙　楮紙</support>
+                        <extent> 秘密曼荼羅教開演玄叙21丁　21sheets
+                           　　　教相大義17丁　17sheets<dimensions type="leaf" unit="cm">
+                              <height>秘密曼荼羅教開演玄叙24.4
+                                 教相大義24.6</height>
+                              <width>秘密曼荼羅教開演玄叙17.2
+                                 教相大義17.2</width>
+                           </dimensions>
+                        </extent>
+                        <collation></collation>
+                        <condition>良</condition>
+                     </supportDesc>
+                  </objectDesc>
+                  <handDesc>
+                     <handNote scope="major">
+                        <p>Kanji text要確認</p>
+                     </handNote>
+                  </handDesc>
+                  <additions> 有（本文同筆）</additions>
+                  <bindingDesc>
+                     <binding>
+                        <p>Fukurotozi袋綴 bag binding</p>
+                        <p></p>
+                     </binding>
+                  </bindingDesc>
+                  <sealDesc>
+                     <p>yellow-green sticker "K24"</p>
+                     <p></p>
+                  </sealDesc>
+               </physDesc>
+               <history>
+                  <origin>
+                     教相大義
+                　　　<date when="1846">弘化三年</date>丙午閏五月於<placeName>播陽</placeName><orgName>如意山普門院
+                   金剛寺</orgName>丈室草焉　<persName>宥圭</persName>数齢四十一
+                  </origin>
+                  <provenance>
+                     <p>"<placeName>西讃州仁保村</placeName><orgName>覚城院</orgName><persName>仁純理玄</persName>
+                        所有" on front cover</p>
+                  </provenance>
+                  <acquisition>
+                     <p>Acquired from <name type="person" ref="https://viaf.org/viaf/35853152">
+                           <persName> 栂尾祥瑞 </persName>
+                        </name> in 1962. 祥瑞 acquired from <name type="person"
+                           ref="https://viaf.org/viaf/22464118">
+                           <persName> 栂尾祥雲 </persName>
+                        </name>
+                     </p>
+                  </acquisition>
+               </history>
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <revisionDesc>
+         <change when="2018-03-02">
+            <persName>Hiroyuki Ikuura</persName>
+         </change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <p>Some text here.</p>
+      </body>
+   </text>
+</TEI>

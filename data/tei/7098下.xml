@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+
+      <fileDesc>
+         <titleStmt>
+            <title>法則集　上・下7098</title>
+            <title type="original" sameAs="法則集"></title>
+
+
+
+         </titleStmt>
+         <publicationStmt>
+            <publisher> University California Los Angeles East Asian Library</publisher>
+            <pubPlace>Los Angeles</pubPlace>
+
+
+            <availability xml:id="metadataRights" status="restricted">
+               <licence target="http://creativecommons.org/licenses/by-nc-sa/4.0/"> This metadata is
+                  licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+                  International. </licence>
+            </availability>
+         </publicationStmt>
+
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <country>USA</country>
+                  <collection>Toganoo collection</collection>
+                  <idno>BQ8970.2.H67 1671</idno>
+                  <altIdentifier>
+                     <idno>Toganoo collecter seal"K20 下"</idno>
+                  </altIdentifier>
+               </msIdentifier>
+               <msContents>
+                  <msItem>
+                     <title>Hōsokushū<title type="uniform">
+                        法則集　下（外題）</title>
+                        <orig></orig>
+                     </title>
+                     <note>printing</note>
+                     <note>Number of maki 下巻</note>
+                     <colophon>
+                        <date when="1671">寛文辛亥</date>臘月日
+                        <placeName>南山</placeName>持念沙門<persName>宥皓</persName>勤計
+                     </colophon>
+                  </msItem>
+               </msContents>
+               <physDesc>
+                  <objectDesc form="codex">
+                     <supportDesc material="paper">
+                        <support>料紙　楮紙</support>
+                        <extent>29丁　29sheets <dimensions type="leaf" unit="cm">
+                              <height>27.1</height>
+                              <width>19.4</width>
+                           </dimensions>
+                        </extent>
+                        <collation></collation>
+                        <condition>良</condition>
+                     </supportDesc>
+                  </objectDesc>
+                  <handDesc>
+                     <handNote scope="major">
+                        <p>Kanji text要確認</p>
+                     </handNote>
+                  </handDesc>
+                  <additions></additions>
+                  <bindingDesc>
+                     <binding>
+                        <p>Fukurotozi袋綴 bag binding</p>
+                        <p></p>
+                     </binding>
+                  </bindingDesc>
+                  <sealDesc>
+                     <p>yellow-green sticker "K20"</p>
+                     <p></p>
+                  </sealDesc>
+               </physDesc>
+               <history>
+                  <origin>
+                
+                  </origin>
+                  <provenance>
+                     <p>"荒""共二" on front cover</p>
+                     <p>collector's seal"<placeName>讃州</placeName><orgName>覚城院</orgName><placeName>仁保</placeName>" on the first and the last leaf</p> 
+                  </provenance>
+                  <acquisition>
+                     <p>Acquired from <name type="person" ref="https://viaf.org/viaf/35853152">
+                           <persName> 栂尾祥瑞 </persName>
+                        </name> in 1962. 祥瑞 acquired from <name type="person"
+                           ref="https://viaf.org/viaf/22464118">
+                           <persName> 栂尾祥雲 </persName>
+                        </name>
+                     </p>
+                  </acquisition>
+               </history>
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <revisionDesc>
+         <change when="2018-03-05">
+            <persName>Hiroyuki Ikuura</persName>
+         </change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <p>Some text here.</p>
+      </body>
+   </text>
+</TEI>

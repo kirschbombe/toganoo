@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+
+      <fileDesc>
+         <titleStmt>
+            <title>千手四十手深要決　完7366</title>
+            <title type="original" sameAs="千手四十手深要決"></title>
+
+
+
+         </titleStmt>
+         <publicationStmt>
+            <publisher> University California Los Angeles East Asian Library</publisher>
+            <pubPlace>Los Angeles</pubPlace>
+
+
+            <availability xml:id="metadataRights" status="restricted">
+               <licence target="http://creativecommons.org/licenses/by-nc-sa/4.0/"> This metadata is
+                  licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+                  International. </licence>
+            </availability>
+         </publicationStmt>
+
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <country>USA</country>
+                  <collection>Toganoo collection</collection>
+                  <idno>BQ4710.A8 S45 1716</idno>
+                  <altIdentifier>
+                     <idno>Toganoo collecter seal"K57 1"</idno>
+                  </altIdentifier>
+               </msIdentifier>
+               <msContents>
+                  <msItem>
+                     <title>Senju shijusshu jinʾyōketsu<title type="uniform">
+                        千手四十手深要決　完（外題）</title>
+                        <orig>摩訶瑜伽自在四十手深要決義一巻（内題）</orig>
+                     </title>
+                     <note>handwriting</note>
+                     <note>Number of maki １巻</note>
+                     <colophon>右一巻<origPlace>南谷堯寿院</origPlace><persName>祐算（梵字二字）</persName>御本申請<date when="1716">享保改元丙申之天
+                        自八月廿八日夜至菊月朔旦</date>而書写畢後覧苅茂補略而已／
+                        <origPlace>相州柳島山</origPlace>沙門
+                        <persName>智算房了弁</persName>
+                     </colophon>
+                  </msItem>
+               </msContents>
+               <physDesc>
+                  <objectDesc form="codex">
+                     <supportDesc material="paper">
+                        <support>料紙　楮紙</support>
+                        <extent> 75丁　 75sheets <dimensions type="leaf" unit="cm">
+                              <height>23.7</height>
+                              <width>16.4</width>
+                           </dimensions>
+                        </extent>
+                        <collation></collation>
+                        <condition>良、少し虫食い</condition>
+                     </supportDesc>
+                  </objectDesc>
+                  <handDesc>
+                     <handNote scope="major">
+                        <p>Kanji text要確認</p>
+                     </handNote>
+                  </handDesc>
+                  <additions> </additions>
+                  <bindingDesc>
+                     <binding>
+                        <p>Fukurotozi袋綴 bag binding</p>
+                        <p></p>
+                     </binding>
+                  </bindingDesc>
+                  <sealDesc>
+                     <p>yellow-green sticker "K57"</p>
+                     <p>pink sticker"A K013 IV."</p>
+                  </sealDesc>
+               </physDesc>
+               <history>
+                  <origin>
+                     <p>清水静観所撰（朱筆）</p>
+                     <p>御本云
+                        于時<date when="1337">延元二年丁丑六月廿一日</date>於<placeName>秀山</placeName>草庵
+                        密一山申賜御本書写畢　<persName>資智海</persName></p>
+                     <p>同本云
+                        ／<date when="1483">文明十五年癸卯菊月廿一日</date><placeName>秀山</placeName>下之坊附了
+                     ／當院住<persName>法印禅澄</persName></p> 
+                     <p>同本云
+                     　　／<date when="1705">宝永第二天秋</date>令写之序加朱一校了
+                     ／<persName>祐算空俊房</persName>五十有五</p>
+                  </origin>
+                  <provenance>
+                     <p>"<placeName>西讃岐仁保</placeName><orgName>覚城院</orgName>常住" on front cover</p>
+                     <p>"此本者<orgName>（１字墨滅）乗院</orgName>輪下<persName>了辨房</persName>
+                        書写之者也" on end paper of back cover</p>
+                     <p>"此一巻<placeName>高野山</placeName><orgName>瑞泉院</orgName>心明四州巡拝之比
+                        當寺訊来先師<persName>三等法印</persName>之詣廟前
+                        而廻向了終夜法話之席約焉贈給也
+                        　于時<date when="1773">安永二癸巳秋九月吉祥日</date>
+                        　現住<persName>法印無等</persName>記了" on end paper of back cover</p>  
+                  </provenance>
+                  <acquisition>
+                     <p>Acquired from <name type="person" ref="https://viaf.org/viaf/35853152">
+                           <persName> 栂尾祥瑞 </persName>
+                        </name> in 1962. 祥瑞 acquired from <name type="person"
+                           ref="https://viaf.org/viaf/22464118">
+                           <persName> 栂尾祥雲 </persName>
+                        </name>
+                     </p>
+                  </acquisition>
+               </history>
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <revisionDesc>
+         <change when="2018-02-02">
+            <persName>Hiroyuki Ikuura</persName>
+         </change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <p>Some text here.</p>
+      </body>
+   </text>
+</TEI>

@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+
+# Database — persisted via Docker volume, not committed
+data/*.db
+data/*.db-shm
+data/*.db-wal
+
+# Keep the data directory itself
+!data/.gitkeep
+
+# OS
+.DS_Store

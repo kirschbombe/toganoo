@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+
+      <fileDesc>
+         <titleStmt>
+            <title>密蔵要義　全7051</title>
+            <title type="original" sameAs="密蔵要義"></title>
+
+
+
+         </titleStmt>
+         <publicationStmt>
+            <publisher> University California Los Angeles East Asian Library</publisher>
+            <pubPlace>Los Angeles</pubPlace>
+
+
+            <availability xml:id="metadataRights" status="restricted">
+               <licence target="http://creativecommons.org/licenses/by-nc-sa/4.0/"> This metadata is
+                  licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+                  International. </licence>
+            </availability>
+         </publicationStmt>
+
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <country>USA</country>
+                  <collection>Toganoo collection</collection>
+                  <idno>BQ8918.Y89.1847</idno>
+                  <altIdentifier>
+                     <idno>Toganoo collecter seal"K68 1"</idno>
+                  </altIdentifier>
+               </msIdentifier>
+               <msContents>
+                  <msItem>
+                     <title>Mitsuzō yōgi<title type="uniform">
+                        密藏要義　全（外題）</title>
+                        <orig>密藏要義（内題）</orig>
+                     </title>
+                     <note>printing</note>
+                     <note>Number of maki １巻</note>
+                     <colophon>
+                        于時<date when="1847">弘化四丁未</date>八月十日於<placeName>播州加東郡</placeName><orgName>稲實山神
+                        咒寺</orgName>以件本写得畢　<placeName>西讃州仁保村</placeName><orgName>覚城院</orgName><persName>理玄
+                        　　　　　　　　　　　　　　仁純</persName>（花押）
+                     </colophon>
+                  </msItem>
+               </msContents>
+               <physDesc>
+                  <objectDesc form="codex">
+                     <supportDesc material="paper">
+                        <support>料紙　薄葉</support>
+                        <extent> 67丁　 67sheets <dimensions type="leaf" unit="cm">
+                              <height>24.6</height>
+                              <width>17.9</width>
+                           </dimensions>
+                        </extent>
+                        <collation></collation>
+                        <condition>良</condition>
+                     </supportDesc>
+                  </objectDesc>
+                  <handDesc>
+                     <handNote scope="major">
+                        <p>Kanji text要確認</p>
+                     </handNote>
+                  </handDesc>
+                  <additions> </additions>
+                  <bindingDesc>
+                     <binding>
+                        <p>Fukurotozi袋綴 bag binding</p>
+                        <p></p>
+                     </binding>
+                  </bindingDesc>
+                  <sealDesc>
+                     <p>yellow-green sticker "K68"</p>
+                     <p></p>
+                  </sealDesc>
+               </physDesc>
+               <history>
+                  <origin>
+                本云　于時<date when="1398">應永五年</date>三月下旬頃於<placeName>尾州</placeName><orgName>真蔵寺</orgName>書畢
+                     <persName>金剛資宥全</persName>行年四十八才
+                     于時<date when="1815">文化十二乙亥</date>十月以<placeName>高野山</placeName><orgName>地蔵院</orgName>本模写焉
+                     　　　　　　　　　　　　　　<orgName>随心院</orgName>会下義親
+                     于時<date when="1815">文化十二乙亥</date>十月以<persName>義親</persName>師本写之畢<placeName>阿州
+                     住吉嶌</placeName><orgName>蓮華寺</orgName><persName>霊恭</persName>
+                     于時<date when="1837">天保八丁酉</date>三月以<orgName>高祖院</orgName><persName>霊恭</persName>本写之
+                     <placeName>南山</placeName><orgName>南室院</orgName><persName>祥道</persName>
+                     于時<date when="1846">弘化三丙午</date>仲冬於<placeName>豫州櫻井</placeName><orgName>法花寺</orgName><persName>祥道</persName>師声
+                     字義講演之砌以<persName>祥道</persName>師本写之防陽<persName>無染</persName>
+                  </origin>
+                  <provenance>
+                     <p>"<persName>仁純</persName>所秘" on front cover</p>
+                     <p>"<placeName>西讃仁保</placeName><orgName>覚城院</orgName>常住" on back cover</p> 
+                  </provenance>
+                  <acquisition>
+                     <p>Acquired from <name type="person" ref="https://viaf.org/viaf/35853152">
+                           <persName> 栂尾祥瑞 </persName>
+                        </name> in 1962. 祥瑞 acquired from <name type="person"
+                           ref="https://viaf.org/viaf/22464118">
+                           <persName> 栂尾祥雲 </persName>
+                        </name>
+                     </p>
+                  </acquisition>
+               </history>
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <revisionDesc>
+         <change when="2018-02-15">
+            <persName>Hiroyuki Ikuura</persName>
+         </change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <p>Some text here.</p>
+      </body>
+   </text>
+</TEI>

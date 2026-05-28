@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+
+      <fileDesc>
+         <titleStmt>
+            <title>秘蔵宝鑰問談鈔7099</title>
+            <title type="original" sameAs="">秘蔵宝鑰問談鈔</title>
+
+
+
+         </titleStmt>
+         <publicationStmt>
+            <publisher> University California Los Angeles East Asian Library</publisher>
+            <pubPlace>Los Angeles</pubPlace>
+
+
+            <availability xml:id="metadataRights" status="restricted">
+               <licence target="http://creativecommons.org/licenses/by-nc-sa/4.0/"> This metadata is
+                  licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+                  International. </licence>
+            </availability>
+         </publicationStmt>
+
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <country>USA</country>
+                  <collection>Toganoo collection</collection>
+                  <idno>BQ8999.K854 H5933 1766</idno>
+                  <altIdentifier>
+                     <idno>Toganoo collecter seal "K49　乾"</idno>
+                  </altIdentifier>
+               </msIdentifier>
+               <msContents>
+                  <msItem>
+                     <title>Hizō hōyaku mondanshō<title type="uniform">
+                        秘藏寶鑰問談鈔　乾（下）三四（外題）</title>
+                        <orig>寶鑰問談鈔下之上　問談鈔下之下（内題）</orig>
+                     </title>
+                     <note>handwriting</note>
+                     <note>Number of maki下之上、下之下</note>
+                     <colophon>
+                        秘藏宝鑰問談鈔下之上終
+                        　<date when="1766">明和三年</date>四月廿日写了
+                        
+                        <date when="1766">明和三</date>丙戌夏四月廿二日於<placeName>南紀</placeName><orgName>鈴丸寺
+                        大楽院</orgName><persName>霊信師</persName>法華講談之砌同所<orgName>円福蘭
+                        若</orgName>而書写畢　　　　　　　沙門<persName>實雅</persName>
+                        　願以此功徳普及於一切
+                        　我等與衆生皆共成佛道
+                     </colophon>
+                  </msItem>
+               </msContents>
+               <physDesc>
+                  <objectDesc form="codex">
+                     <supportDesc material="paper">
+                        <support>料紙　楮紙</support>
+                        <extent> 68丁　sheets
+                          <dimensions type="leaf" unit="cm">
+                              <height>23.6</height>
+                              <width>16.8</width>
+                           </dimensions>
+                        </extent>
+                        <collation></collation>
+                        <condition>良</condition>
+                     </supportDesc>
+                  </objectDesc>
+                  <handDesc>
+                     <handNote scope="major">
+                        <p>Kanji text要確認</p>
+                     </handNote>
+                  </handDesc>
+                  <additions></additions>
+                  <bindingDesc>
+                     <binding>
+                        <p>Fukurotozi袋綴 bag binding</p>
+                        <p></p>
+                     </binding>
+                  </bindingDesc>
+                  <sealDesc>
+                     <p>yellow-green sticker "K49"</p>
+                     <p></p>
+                  </sealDesc>
+               </physDesc>
+               <history>
+                  <origin>
+                    <date when="1240">仁治元年</date>庚子閏十月比於<persName>禅定殿下</persName>御所
+                    被談宝鑰一部即於御前仰<persName>小納言律師房
+                    信</persName>被書所談法門帰山之時給此聞書少少
+                    載入勘之等進読之楚忽之間文義難調紕
+                    謬相参歟若自及後哲被覧此順加再治示
+                    童蒙而已　　　　　　　　<persName>阿闍梨道範</persName>
+                    <date when="1738">元文三年</date>於干<placeName>攝州伊丹</placeName>寓居砌<placeName>大坂生玉</placeName>南坊<persName>妙珍法師</persName>以本
+                    写了　　　　　<placeName>明石松江邑</placeName><orgName>正護寺</orgName><persName>義諦</persName>
+                    于時<date when="1765">明和二年</date>乙酉於<placeName>淡州</placeName><orgName>宝生寺</orgName>宝鑰講談之砌<persName>隆栄</persName>房以本
+                    書写了焉　　　<placeName>南紀城東</placeName><orgName>円福院</orgName>會下<persName>智円</persName>
+                  </origin>
+                  <provenance>
+                     <p>"共二""二"on front cover</p>
+                     <p>"<placeName>讃岐</placeName><orgName>覺城院</orgName>" written on front cover</p>
+                  </provenance>
+                  <acquisition>
+                     <p>Acquired from <name type="person" ref="https://viaf.org/viaf/35853152">
+                           <persName> 栂尾祥瑞 </persName>
+                        </name> in 1962. 祥瑞 acquired from <name type="person"
+                           ref="https://viaf.org/viaf/22464118">
+                           <persName> 栂尾祥雲 </persName>
+                        </name>
+                     </p>
+                  </acquisition>
+               </history>
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <revisionDesc>
+         <change when="2018-03-05">
+            <persName>Hiroyuki Ikuura</persName>
+         </change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <p>Some text here.</p>
+      </body>
+   </text>
+</TEI>
