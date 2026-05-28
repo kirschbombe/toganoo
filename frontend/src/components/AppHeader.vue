@@ -7,7 +7,7 @@
       <span id="app-subtitle">UCLA Library · Toganoo Collection of Esoteric Buddhism</span>
     </div>
     <nav id="topbar-right">
-      <RouterLink to="/collection" class="nav-link">Collection</RouterLink>
+      <RouterLink to="/collection" class="nav-link">← Collection</RouterLink>
       <RouterLink v-if="auth.user?.is_admin" to="/admin" class="nav-link">Admin</RouterLink>
       <div id="auth-status">
         <template v-if="auth.user">

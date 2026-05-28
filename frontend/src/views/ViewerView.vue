@@ -11,13 +11,16 @@
     <!-- Center: viewer + controls -->
     <div class="viewer-center">
       <div class="vol-info-bar" v-if="volume">
-        <div class="vol-info-title">
-          {{ volume.title }}
-          <span class="vol-info-ja">{{ volume.title_local }}</span>
+        <div class="vol-info-text">
+          <div class="vol-info-title">
+            {{ volume.title }}
+            <span class="vol-info-ja">{{ volume.title_local }}</span>
+          </div>
+          <div class="vol-info-meta">
+            {{ [volume.institution, volume.date_label, volume.genre].filter(Boolean).join(' · ') }}
+          </div>
         </div>
-        <div class="vol-info-meta">
-          {{ [volume.institution, volume.date_label, volume.genre].filter(Boolean).join(' · ') }}
-        </div>
+        <button class="gallery-btn" @click="galleryOpen = true" title="Browse all pages">⊞ Gallery</button>
       </div>
 
       <div class="viewer-wrap">
@@ -30,23 +33,35 @@
           ref="osdViewer"
           :canvas="currentCanvas"
           :annotations="annotations"
+          :activeAnnotationId="activeAnnotationId"
           @regionDrawn="onRegionDrawn"
+          @annotationClicked="onAnnotationClicked"
         />
+        <template v-if="volume && canvases.length > 1">
+          <button class="viewer-nav-btn viewer-nav-left"
+            :disabled="isRtl ? pageIndex >= canvases.length - 1 : pageIndex === 0"
+            @click="goToPage(isRtl ? pageIndex + 1 : pageIndex - 1)"
+            aria-label="Previous page">&#8592;</button>
+          <button class="viewer-nav-btn viewer-nav-right"
+            :disabled="isRtl ? pageIndex === 0 : pageIndex >= canvases.length - 1"
+            @click="goToPage(isRtl ? pageIndex - 1 : pageIndex + 1)"
+            aria-label="Next page">&#8594;</button>
+        </template>
       </div>
 
       <div class="viewer-footer" v-if="volume">
         <div class="page-nav">
-          <button class="nav-btn" :disabled="pageIndex === 0" @click="goToPage(pageIndex - 1)">←</button>
+          <button class="nav-btn"
+            :disabled="isRtl ? pageIndex >= canvases.length - 1 : pageIndex === 0"
+            @click="goToPage(isRtl ? pageIndex + 1 : pageIndex - 1)">←</button>
           <span class="page-indicator">
             {{ pageIndex + 1 }} / {{ canvases.length }}
             <span v-if="currentCanvas"> — {{ currentCanvas.label }}</span>
           </span>
-          <button class="nav-btn" :disabled="pageIndex >= canvases.length - 1" @click="goToPage(pageIndex + 1)">→</button>
+          <button class="nav-btn"
+            :disabled="isRtl ? pageIndex === 0 : pageIndex >= canvases.length - 1"
+            @click="goToPage(isRtl ? pageIndex - 1 : pageIndex + 1)">→</button>
         </div>
-        <div class="viewer-hint">
-          {{ auth.user ? 'Draw a region on the image after clicking "+ Add annotation"' : 'Sign in with ORCID to annotate' }}
-        </div>
-        <button class="gallery-btn" @click="galleryOpen = true" title="Browse all pages">⊞ Gallery</button>
       </div>
     </div>
 
@@ -56,9 +71,11 @@
       :volume="volume"
       :annotations="annotations"
       :pending-region="pendingRegion"
+      :activeAnnotationId="activeAnnotationId"
       @annotationsChanged="reloadAnnotations"
       @clearPendingRegion="pendingRegion = null"
       @startDrawing="toggleDrawing"
+      @annotationSelected="onAnnotationSelected"
     />
 
     <!-- Gallery overlay -->
@@ -105,13 +122,17 @@ const route   = useRoute()
 const auth    = useAuthStore()
 const volStore = useVolumesStore()
 
-const canvases      = ref([])
-const pageIndex     = ref(0)
-const annotations   = ref([])
-const pendingRegion = ref(null)
-const drawing       = ref(false)
-const osdViewer     = ref(null)
-const galleryOpen   = ref(false)
+const canvases           = ref([])
+const pageIndex          = ref(0)
+const annotations        = ref([])
+const pendingRegion      = ref(null)
+const drawing            = ref(false)
+const osdViewer          = ref(null)
+const galleryOpen        = ref(false)
+const activeAnnotationId = ref(null)
+const viewingDirection   = ref('left-to-right')
+
+const isRtl = computed(() => viewingDirection.value === 'right-to-left')
 
 const volume = computed(() => volStore.bySlug(route.params.slug))
 const currentCanvas = computed(() => canvases.value[pageIndex.value] ?? null)
@@ -125,8 +146,11 @@ watch(volume, async (v) => { if (v) await loadManifest() })
 
 async function loadManifest() {
   try {
-    const manifest  = await fetchManifest(volume.value.manifest_url)
-    canvases.value  = parseCanvases(manifest)
+    const manifest       = await fetchManifest(volume.value.manifest_url)
+    canvases.value       = parseCanvases(manifest)
+    viewingDirection.value = manifest.viewingDirection
+      ?? manifest.sequences?.[0]?.viewingDirection
+      ?? 'left-to-right'
     annotations.value = await getVolumeAnnotations(volume.value.manifest_url)
   } catch (e) {
     console.error('Manifest load failed:', e)
@@ -151,8 +175,26 @@ function toggleDrawing() {
 }
 
 function onRegionDrawn(region) {
-  drawing.value   = false
+  drawing.value       = false
   pendingRegion.value = region
+}
+
+function onAnnotationClicked(id) {
+  activeAnnotationId.value = id
+}
+
+async function onAnnotationSelected(annotation) {
+  activeAnnotationId.value = annotation.id
+  const targetCanvasIndex = canvases.value.findIndex(c => c.id === annotation.canvas_id)
+  if (targetCanvasIndex === -1) return
+
+  if (targetCanvasIndex !== pageIndex.value) {
+    goToPage(targetCanvasIndex)
+    // Wait for canvas to load and annotations to render before selecting
+    await new Promise(r => setTimeout(r, 600))
+  }
+
+  if (osdViewer.value) osdViewer.value.selectAnnotation(annotation.id)
 }
 
 // ── Manifest parsing ──────────────────────────────────────────────────────────
@@ -223,14 +265,22 @@ function parseCanvases(manifest) {
   background: var(--bg);
 }
 .vol-info-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   padding: 8px 14px;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
+.vol-info-text { min-width: 0; }
 .vol-info-title {
   font-size: 14px;
   font-weight: 600;
   color: var(--ink-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .vol-info-ja {
   font-weight: 400;
@@ -247,6 +297,29 @@ function parseCanvases(manifest) {
   overflow: hidden;
   position: relative;
 }
+.viewer-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  width: 36px;
+  height: 64px;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.viewer-wrap:hover .viewer-nav-btn:not(:disabled) { opacity: 1; }
+.viewer-nav-btn:disabled { cursor: default; }
+.viewer-nav-left  { left:  8px; }
+.viewer-nav-right { right: 8px; }
 .viewer-placeholder {
   display: flex;
   flex-direction: column;
@@ -259,11 +332,10 @@ function parseCanvases(manifest) {
 .viewer-footer {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
   padding: 8px 14px;
   border-top: 1px solid var(--border);
   flex-shrink: 0;
-  flex-wrap: wrap;
 }
 .page-nav { display: flex; align-items: center; gap: 8px; }
 .nav-btn {
@@ -277,7 +349,6 @@ function parseCanvases(manifest) {
 }
 .nav-btn:disabled { opacity: 0.3; cursor: default; }
 .page-indicator { font-size: 12px; color: var(--ink-3); white-space: nowrap; }
-.viewer-hint { font-size: 11px; color: var(--ink-3); flex: 1; }
 .draw-btn {
   padding: 5px 12px;
   border-radius: 4px;
@@ -296,16 +367,19 @@ function parseCanvases(manifest) {
 }
 
 .gallery-btn {
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 4px;
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 500;
   border: 1px solid var(--border);
   background: var(--sidebar-bg);
   color: var(--ink-2);
   cursor: pointer;
   flex-shrink: 0;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
 }
-.gallery-btn:hover { color: var(--ink-1); }
+.gallery-btn:hover { background: var(--border); color: var(--ink-1); }
 
 /* Gallery overlay */
 .gallery-overlay {

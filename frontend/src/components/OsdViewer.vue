@@ -8,27 +8,30 @@
 import { ref, watch, onUnmounted } from 'vue'
 
 const props = defineProps({
-  canvas:   Object,   // { id, label, thumbnail, serviceId, width, height, tileSource }
-  readonly: Boolean,
-  annotations: Array, // [{ id, region_xywh, mark_type, canvas_id }]
+  canvas:              Object,
+  readonly:            Boolean,
+  annotations:         Array,
+  activeAnnotationId:  { type: [Number, String], default: null },
 })
 
-const emit = defineEmits(['regionDrawn'])
+const emit = defineEmits(['regionDrawn', 'annotationClicked'])
 
 const osdEl  = ref(null)
 let osd  = null
 let anno = null
 
-// Re-init when canvas changes
 watch(() => props.canvas, (canvas) => {
   if (!canvas) return
   initViewer(canvas)
 }, { immediate: true })
 
-// Sync annotations when they change (page loaded or annotation saved)
 watch(() => props.annotations, () => {
   renderSavedAnnotations()
 }, { deep: true })
+
+watch(() => props.activeAnnotationId, (id) => {
+  if (anno && id != null) anno.selectAnnotation(`#anno-${id}`)
+})
 
 function initViewer(canvas) {
   if (osd) {
@@ -63,6 +66,16 @@ function initViewer(canvas) {
     const xywh = selectionToXywh(selection)
     emit('regionDrawn', { canvasId: canvas.id, canvasLabel: canvas.label, xywh })
     anno.cancelSelected()
+  })
+
+  // clickAnnotation fires when the user clicks an existing annotation shape.
+  // The id in the event is '#anno-{db-id}' — strip the prefix to get the db id.
+  anno.on('clickAnnotation', (a) => {
+    const dbId = (a?.id ?? '').replace(/^#anno-/, '')
+    if (!dbId) return
+    emit('annotationClicked', dbId)
+    // Dismiss Annotorious editor popup — editing lives in the sidebar
+    setTimeout(() => anno?.cancelSelected(), 0)
   })
 
   osd.addHandler('open', () => renderSavedAnnotations())
@@ -101,12 +114,15 @@ function renderSavedAnnotations() {
   })
 }
 
-// Called by parent to toggle drawing mode
 function setDrawing(enabled) {
   if (anno) anno.setDrawingEnabled(enabled)
 }
 
-defineExpose({ setDrawing })
+function selectAnnotation(id) {
+  if (anno) anno.selectAnnotation(`#anno-${id}`)
+}
+
+defineExpose({ setDrawing, selectAnnotation })
 
 onUnmounted(() => {
   if (osd) { osd.destroy(); osd = null; anno = null }
@@ -122,5 +138,8 @@ onUnmounted(() => {
 .osd-container {
   width: 100%;
   height: 100%;
+}
+:deep(.openseadragon-canvas) {
+  outline: none;
 }
 </style>

@@ -57,6 +57,7 @@
           :key="a.id"
           class="anno-card"
           :class="{ selected: selectedId === a.id }"
+          :data-anno-id="a.id"
           @click="toggleSelected(a.id)"
         >
           <div class="anno-card-head">
@@ -129,19 +130,20 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, nextTick } from 'vue'
 import AnnotationForm from './AnnotationForm.vue'
 import { exportUrl } from '../api/index.js'
 import { createAnnotation, updateAnnotation, deleteAnnotation } from '../api/index.js'
 
 const props = defineProps({
-  user:          Object,
-  volume:        Object,
-  annotations:   Array,
-  pendingRegion: Object,
+  user:               Object,
+  volume:             Object,
+  annotations:        Array,
+  pendingRegion:      Object,
+  activeAnnotationId: { type: [Number, String], default: null },
 })
 
-const emit = defineEmits(['annotationsChanged', 'clearPendingRegion', 'startDrawing'])
+const emit = defineEmits(['annotationsChanged', 'clearPendingRegion', 'startDrawing', 'annotationSelected'])
 
 const editingId         = ref(null)
 const editingAnnotation = ref({})
@@ -159,8 +161,20 @@ watch(() => props.pendingRegion, (region) => {
   if (region) { editingId.value = 'new'; editingAnnotation.value = {} }
 })
 
+watch(() => props.activeAnnotationId, async (id) => {
+  if (id == null) return
+  selectedId.value = id
+  await nextTick()
+  const el = document.querySelector(`[data-anno-id="${id}"]`)
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+})
+
 function toggleSelected(id) {
   selectedId.value = selectedId.value === id ? null : id
+  if (selectedId.value != null) {
+    const annotation = props.annotations?.find(a => a.id === id)
+    if (annotation) emit('annotationSelected', annotation)
+  }
 }
 
 function startEdit(a) {
