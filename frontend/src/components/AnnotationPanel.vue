@@ -95,9 +95,11 @@
               </dl>
             </div>
             <div class="anno-actions" @click.stop>
-              <button class="anno-action-btn" @click="startEdit(a)">Edit</button>
               <button
-                v-if="a.annotator_orcid === user?.orcid"
+                v-if="user && (user.is_editor || user.is_admin)"
+                class="anno-action-btn" @click="startEdit(a)">Edit</button>
+              <button
+                v-if="user && (a.annotator_orcid === user.orcid || user.is_admin)"
                 class="anno-action-btn danger"
                 @click="handleDelete(a.id)"
               >Delete</button>
@@ -189,9 +191,11 @@
 
           <!-- Actions stop propagation so clicks don't toggle expand -->
           <div class="anno-actions" @click.stop>
-            <button class="anno-action-btn" @click="startEdit(a)">Edit</button>
             <button
-              v-if="a.annotator_orcid === user?.orcid"
+              v-if="user && (user.is_editor || user.is_admin)"
+              class="anno-action-btn" @click="startEdit(a)">Edit</button>
+            <button
+              v-if="user && (a.annotator_orcid === user.orcid || user.is_admin)"
               class="anno-action-btn danger"
               @click="handleDelete(a.id)"
             >Delete</button>
