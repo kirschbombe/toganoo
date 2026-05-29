@@ -122,7 +122,10 @@ function setDrawing(enabled) {
 }
 
 function selectAnnotation(id) {
-  if (anno) anno.selectAnnotation(`#anno-${id}`)
+  if (anno) {
+    anno.selectAnnotation(`#anno-${id}`)
+    setTimeout(() => anno?.cancelSelected(), 0)
+  }
 }
 
 defineExpose({ setDrawing, selectAnnotation })
@@ -146,5 +149,7 @@ onUnmounted(() => {
   outline: none;
 }
 /* Suppress the Annotorious editor popup entirely — editing lives in the sidebar */
-:deep(.a9s-editor) { display: none !important; }
+:deep(.a9s-editor),
+:deep(.a9s-editor-wrapper),
+:deep(.a9s-popup) { display: none !important; }
 </style>
