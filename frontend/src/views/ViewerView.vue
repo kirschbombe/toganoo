@@ -198,8 +198,12 @@ async function goToVolume(slug) {
 }
 
 async function reloadAnnotations() {
-  if (volume.value) {
-    annotations.value = await getVolumeAnnotations(volume.value.manifest_url)
+  if (!volume.value) return
+  annotations.value = await getVolumeAnnotations(volume.value.manifest_url)
+  // In collection mode the panel renders collectionAnnotations, so refresh that too
+  const collSlug = volume.value.collection?.slug
+  if (collSlug) {
+    collectionAnnotations.value = await fetchCollectionAnnotations(collSlug)
   }
 }
 
