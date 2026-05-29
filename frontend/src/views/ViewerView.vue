@@ -303,7 +303,9 @@ function parseCanvases(manifest) {
   display: grid;
   grid-template-columns: 120px 1fr var(--panel-w, 320px);
   height: calc(100vh - var(--topbar-h));
-  overflow: hidden;
+  /* No overflow:hidden here — the canvas drawer slides out of the sidebar
+     column as position:absolute and needs to be visible over the viewer.
+     Each panel manages its own overflow internally. */
 }
 .viewer-center {
   display: flex;
