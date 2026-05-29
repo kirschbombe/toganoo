@@ -209,7 +209,7 @@ def _ensure_image_url(url: str | None) -> str | None:
     if not url:
         return url
     if "/iiif/2/" in url and "/full/" not in url and not url.lower().endswith((".jpg", ".png", ".gif")):
-        return url.rstrip("/") + "/full/80,/0/default.jpg"
+        return url.rstrip("/") + "/full/200,/0/default.jpg"
     return url
 
 
@@ -285,7 +285,7 @@ def _thumbnail_from_canvas(canvas: dict, is_v3: bool) -> str | None:
                     if isinstance(service, dict):
                         svc_id = service.get("id") or service.get("@id", "")
                         if svc_id:
-                            return f"{svc_id.rstrip('/')}/full/80,/0/default.jpg"
+                            return f"{svc_id.rstrip('/')}/full/200,/0/default.jpg"
         else:
             images = canvas.get("images", [])
             if images:
@@ -293,7 +293,7 @@ def _thumbnail_from_canvas(canvas: dict, is_v3: bool) -> str | None:
                 service = resource.get("service", {})
                 svc_id = service.get("@id", "") if isinstance(service, dict) else ""
                 if svc_id:
-                    return f"{svc_id.rstrip('/')}/full/80,/0/default.jpg"
+                    return f"{svc_id.rstrip('/')}/full/200,/0/default.jpg"
     except Exception:
         pass
     return None
