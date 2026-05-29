@@ -239,7 +239,7 @@ onUnmounted(() => observer?.disconnect())
 .canvas-index-list {
   flex: 1;
   overflow-y: auto;
-  padding: 8px 12px;
+  padding: 8px 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;

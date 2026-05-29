@@ -303,7 +303,7 @@ function parseCanvases(manifest) {
 <style scoped>
 .viewer-page {
   display: grid;
-  grid-template-columns: 120px 1fr var(--panel-w, 320px);
+  grid-template-columns: 160px 1fr var(--panel-w, 320px);
   height: calc(100vh - var(--topbar-h));
   overflow: hidden;
 }
