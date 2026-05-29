@@ -21,6 +21,7 @@ DEV_USER = {
     "orcid": "https://orcid.org/0000-0000-0000-0000",
     "name":  "Dev User (local)",
     "is_admin": True,
+    "is_editor": True,
 }
 
 # ── OAuth (production / sandbox) ─────────────────────────────────────────────
@@ -41,7 +42,8 @@ if not DEV_MODE:
     )
 
 
-def _upsert_user(db, orcid_uri: str, name: str):
+def _upsert_user(db, orcid_uri: str, name: str) -> dict:
+    """Insert or update a user on login. Returns dict with is_admin and is_editor."""
     is_admin = 1 if orcid_uri in _ADMIN_ORCIDS else 0
     db.execute(
         """INSERT INTO users (id, name, is_admin)
@@ -52,8 +54,11 @@ def _upsert_user(db, orcid_uri: str, name: str):
         (orcid_uri, name, is_admin),
     )
     db.commit()
-    row = db.execute("SELECT is_admin FROM users WHERE id = ?", (orcid_uri,)).fetchone()
-    return bool(row["is_admin"]) if row else bool(is_admin)
+    row = db.execute("SELECT is_admin, is_editor FROM users WHERE id = ?", (orcid_uri,)).fetchone()
+    return {
+        "is_admin":  bool(row["is_admin"])  if row else bool(is_admin),
+        "is_editor": bool(row["is_editor"]) if row else False,
+    }
 
 
 @router.get("/login")
@@ -100,14 +105,19 @@ async def auth_callback(request: Request):
     db_gen = get_db()
     db = next(db_gen)
     try:
-        is_admin = _upsert_user(db, orcid_uri, name)
+        roles = _upsert_user(db, orcid_uri, name)
     finally:
         try:
             next(db_gen)
         except StopIteration:
             pass
 
-    request.session["user"] = {"orcid": orcid_uri, "name": name, "is_admin": is_admin}
+    request.session["user"] = {
+        "orcid":     orcid_uri,
+        "name":      name,
+        "is_admin":  roles["is_admin"],
+        "is_editor": roles["is_editor"],
+    }
     return RedirectResponse("/")
 
 
