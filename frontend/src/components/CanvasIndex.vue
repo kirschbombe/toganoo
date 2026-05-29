@@ -95,9 +95,11 @@ const visible   = ref(new Set())
 const activeTab = ref('volumes')   // start on Volumes so user sees the set on load
 let observer = null
 
-// When a new collection loads, go to Volumes tab to orient the user
-watch(() => props.collectionVolumes, (vols) => {
-  if (vols) activeTab.value = 'volumes'
+// Switch to Volumes tab only when entering a collection (null → array).
+// Re-fetching volumes for the same collection (array → new array) should not
+// reset the tab — the user may have already switched to Pages.
+watch(() => props.collectionVolumes, (vols, prevVols) => {
+  if (vols && !prevVols) activeTab.value = 'volumes'
 }, { immediate: true })
 
 // After volume navigation completes, switch to Pages
