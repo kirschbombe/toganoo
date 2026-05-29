@@ -32,12 +32,6 @@
       />
     </div>
 
-    <!-- Not signed in -->
-    <div v-else-if="!user" class="panel-body panel-empty">
-      <div class="panel-empty-icon">🔒</div>
-      <p>Sign in with ORCID to create and view annotations.</p>
-    </div>
-
     <!-- No volume selected -->
     <div v-else-if="!volume" class="panel-body panel-empty">
       <div class="panel-empty-icon">📖</div>
