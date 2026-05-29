@@ -15,7 +15,8 @@
       <div class="vol-card-title">{{ volume.title }}</div>
       <div v-if="volume.title_local" class="vol-card-ja">{{ volume.title_local }}</div>
       <div class="vol-card-sub">
-        <span v-if="volume.date_label">{{ volume.date_label }}</span>
+        <span v-if="volume.isCollection" class="vol-card-set-badge">Set · {{ volume.volumeCount }} vol.</span>
+        <span v-else-if="volume.date_label">{{ volume.date_label }}</span>
         <span v-if="volume.institution !== 'UCLA Library'" class="vol-card-inst">{{ volume.institution }}</span>
       </div>
     </div>
@@ -95,5 +96,14 @@ const imgError = ref(false)
   border-radius: 2px;
   padding: 0 4px;
   font-size: 9px;
+}
+.vol-card-set-badge {
+  background: var(--vermillion);
+  color: #fff;
+  border-radius: 2px;
+  padding: 0 4px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 </style>

@@ -1,7 +1,9 @@
 from urllib.parse import urlparse
 
 import httpx
-from fastapi import APIRouter, Depends, HTTPException, Request
+from typing import Optional
+
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from pydantic import BaseModel
 
 from ..database import get_db
@@ -23,11 +25,36 @@ def require_admin(request: Request):
 # ── List / get ────────────────────────────────────────────────────────────────
 
 @router.get("/")
-async def list_volumes(db=Depends(get_db)):
-    rows = db.execute(
-        "SELECT * FROM volumes ORDER BY institution, title"
-    ).fetchall()
-    return [dict(r) for r in rows]
+async def list_volumes(
+    standalone: Optional[bool] = Query(None, description="If true, return only volumes not in any collection"),
+    db=Depends(get_db),
+):
+    if standalone:
+        rows = db.execute(
+            "SELECT * FROM volumes WHERE collection_id IS NULL ORDER BY institution, title"
+        ).fetchall()
+    else:
+        rows = db.execute(
+            "SELECT * FROM volumes ORDER BY institution, title"
+        ).fetchall()
+
+    result = []
+    for r in rows:
+        vol = dict(r)
+        if vol.get("collection_id"):
+            coll = db.execute("""
+                SELECT c.slug, c.title,
+                       COUNT(v2.id) AS volume_count
+                FROM collections c
+                LEFT JOIN volumes v2 ON v2.collection_id = c.id
+                WHERE c.id = ?
+                GROUP BY c.id
+            """, (vol["collection_id"],)).fetchone()
+            vol["collection"] = dict(coll) if coll else None
+        else:
+            vol["collection"] = None
+        result.append(vol)
+    return result
 
 
 @router.get("/{slug}")

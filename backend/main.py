@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from starlette.middleware.sessions import SessionMiddleware
 
 from .database import get_db, init_db
-from .routes import annotations, auth, exports, manifests, volumes
+from .routes import annotations, auth, collections, exports, manifests, volumes
 
 load_dotenv()
 
@@ -46,6 +46,7 @@ async def startup():
 app.include_router(auth.router,        prefix="/auth",              tags=["auth"])
 app.include_router(annotations.router, prefix="/api/annotations",   tags=["annotations"])
 app.include_router(volumes.router,     prefix="/api/volumes",       tags=["volumes"])
+app.include_router(collections.router, prefix="/api/collections",   tags=["collections"])
 app.include_router(manifests.router,   prefix="/api/manifest",      tags=["manifests"])
 app.include_router(exports.router,     prefix="/api/export",        tags=["exports"])
 

@@ -5,7 +5,10 @@
     <CanvasIndex
       :canvases="canvases"
       :current-index="pageIndex"
+      :collection-volumes="collectionVolumes"
+      :current-volume-slug="route.params.slug"
       @select="goToPage"
+      @selectVolume="goToVolume"
     />
 
     <!-- Center: viewer + controls -->
@@ -72,6 +75,8 @@
       :annotations="annotations"
       :pending-region="pendingRegion"
       :activeAnnotationId="activeAnnotationId"
+      :collectionAnnotations="collectionAnnotations"
+      :currentVolumeSlug="route.params.slug"
       @annotationsChanged="reloadAnnotations"
       @clearPendingRegion="pendingRegion = null"
       @startDrawing="toggleDrawing"
@@ -110,27 +115,30 @@
 
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore }    from '../stores/auth.js'
 import { useVolumesStore } from '../stores/volumes.js'
-import { getVolumeAnnotations, fetchManifest } from '../api/index.js'
+import { getVolumeAnnotations, fetchManifest, fetchCollection, fetchCollectionAnnotations } from '../api/index.js'
 import OsdViewer      from '../components/OsdViewer.vue'
 import CanvasIndex    from '../components/CanvasIndex.vue'
 import AnnotationPanel from '../components/AnnotationPanel.vue'
 
 const route   = useRoute()
+const router  = useRouter()
 const auth    = useAuthStore()
 const volStore = useVolumesStore()
 
-const canvases           = ref([])
-const pageIndex          = ref(0)
-const annotations        = ref([])
-const pendingRegion      = ref(null)
-const drawing            = ref(false)
-const osdViewer          = ref(null)
-const galleryOpen        = ref(false)
-const activeAnnotationId = ref(null)
-const viewingDirection   = ref('left-to-right')
+const canvases              = ref([])
+const pageIndex             = ref(0)
+const annotations           = ref([])
+const pendingRegion         = ref(null)
+const drawing               = ref(false)
+const osdViewer             = ref(null)
+const galleryOpen           = ref(false)
+const activeAnnotationId    = ref(null)
+const viewingDirection      = ref('left-to-right')
+const collectionVolumes     = ref(null)   // null = standalone volume
+const collectionAnnotations = ref(null)   // null = standalone volume
 
 const isRtl = computed(() => viewingDirection.value === 'right-to-left')
 
@@ -145,9 +153,14 @@ onMounted(async () => {
 watch(volume, async (v) => { if (v) await loadManifest() })
 
 async function loadManifest() {
+  // Reset collection state when navigating to a new volume
+  collectionVolumes.value     = null
+  collectionAnnotations.value = null
+  pageIndex.value = 0
+
   try {
-    const manifest       = await fetchManifest(volume.value.manifest_url)
-    canvases.value       = parseCanvases(manifest)
+    const manifest         = await fetchManifest(volume.value.manifest_url)
+    canvases.value         = parseCanvases(manifest)
     viewingDirection.value = manifest.viewingDirection
       ?? manifest.sequences?.[0]?.viewingDirection
       ?? 'left-to-right'
@@ -155,6 +168,31 @@ async function loadManifest() {
   } catch (e) {
     console.error('Manifest load failed:', e)
   }
+
+  // If this volume belongs to a collection, load the collection context
+  if (volume.value.collection_id) {
+    // Find the collection slug from the volume's collection field
+    // (returned by GET /api/volumes/ with collection nested object)
+    const coll = volume.value.collection
+    if (coll?.slug) await loadCollection(coll.slug)
+  }
+}
+
+async function loadCollection(collSlug) {
+  try {
+    const [collData, collAnnos] = await Promise.all([
+      fetchCollection(collSlug),
+      fetchCollectionAnnotations(collSlug),
+    ])
+    collectionVolumes.value     = collData.volumes   // [{slug, title, volume_number, volume_label, ...}]
+    collectionAnnotations.value = collAnnos          // [{volume_slug, volume_title, volume_number, volume_label, annotations[]}]
+  } catch (e) {
+    console.error('Collection load failed:', e)
+  }
+}
+
+async function goToVolume(slug) {
+  await router.push(`/viewer/${slug}`)
 }
 
 async function reloadAnnotations() {
@@ -184,6 +222,15 @@ function onAnnotationClicked(id) {
 }
 
 async function onAnnotationSelected(annotation) {
+  // Cross-volume navigation (collection mode)
+  if (annotation.volume_slug && annotation.volume_slug !== route.params.slug) {
+    await goToVolume(annotation.volume_slug)
+    await new Promise(r => setTimeout(r, 800))
+    activeAnnotationId.value = annotation.id
+    if (osdViewer.value) osdViewer.value.selectAnnotation(annotation.id)
+    return
+  }
+
   activeAnnotationId.value = annotation.id
   const targetCanvasIndex = canvases.value.findIndex(c => c.id === annotation.canvas_id)
   if (targetCanvasIndex === -1) return

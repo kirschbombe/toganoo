@@ -51,3 +51,39 @@ export async function ingestManifest(payload) {
 export function exportUrl(type, manifestUrl) {
   return `/api/export/${type}/${encodeURIComponent(manifestUrl)}`
 }
+
+// ── Collections ───────────────────────────────────────────────────────────────
+
+export async function fetchCollections() {
+  const res = await fetch('/api/collections/')
+  if (!res.ok) return []
+  return res.json()
+}
+
+export async function fetchCollection(slug) {
+  const res = await fetch(`/api/collections/${slug}`)
+  if (!res.ok) throw new Error(`Collection not found: ${slug}`)
+  return res.json()
+}
+
+export async function fetchCollectionAnnotations(slug) {
+  const res = await fetch(`/api/collections/${slug}/annotations`)
+  if (!res.ok) return []
+  return res.json()
+}
+
+export async function ingestCollection(payload) {
+  const res = await fetch('/api/collections/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+  if (!res.ok) throw new Error(await res.text())
+  return res.json()
+}
+
+export async function deleteCollection(slug) {
+  const res = await fetch(`/api/collections/${slug}`, { method: 'DELETE' })
+  if (!res.ok) throw new Error(await res.text())
+  return res.json()
+}
