@@ -153,9 +153,9 @@ onMounted(async () => {
 watch(volume, async (v) => { if (v) await loadManifest() })
 
 async function loadManifest() {
-  // Reset collection state when navigating to a new volume
-  collectionVolumes.value     = null
-  collectionAnnotations.value = null
+  // Reset page position but do NOT clear collectionVolumes — keeping the volume
+  // list populated prevents CanvasIndex from toggling in/out of collection mode,
+  // which would cause OSD's container to resize and miscalculate its initial zoom.
   pageIndex.value = 0
 
   try {
@@ -169,12 +169,14 @@ async function loadManifest() {
     console.error('Manifest load failed:', e)
   }
 
-  // If this volume belongs to a collection, load the collection context
+  // If this volume belongs to a collection, refresh collection context.
+  // If it's standalone, clear any leftover collection state from a previous volume.
   if (volume.value.collection_id) {
-    // Find the collection slug from the volume's collection field
-    // (returned by GET /api/volumes/ with collection nested object)
     const coll = volume.value.collection
     if (coll?.slug) await loadCollection(coll.slug)
+  } else {
+    collectionVolumes.value     = null
+    collectionAnnotations.value = null
   }
 }
 

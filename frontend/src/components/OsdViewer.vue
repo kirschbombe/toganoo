@@ -78,7 +78,10 @@ function initViewer(canvas) {
     setTimeout(() => anno?.cancelSelected(), 0)
   })
 
-  osd.addHandler('open', () => renderSavedAnnotations())
+  osd.addHandler('open', () => {
+    osd.viewport.goHome(true)   // reset zoom/pan to fit-page on every new tile source
+    renderSavedAnnotations()
+  })
 
   const ts = canvas.tileSource
   if (ts) osd.open(ts)
