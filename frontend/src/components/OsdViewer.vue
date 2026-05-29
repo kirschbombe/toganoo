@@ -145,4 +145,6 @@ onUnmounted(() => {
 :deep(.openseadragon-canvas) {
   outline: none;
 }
+/* Suppress the Annotorious editor popup entirely — editing lives in the sidebar */
+:deep(.a9s-editor) { display: none !important; }
 </style>
