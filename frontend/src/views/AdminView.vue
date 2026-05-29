@@ -10,6 +10,9 @@
         <button class="admin-tab" :class="{ active: tab === 'collection' }" @click="tab = 'collection'">
           Add Collection
         </button>
+        <button class="admin-tab" :class="{ active: tab === 'users' }" @click="tab = 'users'; loadUsers()">
+          User Access
+        </button>
       </div>
 
       <!-- ── Add single manifest ── -->
@@ -57,6 +60,54 @@
       </template>
 
       <!-- ── Add IIIF Collection ── -->
+      <!-- ── User Access ── -->
+      <template v-else-if="tab === 'users'">
+        <h2 class="admin-heading">User Access</h2>
+        <p class="admin-desc">
+          Anyone can log in with ORCID, but only users granted <strong>Editor</strong> access can
+          create and edit annotations. Admins can also manage volumes and grant access to others.
+        </p>
+
+        <div v-if="usersLoading" class="admin-desc">Loading…</div>
+        <div v-else-if="usersError" class="admin-error">{{ usersError }}</div>
+        <table v-else class="user-table">
+          <thead>
+            <tr>
+              <th>Name / ORCID</th>
+              <th>Editor</th>
+              <th>Admin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="u in usersList" :key="u.id">
+              <td class="user-cell">
+                <span class="user-name">{{ u.name }}</span>
+                <a class="user-orcid" :href="u.id" target="_blank">{{ u.id.replace('https://orcid.org/', '') }}</a>
+              </td>
+              <td class="role-cell">
+                <button
+                  class="role-btn"
+                  :class="{ active: u.is_editor }"
+                  @click="toggleRole(u, 'is_editor')"
+                >{{ u.is_editor ? '✓' : '–' }}</button>
+              </td>
+              <td class="role-cell">
+                <button
+                  class="role-btn"
+                  :class="{ active: u.is_admin }"
+                  @click="toggleRole(u, 'is_admin')"
+                >{{ u.is_admin ? '✓' : '–' }}</button>
+              </td>
+            </tr>
+            <tr v-if="!usersList.length">
+              <td colspan="3" class="admin-desc" style="padding: 16px 0">
+                No users have logged in yet.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </template>
+
       <template v-else>
         <h2 class="admin-heading">Add IIIF Collection</h2>
         <p class="admin-desc">
@@ -105,6 +156,42 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { ingestManifest, ingestCollection } from '../api/index.js'
+
+// ── Users ──
+const usersList   = ref([])
+const usersLoading = ref(false)
+const usersError  = ref('')
+
+async function loadUsers() {
+  if (usersLoading.value) return
+  usersLoading.value = true
+  usersError.value   = ''
+  try {
+    const res = await fetch('/api/users/')
+    if (!res.ok) throw new Error(await res.text())
+    usersList.value = await res.json()
+  } catch (e) {
+    usersError.value = e.message
+  } finally {
+    usersLoading.value = false
+  }
+}
+
+async function toggleRole(user, field) {
+  const newVal = !user[field]
+  try {
+    const res = await fetch(`/api/users/${encodeURIComponent(user.id)}`, {
+      method:  'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ [field]: newVal }),
+    })
+    if (!res.ok) throw new Error(await res.text())
+    const updated = await res.json()
+    Object.assign(user, updated)
+  } catch (e) {
+    alert(`Failed to update role: ${e.message}`)
+  }
+}
 
 const tab = ref('manifest')
 
@@ -241,4 +328,45 @@ async function handleCollectionIngest() {
   line-height: 1.6;
 }
 .admin-success a { color: var(--gold); }
+
+/* User table */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.user-table th {
+  text-align: left;
+  padding: 6px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--border);
+}
+.user-table td { padding: 8px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.user-cell { display: flex; flex-direction: column; gap: 2px; }
+.user-name { color: var(--ink-1); font-weight: 500; }
+.user-orcid { color: var(--ink-3); font-size: 10px; font-family: monospace; text-decoration: none; }
+.user-orcid:hover { color: var(--gold); }
+.role-cell { text-align: center; width: 64px; }
+.role-btn {
+  width: 32px;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--ink-3);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+.role-btn.active {
+  background: rgba(180,40,30,0.12);
+  border-color: var(--vermillion);
+  color: var(--vermillion);
+}
+.role-btn:hover { border-color: var(--ink-1); color: var(--ink-1); }
+.role-btn.active:hover { background: rgba(180,40,30,0.2); }
 </style>

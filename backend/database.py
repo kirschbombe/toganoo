@@ -27,6 +27,7 @@ def init_db():
             name        TEXT,
             institution TEXT,
             is_admin    INTEGER DEFAULT 0,
+            is_editor   INTEGER DEFAULT 0,
             created_at  TEXT DEFAULT CURRENT_TIMESTAMP
         );
 
@@ -169,4 +170,15 @@ def _migrate(conn):
 
         conn.commit()
         conn.execute("PRAGMA user_version = 2")
+        conn.commit()
+
+    if version < 3:
+        # Add is_editor role to users
+        user_cols = {row[1] for row in conn.execute("PRAGMA table_info(users)")}
+        if "is_editor" not in user_cols:
+            conn.execute("ALTER TABLE users ADD COLUMN is_editor INTEGER DEFAULT 0")
+        # Existing admins implicitly have editor rights, but is_editor is
+        # checked separately so admins always pass the editor gate too.
+        conn.commit()
+        conn.execute("PRAGMA user_version = 3")
         conn.commit()

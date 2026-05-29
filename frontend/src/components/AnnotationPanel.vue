@@ -6,7 +6,7 @@
       <span class="panel-label">{{ panelTitle }}</span>
       <div class="panel-header-actions">
         <button
-          v-if="!editing && user && volume"
+          v-if="!editing && user && volume && (user.is_editor || user.is_admin)"
           class="add-anno-btn"
           :class="{ drawing: drawing }"
           @click="$emit('startDrawing')"

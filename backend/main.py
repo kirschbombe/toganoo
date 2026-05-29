@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from starlette.middleware.sessions import SessionMiddleware
 
 from .database import get_db, init_db
-from .routes import annotations, auth, collections, exports, manifests, volumes
+from .routes import annotations, auth, collections, exports, manifests, users, volumes
 
 load_dotenv()
 
@@ -49,6 +49,7 @@ app.include_router(volumes.router,     prefix="/api/volumes",       tags=["volum
 app.include_router(collections.router, prefix="/api/collections",   tags=["collections"])
 app.include_router(manifests.router,   prefix="/api/manifest",      tags=["manifests"])
 app.include_router(exports.router,     prefix="/api/export",        tags=["exports"])
+app.include_router(users.router,       prefix="/api/users",          tags=["users"])
 
 
 @app.get("/api/health")

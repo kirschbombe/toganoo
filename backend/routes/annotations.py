@@ -39,6 +39,14 @@ def require_user(request: Request):
     return user
 
 
+def require_editor(request: Request):
+    """Require editor or admin role to create/modify annotations."""
+    user = require_user(request)
+    if not (user.get("is_editor") or user.get("is_admin")):
+        raise HTTPException(status_code=403, detail="Editor access required")
+    return user
+
+
 @router.get("/volume/{volume_id:path}")
 async def get_volume_annotations(volume_id: str, db=Depends(get_db)):
     """Return all annotations for a given volume_id (manifest URL or ARK)."""
@@ -55,7 +63,7 @@ async def create_annotation(
     data: AnnotationCreate,
     db=Depends(get_db),
 ):
-    user = require_user(request)
+    user = require_editor(request)
     now = datetime.now(timezone.utc).isoformat()
     anno_id = str(uuid.uuid4())
 
@@ -90,13 +98,13 @@ async def update_annotation(
     data: AnnotationCreate,
     db=Depends(get_db),
 ):
-    user = require_user(request)
+    user = require_editor(request)
     row = db.execute(
         "SELECT annotator_orcid FROM annotations WHERE id = ?", (annotation_id,)
     ).fetchone()
     if not row:
         raise HTTPException(status_code=404, detail="Annotation not found")
-    if row["annotator_orcid"] != user["orcid"]:
+    if row["annotator_orcid"] != user["orcid"] and not user.get("is_admin"):
         raise HTTPException(status_code=403, detail="Not authorized to edit this annotation")
 
     now = datetime.now(timezone.utc).isoformat()
@@ -125,13 +133,13 @@ async def update_annotation(
 async def delete_annotation(
     annotation_id: str, request: Request, db=Depends(get_db)
 ):
-    user = require_user(request)
+    user = require_editor(request)
     row = db.execute(
         "SELECT annotator_orcid FROM annotations WHERE id = ?", (annotation_id,)
     ).fetchone()
     if not row:
         raise HTTPException(status_code=404, detail="Annotation not found")
-    if row["annotator_orcid"] != user["orcid"]:
+    if row["annotator_orcid"] != user["orcid"] and not user.get("is_admin"):
         raise HTTPException(status_code=403, detail="Not authorized")
 
     db.execute("DELETE FROM annotations WHERE id = ?", (annotation_id,))
