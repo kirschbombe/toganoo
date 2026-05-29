@@ -97,6 +97,15 @@ def ark_suffix(url: str) -> str:
     return seg
 
 
+def ensure_image_url(url):
+    """If url is a bare IIIF image service ID, append image path params."""
+    if not url:
+        return url
+    if "/iiif/2/" in url and "/full/" not in url and not url.lower().endswith((".jpg", ".png", ".gif")):
+        return url.rstrip("/") + "/full/80,/0/default.jpg"
+    return url
+
+
 def thumbnail_from_canvas(canvas: dict, is_v3: bool):
     try:
         if is_v3:
@@ -148,7 +157,7 @@ def extract_manifest_meta(manifest: dict, manifest_url: str) -> dict:
 
     return {
         "title": title,
-        "thumbnail": thumbnail,
+        "thumbnail": ensure_image_url(thumbnail),
         "canvas_count": len(canvases),
     }
 

@@ -204,6 +204,15 @@ def _label_value(label_obj) -> str:
     return ""
 
 
+def _ensure_image_url(url: str | None) -> str | None:
+    """If url looks like a bare IIIF image service ID, append image path params."""
+    if not url:
+        return url
+    if "/iiif/2/" in url and "/full/" not in url and not url.lower().endswith((".jpg", ".png", ".gif")):
+        return url.rstrip("/") + "/full/80,/0/default.jpg"
+    return url
+
+
 def _extract_manifest_metadata(manifest: dict, manifest_url: str) -> dict:
     ctx = manifest.get("@context", "")
     is_v3 = "presentation/3" in ctx or manifest.get("type") == "Manifest"
@@ -221,6 +230,7 @@ def _extract_manifest_metadata(manifest: dict, manifest_url: str) -> dict:
         thumbnail = thumb.get("id") or thumb.get("@id")
     elif isinstance(thumb, str):
         thumbnail = thumb
+    thumbnail = _ensure_image_url(thumbnail)
 
     # Canvas count
     if is_v3:
