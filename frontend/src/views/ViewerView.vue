@@ -37,6 +37,7 @@
           :canvas="currentCanvas"
           :annotations="annotations"
           :activeAnnotationId="activeAnnotationId"
+          :readonly="!auth.user || (!auth.user.is_editor && !auth.user.is_admin)"
           @regionDrawn="onRegionDrawn"
           @annotationClicked="onAnnotationClicked"
         />
