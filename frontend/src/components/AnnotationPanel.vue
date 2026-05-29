@@ -5,11 +5,22 @@
     <div class="panel-header">
       <span class="panel-label">{{ panelTitle }}</span>
       <div class="panel-header-actions">
-        <button v-if="!editing && user && volume" class="add-anno-btn" @click="$emit('startDrawing')">
-          + Add annotation
+        <button
+          v-if="!editing && user && volume"
+          class="add-anno-btn"
+          :class="{ drawing: drawing }"
+          @click="$emit('startDrawing')"
+        >
+          <span v-if="drawing">✕ Cancel drawing</span>
+          <span v-else>+ Add annotation</span>
         </button>
         <button v-if="editing" class="panel-close-btn" @click="cancelEdit">✕</button>
       </div>
+    </div>
+
+    <!-- Drawing mode instruction strip -->
+    <div v-if="drawing && !editing" class="drawing-strip">
+      Click and drag on the image to draw a region
     </div>
 
     <!-- Form: new or edit -->
@@ -33,7 +44,76 @@
       <p>Select a volume from the collection to begin annotating.</p>
     </div>
 
-    <!-- Annotation list -->
+    <!-- Annotation list: collection mode (grouped by volume) -->
+    <div v-else-if="collectionAnnotations" class="panel-body">
+      <div v-for="group in collectionAnnotations" :key="group.volume_slug" class="vol-group">
+        <div
+          class="vol-group-header"
+          :class="{ expanded: expandedVolumeSlug === group.volume_slug }"
+          @click="toggleVolumeGroup(group.volume_slug)"
+        >
+          <span class="vol-group-caret">{{ expandedVolumeSlug === group.volume_slug ? '▼' : '▶' }}</span>
+          <span class="vol-group-title">
+            Vol. {{ group.volume_number }} — {{ group.volume_label || group.volume_title }}
+          </span>
+          <span class="vol-group-count">({{ group.annotations.length }})</span>
+        </div>
+        <div v-if="expandedVolumeSlug === group.volume_slug" class="anno-list">
+          <div v-if="!group.annotations.length" class="panel-empty-sm">No annotations in this volume.</div>
+          <div
+            v-for="(a, i) in group.annotations"
+            :key="a.id"
+            class="anno-card"
+            :class="{ selected: selectedId === a.id }"
+            :data-anno-id="a.id"
+            @click="toggleSelected(a.id, group.volume_slug)"
+          >
+            <div class="anno-card-head">
+              <span class="anno-seq">#{{ i + 1 }}</span>
+              <span class="mark-badge">{{ markTypeLabel(a.mark_type) }}</span>
+              <span class="anno-expand-icon">{{ selectedId === a.id ? '▲' : '▼' }}</span>
+            </div>
+            <div class="anno-detail">
+              <div v-if="a.transcription" class="ja">{{ a.transcription }}</div>
+              <div v-if="a.owner_name">👤 {{ a.owner_name }}</div>
+              <div v-if="a.place_name">📍 {{ a.place_name }}</div>
+              <div>📄 {{ locationLabel(a.location_on_object) }}</div>
+              <div class="anno-by">by {{ a.annotator_name || a.annotator_orcid }}</div>
+            </div>
+            <div v-if="selectedId === a.id" class="anno-expanded">
+              <dl class="anno-fields">
+                <template v-if="a.shape"><dt>Shape</dt><dd>{{ a.shape }}</dd></template>
+                <template v-if="a.ink_color"><dt>Color</dt><dd>{{ a.ink_color }}</dd></template>
+                <template v-if="a.script_type"><dt>Script</dt><dd>{{ a.script_type }}</dd></template>
+                <template v-if="a.condition"><dt>Condition</dt><dd>{{ a.condition }}</dd></template>
+                <template v-if="a.transcription_rom"><dt>Romanization</dt><dd>{{ a.transcription_rom }}</dd></template>
+                <template v-if="a.owner_type"><dt>Owner type</dt><dd>{{ a.owner_type }}</dd></template>
+                <template v-if="a.owner_authority_uri">
+                  <dt>Owner URI</dt>
+                  <dd><a :href="a.owner_authority_uri" target="_blank" rel="noopener" class="anno-uri">{{ a.owner_authority_uri }}</a></dd>
+                </template>
+                <template v-if="a.place_authority_uri">
+                  <dt>Place URI</dt>
+                  <dd><a :href="a.place_authority_uri" target="_blank" rel="noopener" class="anno-uri">{{ a.place_authority_uri }}</a></dd>
+                </template>
+                <template v-if="a.notes"><dt>Notes</dt><dd>{{ a.notes }}</dd></template>
+                <template v-if="a.canvas_label"><dt>Canvas</dt><dd>{{ a.canvas_label }}</dd></template>
+              </dl>
+            </div>
+            <div class="anno-actions" @click.stop>
+              <button class="anno-action-btn" @click="startEdit(a)">Edit</button>
+              <button
+                v-if="a.annotator_orcid === user?.orcid"
+                class="anno-action-btn danger"
+                @click="handleDelete(a.id)"
+              >Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Annotation list: single-volume mode -->
     <div v-else class="panel-body">
 
       <!-- Export links -->
@@ -136,18 +216,22 @@ import { exportUrl } from '../api/index.js'
 import { createAnnotation, updateAnnotation, deleteAnnotation } from '../api/index.js'
 
 const props = defineProps({
-  user:               Object,
-  volume:             Object,
-  annotations:        Array,
-  pendingRegion:      Object,
-  activeAnnotationId: { type: [Number, String], default: null },
+  user:                 Object,
+  volume:               Object,
+  drawing:              { type: Boolean, default: false },
+  annotations:          Array,
+  pendingRegion:        Object,
+  activeAnnotationId:   { type: [Number, String], default: null },
+  collectionAnnotations: { type: Array,  default: null },
+  currentVolumeSlug:    { type: String, default: null },
 })
 
 const emit = defineEmits(['annotationsChanged', 'clearPendingRegion', 'startDrawing', 'annotationSelected'])
 
-const editingId         = ref(null)
-const editingAnnotation = ref({})
-const selectedId        = ref(null)
+const editingId           = ref(null)
+const editingAnnotation   = ref({})
+const selectedId          = ref(null)
+const expandedVolumeSlug  = ref(props.currentVolumeSlug)
 
 const editing    = computed(() => editingId.value !== null)
 const panelTitle = computed(() => {
@@ -161,18 +245,42 @@ watch(() => props.pendingRegion, (region) => {
   if (region) { editingId.value = 'new'; editingAnnotation.value = {} }
 })
 
+watch(() => props.currentVolumeSlug, (slug) => {
+  if (slug) expandedVolumeSlug.value = slug
+})
+
 watch(() => props.activeAnnotationId, async (id) => {
   if (id == null) return
   selectedId.value = id
+  // In collection mode, expand the group that contains this annotation
+  if (props.collectionAnnotations) {
+    for (const group of props.collectionAnnotations) {
+      if (group.annotations.some(a => a.id === id)) {
+        expandedVolumeSlug.value = group.volume_slug
+        break
+      }
+    }
+  }
   await nextTick()
   const el = document.querySelector(`[data-anno-id="${id}"]`)
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
 })
 
-function toggleSelected(id) {
+function toggleVolumeGroup(slug) {
+  expandedVolumeSlug.value = expandedVolumeSlug.value === slug ? null : slug
+}
+
+function toggleSelected(id, volumeSlug) {
   selectedId.value = selectedId.value === id ? null : id
   if (selectedId.value != null) {
-    const annotation = props.annotations?.find(a => a.id === id)
+    // Look in single-volume annotations or across collection groups
+    let annotation = props.annotations?.find(a => a.id === id)
+    if (!annotation && props.collectionAnnotations) {
+      for (const group of props.collectionAnnotations) {
+        annotation = group.annotations.find(a => a.id === id)
+        if (annotation) { annotation = { ...annotation, volume_slug: group.volume_slug }; break }
+      }
+    }
     if (annotation) emit('annotationSelected', annotation)
   }
 }
@@ -294,9 +402,28 @@ function locationLabel(v)  { return LOCATION_LABELS[v]  ?? v  }
   color: #fff;
   cursor: pointer;
   white-space: nowrap;
-  transition: opacity 0.15s;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
 }
 .add-anno-btn:hover { opacity: 0.85; }
+.add-anno-btn.drawing {
+  background: transparent;
+  border-color: var(--ink-3);
+  color: var(--ink-3);
+}
+.add-anno-btn.drawing:hover {
+  opacity: 1;
+  border-color: var(--ink-1);
+  color: var(--ink-1);
+}
+.drawing-strip {
+  font-size: 11px;
+  color: var(--ink-2);
+  background: rgba(180, 40, 30, 0.08);
+  border-bottom: 1px solid rgba(180, 40, 30, 0.2);
+  padding: 7px 14px;
+  text-align: center;
+  flex-shrink: 0;
+}
 .panel-close-btn {
   background: none;
   border: none;
@@ -336,6 +463,33 @@ function locationLabel(v)  { return LOCATION_LABELS[v]  ?? v  }
   transition: color 0.15s;
 }
 .export-panel-btn:hover { color: var(--ink-1); }
+/* ── Collection volume groups ────────────────────────────── */
+.vol-group { border-bottom: 1px solid var(--border); }
+.vol-group-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.1s;
+}
+.vol-group-header:hover { background: rgba(255,255,255,0.03); }
+.vol-group-header.expanded { background: rgba(180,40,30,0.05); }
+.vol-group-caret { font-size: 9px; color: var(--ink-3); flex-shrink: 0; }
+.vol-group-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-2);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.vol-group-count { font-size: 10px; color: var(--ink-3); flex-shrink: 0; }
+.panel-empty-sm { font-size: 12px; color: var(--ink-3); padding: 12px 14px; }
+
 .anno-list { display: flex; flex-direction: column; gap: 1px; }
 .anno-card {
   padding: 10px 14px;

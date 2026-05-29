@@ -1,7 +1,9 @@
 from urllib.parse import urlparse
 
 import httpx
-from fastapi import APIRouter, Depends, HTTPException, Request
+from typing import Optional
+
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from pydantic import BaseModel
 
 from ..database import get_db
@@ -23,11 +25,36 @@ def require_admin(request: Request):
 # ── List / get ────────────────────────────────────────────────────────────────
 
 @router.get("/")
-async def list_volumes(db=Depends(get_db)):
-    rows = db.execute(
-        "SELECT * FROM volumes ORDER BY institution, title"
-    ).fetchall()
-    return [dict(r) for r in rows]
+async def list_volumes(
+    standalone: Optional[bool] = Query(None, description="If true, return only volumes not in any collection"),
+    db=Depends(get_db),
+):
+    if standalone:
+        rows = db.execute(
+            "SELECT * FROM volumes WHERE collection_id IS NULL ORDER BY institution, title"
+        ).fetchall()
+    else:
+        rows = db.execute(
+            "SELECT * FROM volumes ORDER BY institution, title"
+        ).fetchall()
+
+    result = []
+    for r in rows:
+        vol = dict(r)
+        if vol.get("collection_id"):
+            coll = db.execute("""
+                SELECT c.slug, c.title,
+                       COUNT(v2.id) AS volume_count
+                FROM collections c
+                LEFT JOIN volumes v2 ON v2.collection_id = c.id
+                WHERE c.id = ?
+                GROUP BY c.id
+            """, (vol["collection_id"],)).fetchone()
+            vol["collection"] = dict(coll) if coll else None
+        else:
+            vol["collection"] = None
+        result.append(vol)
+    return result
 
 
 @router.get("/{slug}")
@@ -177,6 +204,15 @@ def _label_value(label_obj) -> str:
     return ""
 
 
+def _ensure_image_url(url: str | None) -> str | None:
+    """If url looks like a bare IIIF image service ID, append image path params."""
+    if not url:
+        return url
+    if "/iiif/2/" in url and "/full/" not in url and not url.lower().endswith((".jpg", ".png", ".gif")):
+        return url.rstrip("/") + "/full/200,/0/default.jpg"
+    return url
+
+
 def _extract_manifest_metadata(manifest: dict, manifest_url: str) -> dict:
     ctx = manifest.get("@context", "")
     is_v3 = "presentation/3" in ctx or manifest.get("type") == "Manifest"
@@ -194,6 +230,7 @@ def _extract_manifest_metadata(manifest: dict, manifest_url: str) -> dict:
         thumbnail = thumb.get("id") or thumb.get("@id")
     elif isinstance(thumb, str):
         thumbnail = thumb
+    thumbnail = _ensure_image_url(thumbnail)
 
     # Canvas count
     if is_v3:
@@ -248,7 +285,7 @@ def _thumbnail_from_canvas(canvas: dict, is_v3: bool) -> str | None:
                     if isinstance(service, dict):
                         svc_id = service.get("id") or service.get("@id", "")
                         if svc_id:
-                            return f"{svc_id.rstrip('/')}/full/80,/0/default.jpg"
+                            return f"{svc_id.rstrip('/')}/full/200,/0/default.jpg"
         else:
             images = canvas.get("images", [])
             if images:
@@ -256,7 +293,7 @@ def _thumbnail_from_canvas(canvas: dict, is_v3: bool) -> str | None:
                 service = resource.get("service", {})
                 svc_id = service.get("@id", "") if isinstance(service, dict) else ""
                 if svc_id:
-                    return f"{svc_id.rstrip('/')}/full/80,/0/default.jpg"
+                    return f"{svc_id.rstrip('/')}/full/200,/0/default.jpg"
     except Exception:
         pass
     return None

@@ -30,20 +30,34 @@ def init_db():
             created_at  TEXT DEFAULT CURRENT_TIMESTAMP
         );
 
+        CREATE TABLE IF NOT EXISTS collections (
+            id             INTEGER PRIMARY KEY AUTOINCREMENT,
+            slug           TEXT UNIQUE NOT NULL,
+            collection_url TEXT UNIQUE,
+            institution    TEXT NOT NULL,
+            title          TEXT NOT NULL,
+            title_local    TEXT,
+            thumbnail      TEXT,
+            created_at     TEXT DEFAULT (datetime('now'))
+        );
+
         CREATE TABLE IF NOT EXISTS volumes (
-            id           INTEGER PRIMARY KEY AUTOINCREMENT,
-            slug         TEXT UNIQUE NOT NULL,
-            manifest_url TEXT UNIQUE NOT NULL,
-            institution  TEXT NOT NULL,
-            title        TEXT NOT NULL,
-            title_local  TEXT,
-            thumbnail    TEXT,
-            date_label   TEXT,
-            genre        TEXT,
-            language     TEXT,
-            canvas_count INTEGER,
-            added_by     TEXT REFERENCES users(id),
-            created_at   TEXT DEFAULT (datetime('now'))
+            id            INTEGER PRIMARY KEY AUTOINCREMENT,
+            slug          TEXT UNIQUE NOT NULL,
+            manifest_url  TEXT UNIQUE NOT NULL,
+            institution   TEXT NOT NULL,
+            title         TEXT NOT NULL,
+            title_local   TEXT,
+            thumbnail     TEXT,
+            date_label    TEXT,
+            genre         TEXT,
+            language      TEXT,
+            canvas_count  INTEGER,
+            collection_id INTEGER REFERENCES collections(id),
+            volume_number INTEGER DEFAULT 0,
+            volume_label  TEXT,
+            added_by      TEXT REFERENCES users(id),
+            created_at    TEXT DEFAULT (datetime('now'))
         );
 
         CREATE TABLE IF NOT EXISTS annotations (
@@ -80,10 +94,12 @@ def init_db():
 
     # Step 3: create indexes now that column names are stable
     conn.executescript("""
+        CREATE INDEX IF NOT EXISTS idx_collections_slug    ON collections(slug);
         CREATE INDEX IF NOT EXISTS idx_volumes_institution ON volumes(institution);
-        CREATE INDEX IF NOT EXISTS idx_volumes_slug ON volumes(slug);
-        CREATE INDEX IF NOT EXISTS idx_annotations_volume ON annotations(volume_id);
-        CREATE INDEX IF NOT EXISTS idx_annotations_canvas ON annotations(canvas_id, volume_id);
+        CREATE INDEX IF NOT EXISTS idx_volumes_slug        ON volumes(slug);
+        CREATE INDEX IF NOT EXISTS idx_volumes_collection  ON volumes(collection_id);
+        CREATE INDEX IF NOT EXISTS idx_annotations_volume  ON annotations(volume_id);
+        CREATE INDEX IF NOT EXISTS idx_annotations_canvas  ON annotations(canvas_id, volume_id);
     """)
     conn.commit()
     conn.close()
@@ -125,4 +141,32 @@ def _migrate(conn):
         """)
         conn.commit()
         conn.execute("PRAGMA user_version = 1")
+        conn.commit()
+
+    if version < 2:
+        # Add collections table (may already exist on fresh installs)
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS collections (
+                id             INTEGER PRIMARY KEY AUTOINCREMENT,
+                slug           TEXT UNIQUE NOT NULL,
+                collection_url TEXT UNIQUE,
+                institution    TEXT NOT NULL,
+                title          TEXT NOT NULL,
+                title_local    TEXT,
+                thumbnail      TEXT,
+                created_at     TEXT DEFAULT (datetime('now'))
+            )
+        """)
+
+        # Add collection columns to volumes
+        vol_cols = {row[1] for row in conn.execute("PRAGMA table_info(volumes)")}
+        if "collection_id" not in vol_cols:
+            conn.execute("ALTER TABLE volumes ADD COLUMN collection_id INTEGER REFERENCES collections(id)")
+        if "volume_number" not in vol_cols:
+            conn.execute("ALTER TABLE volumes ADD COLUMN volume_number INTEGER DEFAULT 0")
+        if "volume_label" not in vol_cols:
+            conn.execute("ALTER TABLE volumes ADD COLUMN volume_label TEXT")
+
+        conn.commit()
+        conn.execute("PRAGMA user_version = 2")
         conn.commit()
