@@ -5,11 +5,22 @@
     <div class="panel-header">
       <span class="panel-label">{{ panelTitle }}</span>
       <div class="panel-header-actions">
-        <button v-if="!editing && user && volume" class="add-anno-btn" @click="$emit('startDrawing')">
-          + Add annotation
+        <button
+          v-if="!editing && user && volume"
+          class="add-anno-btn"
+          :class="{ drawing: drawing }"
+          @click="$emit('startDrawing')"
+        >
+          <span v-if="drawing">✕ Cancel drawing</span>
+          <span v-else>+ Add annotation</span>
         </button>
         <button v-if="editing" class="panel-close-btn" @click="cancelEdit">✕</button>
       </div>
+    </div>
+
+    <!-- Drawing mode instruction strip -->
+    <div v-if="drawing && !editing" class="drawing-strip">
+      Click and drag on the image to draw a region
     </div>
 
     <!-- Form: new or edit -->
@@ -207,6 +218,7 @@ import { createAnnotation, updateAnnotation, deleteAnnotation } from '../api/ind
 const props = defineProps({
   user:                 Object,
   volume:               Object,
+  drawing:              { type: Boolean, default: false },
   annotations:          Array,
   pendingRegion:        Object,
   activeAnnotationId:   { type: [Number, String], default: null },
@@ -390,9 +402,28 @@ function locationLabel(v)  { return LOCATION_LABELS[v]  ?? v  }
   color: #fff;
   cursor: pointer;
   white-space: nowrap;
-  transition: opacity 0.15s;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
 }
 .add-anno-btn:hover { opacity: 0.85; }
+.add-anno-btn.drawing {
+  background: transparent;
+  border-color: var(--ink-3);
+  color: var(--ink-3);
+}
+.add-anno-btn.drawing:hover {
+  opacity: 1;
+  border-color: var(--ink-1);
+  color: var(--ink-1);
+}
+.drawing-strip {
+  font-size: 11px;
+  color: var(--ink-2);
+  background: rgba(180, 40, 30, 0.08);
+  border-bottom: 1px solid rgba(180, 40, 30, 0.2);
+  padding: 7px 14px;
+  text-align: center;
+  flex-shrink: 0;
+}
 .panel-close-btn {
   background: none;
   border: none;

@@ -72,6 +72,7 @@
     <AnnotationPanel
       :user="auth.user"
       :volume="volume"
+      :drawing="drawing"
       :annotations="annotations"
       :pending-region="pendingRegion"
       :activeAnnotationId="activeAnnotationId"
