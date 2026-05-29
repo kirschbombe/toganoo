@@ -271,7 +271,7 @@ function serviceId(service) {
 }
 
 function thumbnailUrl(svcId) {
-  return svcId ? `${svcId.replace(/\/$/, '')}/full/80,/0/default.jpg` : null
+  return svcId ? `${svcId.replace(/\/$/, '')}/full/200,/0/default.jpg` : null
 }
 
 function tileSource(svcId) {
