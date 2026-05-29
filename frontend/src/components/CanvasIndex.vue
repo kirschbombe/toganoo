@@ -163,7 +163,7 @@ onUnmounted(() => observer?.disconnect())
 }
 .tab-btn {
   flex: 1;
-  padding: 8px 4px;
+  padding: 10px 8px;
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
