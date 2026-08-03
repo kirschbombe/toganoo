@@ -29,13 +29,18 @@ async def list_volumes(
     standalone: Optional[bool] = Query(None, description="If true, return only volumes not in any collection"),
     db=Depends(get_db),
 ):
+    # annotations.volume_id holds the manifest URL, so the count joins on that
+    count_expr = """(SELECT COUNT(*) FROM annotations a
+                     WHERE a.volume_id = v.manifest_url) AS annotation_count"""
+
     if standalone:
         rows = db.execute(
-            "SELECT * FROM volumes WHERE collection_id IS NULL ORDER BY institution, title"
+            f"SELECT v.*, {count_expr} FROM volumes v "
+            "WHERE v.collection_id IS NULL ORDER BY v.institution, v.title"
         ).fetchall()
     else:
         rows = db.execute(
-            "SELECT * FROM volumes ORDER BY institution, title"
+            f"SELECT v.*, {count_expr} FROM volumes v ORDER BY v.institution, v.title"
         ).fetchall()
 
     result = []

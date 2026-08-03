@@ -309,7 +309,7 @@ function parseCanvases(manifest) {
 <style scoped>
 .viewer-page {
   display: grid;
-  grid-template-columns: 160px 1fr var(--panel-w, 320px);
+  grid-template-columns: var(--sidebar-w, 220px) 1fr var(--panel-w, 380px);
   height: calc(100vh - var(--topbar-h));
   overflow: hidden;
 }
@@ -317,35 +317,36 @@ function parseCanvases(manifest) {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: var(--bg);
+  background: var(--bg-sunken);
 }
 .vol-info-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 8px 14px;
+  gap: 16px;
+  padding: 14px 22px;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
 .vol-info-text { min-width: 0; }
 .vol-info-title {
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 600;
-  color: var(--ink-1);
+  color: var(--text-1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .vol-info-ja {
+  font-family: var(--font-serif);
   font-weight: 400;
-  color: var(--ink-3);
-  margin-left: 8px;
+  color: oklch(65% 0.008 264);
+  margin-left: 10px;
 }
 .vol-info-meta {
-  font-size: 11px;
-  color: var(--ink-3);
-  margin-top: 2px;
+  font-size: 13px;
+  color: var(--text-3);
+  margin-top: 3px;
 }
 .viewer-wrap {
   flex: 1;
@@ -360,9 +361,9 @@ function parseCanvases(manifest) {
   background: rgba(0,0,0,0.45);
   color: #fff;
   border: none;
-  border-radius: 4px;
-  width: 36px;
-  height: 64px;
+  border-radius: 8px;
+  width: 40px;
+  height: 72px;
   font-size: 20px;
   cursor: pointer;
   opacity: 0;
@@ -381,37 +382,41 @@ function parseCanvases(manifest) {
   align-items: center;
   justify-content: center;
   height: 100%;
-  color: var(--ink-3);
+  color: var(--text-3);
+  font-size: 16px;
 }
 .placeholder-icon { font-size: 3rem; opacity: 0.2; margin-bottom: 12px; }
 .viewer-footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 14px;
+  padding: 14px 22px;
   border-top: 1px solid var(--border);
   flex-shrink: 0;
 }
-.page-nav { display: flex; align-items: center; gap: 8px; }
+.page-nav { display: flex; align-items: center; gap: 16px; }
 .nav-btn {
   background: none;
-  border: 1px solid var(--border);
-  color: var(--ink-2);
-  border-radius: 3px;
-  padding: 3px 10px;
+  border: 1px solid var(--border-strong);
+  color: oklch(75% 0.008 264);
+  border-radius: 6px;
+  padding: 8px 16px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color 0.15s, color 0.15s;
 }
+.nav-btn:hover:not(:disabled) { border-color: var(--text-2); color: var(--text-1); }
 .nav-btn:disabled { opacity: 0.3; cursor: default; }
-.page-indicator { font-size: 12px; color: var(--ink-3); white-space: nowrap; }
+.page-indicator { font-size: 14px; color: oklch(65% 0.008 264); white-space: nowrap; }
 .draw-btn {
-  padding: 5px 12px;
-  border-radius: 4px;
-  font-size: 12px;
+  padding: 9px 16px;
+  border-radius: 7px;
+  font-size: 13px;
   font-weight: 500;
-  border: 1px solid var(--border);
-  background: var(--sidebar-bg);
-  color: var(--ink-2);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elev);
+  color: oklch(82% 0.008 264);
   cursor: pointer;
   transition: background 0.15s;
 }
@@ -422,19 +427,20 @@ function parseCanvases(manifest) {
 }
 
 .gallery-btn {
-  padding: 5px 12px;
-  border-radius: 4px;
-  font-size: 12px;
+  padding: 9px 16px;
+  border-radius: 7px;
+  font-size: 13px;
   font-weight: 500;
-  border: 1px solid var(--border);
-  background: var(--sidebar-bg);
-  color: var(--ink-2);
+  font-family: inherit;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elev);
+  color: oklch(82% 0.008 264);
   cursor: pointer;
   flex-shrink: 0;
   white-space: nowrap;
   transition: background 0.15s, color 0.15s;
 }
-.gallery-btn:hover { background: var(--border); color: var(--ink-1); }
+.gallery-btn:hover { background: oklch(30% 0.014 264); color: var(--text-1); }
 
 /* Gallery overlay */
 .gallery-overlay {
@@ -447,8 +453,8 @@ function parseCanvases(manifest) {
   z-index: 1000;
 }
 .gallery-modal {
-  background: var(--sidebar-bg);
-  border-radius: 8px;
+  background: var(--bg-elev);
+  border-radius: 12px;
   border: 1px solid var(--border);
   width: min(90vw, 960px);
   max-height: 85vh;
@@ -460,35 +466,35 @@ function parseCanvases(manifest) {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
+  padding: 16px 20px;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
 .gallery-modal-title {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
-  color: var(--ink-1);
+  color: var(--text-1);
 }
 .gallery-modal-close {
   background: none;
   border: none;
-  color: var(--ink-3);
-  font-size: 16px;
+  color: var(--text-3);
+  font-size: 18px;
   cursor: pointer;
-  padding: 2px 6px;
+  padding: 4px 6px;
 }
-.gallery-modal-close:hover { color: var(--ink-1); }
+.gallery-modal-close:hover { color: var(--text-1); }
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  grid-auto-rows: 200px;
-  gap: 10px;
-  padding: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-auto-rows: 220px;
+  gap: 14px;
+  padding: 20px;
   overflow-y: auto;
 }
 .gallery-item {
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 2px solid transparent;
   transition: border-color 0.15s;
   overflow: hidden;
@@ -500,7 +506,7 @@ function parseCanvases(manifest) {
 .gallery-item-img {
   flex: 1;
   min-height: 0;
-  background: #111;
+  background: var(--bg-sunken);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -511,12 +517,12 @@ function parseCanvases(manifest) {
   height: 100%;
   object-fit: contain;
 }
-.gallery-item-num { font-size: 12px; color: var(--ink-3); }
+.gallery-item-num { font-size: 13px; color: var(--text-3); }
 .gallery-item-label {
-  font-size: 10px;
-  color: var(--ink-3);
+  font-size: 12px;
+  color: var(--text-3);
   text-align: center;
-  padding: 4px 4px 6px;
+  padding: 6px 4px 8px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

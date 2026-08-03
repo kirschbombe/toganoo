@@ -139,7 +139,7 @@ onUnmounted(() => {
 .osd-wrap {
   width: 100%;
   height: 100%;
-  background: #111;
+  background: var(--bg-sunken);
 }
 .osd-container {
   width: 100%;

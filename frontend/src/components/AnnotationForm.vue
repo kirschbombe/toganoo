@@ -220,63 +220,85 @@ function openViaf(query) {
 </script>
 
 <style scoped>
-.anno-form { display: flex; flex-direction: column; gap: 8px; padding: 12px; }
-.form-group { display: flex; flex-direction: column; gap: 3px; }
-.form-label { font-size: 11px; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.04em; }
+.anno-form { display: flex; flex-direction: column; gap: 16px; padding: 20px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--paper-ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 .required { color: var(--vermillion); }
 .form-input {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  color: var(--ink-1);
-  padding: 5px 8px;
-  border-radius: 4px;
-  font-size: 13px;
+  background: #fff;
+  border: 1px solid oklch(60% 0.02 75 / 45%);
+  color: var(--paper-ink-1);
+  padding: 10px 12px;
+  border-radius: 7px;
+  font-size: 14px;
   font-family: inherit;
   width: 100%;
 }
-.form-input:focus { outline: 1px solid var(--vermillion); }
-.form-textarea { resize: vertical; min-height: 52px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.form-input-with-btn { display: flex; gap: 4px; }
+.form-input::placeholder { color: var(--paper-ink-3); }
+.form-input:focus { outline: none; border-color: var(--vermillion); }
+.form-textarea { resize: vertical; min-height: 64px; line-height: 1.5; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-input-with-btn { display: flex; gap: 6px; }
 .form-input-with-btn .form-input { flex: 1; }
 .viaf-btn {
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--ink-3);
-  border-radius: 4px;
-  padding: 4px 7px;
-  font-size: 11px;
+  background: var(--paper-mid);
+  border: 1px solid oklch(60% 0.02 75 / 45%);
+  color: var(--paper-ink-2);
+  border-radius: 7px;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 12px;
   cursor: pointer;
   white-space: nowrap;
 }
-.viaf-btn:hover { color: var(--ink-1); }
-.form-section { border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+.viaf-btn:hover { color: var(--paper-ink-1); border-color: var(--paper-ink-3); }
+.form-section {
+  border: 1px solid oklch(60% 0.02 75 / 40%);
+  border-radius: 8px;
+  overflow: hidden;
+}
 .form-section-title {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
-  color: var(--ink-3);
+  color: var(--paper-ink-2);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 6px 10px;
+  letter-spacing: 0.05em;
+  padding: 10px 14px;
   cursor: pointer;
-  background: rgba(255,255,255,0.03);
+  background: var(--paper-mid);
   list-style: none;
 }
 .form-section-title::-webkit-details-marker { display: none; }
-.form-section-body { padding: 8px 10px; display: flex; flex-direction: column; gap: 8px; }
-.form-actions { display: flex; gap: 6px; padding-top: 4px; }
+.form-section-body { padding: 14px; display: flex; flex-direction: column; gap: 14px; }
+.form-actions { display: flex; gap: 10px; padding-top: 4px; }
 .form-btn {
-  padding: 7px 16px;
-  border-radius: 4px;
-  font-size: 13px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  border: 1px solid var(--border);
-  background: var(--sidebar-bg);
-  color: var(--ink-2);
-  transition: opacity 0.15s;
+  border: 1px solid oklch(60% 0.02 75 / 45%);
+  background: none;
+  color: var(--paper-ink-2);
+  transition: background 0.15s, color 0.15s;
 }
-.form-btn:hover { opacity: 0.85; }
-.form-btn.primary { background: var(--vermillion); color: #fff; border-color: var(--vermillion); }
+.form-btn:hover { background: var(--paper-mid); color: var(--paper-ink-1); }
+.form-btn.primary {
+  flex: 1;
+  padding: 12px;
+  font-weight: 600;
+  background: var(--vermillion);
+  color: #fff;
+  border-color: var(--vermillion);
+}
+.form-btn.primary:hover { background: var(--vermillion-hover); border-color: var(--vermillion-hover); }
 .form-btn:disabled { opacity: 0.4; cursor: default; }
+.form-btn.primary:disabled:hover { background: var(--vermillion); }
 </style>
