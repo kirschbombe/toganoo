@@ -10,13 +10,6 @@
         :class="{ hidden: imgError }"
       />
       <div v-if="!volume.thumbnail || imgError" class="vol-card-thumb-placeholder">📖</div>
-      <span
-        v-if="volume.annotationCount"
-        class="vol-card-anno-count"
-        :title="`${volume.annotationCount} annotations`"
-      >
-        <span class="vol-card-anno-dot"></span>{{ volume.annotationCount }}
-      </span>
     </div>
     <div class="vol-card-meta">
       <div class="vol-card-title">{{ volume.title }}</div>
@@ -25,6 +18,11 @@
         <span v-if="volume.date_label">{{ volume.date_label }}</span>
         <span v-if="volume.isCollection" class="vol-card-set-badge">{{ volume.volumeCount }} vols.</span>
         <span v-if="volume.institution !== 'UCLA Library'" class="vol-card-inst">{{ volume.institution }}</span>
+        <span
+          v-if="volume.annotationCount"
+          class="vol-card-anno-count"
+          :title="`${volume.annotationCount} annotation(s)`"
+        >{{ volume.annotationCount }}</span>
       </div>
     </div>
   </div>
@@ -60,29 +58,22 @@ const imgError = ref(false)
   justify-content: center;
   overflow: hidden;
 }
+/* Sits at the end of the meta row rather than over the thumbnail, where it
+   competed with the manuscript image. Circular for one or two digits, easing
+   into a pill beyond that. */
 .vol-card-anno-count {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  min-width: 24px;
-  height: 24px;
-  padding: 0 7px;
-  border-radius: 12px;
-  background: rgba(20,18,16,0.55);
-  backdrop-filter: blur(2px);
+  margin-left: auto;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--vermillion);
   color: #fff;
   font-size: 12px;
   font-weight: 600;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-}
-.vol-card-anno-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--vermillion-dot);
   flex-shrink: 0;
 }
 .vol-card-thumb img {
@@ -134,9 +125,11 @@ const imgError = ref(false)
   font-size: 11px;
   font-weight: 600;
 }
+/* Gold rather than vermillion so the volume count and the annotation count
+   don't read as the same kind of signal */
 .vol-card-set-badge {
-  background: var(--vermillion);
-  color: #fff;
+  background: var(--gold);
+  color: oklch(22% 0.03 83);
   border-radius: 5px;
   padding: 3px 8px;
   font-size: 11px;
