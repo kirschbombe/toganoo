@@ -48,7 +48,7 @@ async def list_volumes(
         vol = dict(r)
         if vol.get("collection_id"):
             coll = db.execute("""
-                SELECT c.slug, c.title,
+                SELECT c.slug, c.title, c.title_local,
                        COUNT(v2.id) AS volume_count
                 FROM collections c
                 LEFT JOIN volumes v2 ON v2.collection_id = c.id

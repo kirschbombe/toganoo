@@ -21,8 +21,14 @@
           :class="{ active: vol.slug === currentVolumeSlug }"
           @click="onVolClick(vol)"
         >
-          <span class="vol-row-num">{{ vol.volume_number }}</span>
-          <span class="vol-row-label">{{ vol.volume_label || vol.title }}</span>
+          <span
+            class="vol-row-dot"
+            :class="{ empty: !annotationCount(vol) }"
+            :title="annotationCount(vol)
+              ? `${annotationCount(vol)} annotation(s)`
+              : 'No annotations yet'"
+          ></span>
+          <span class="vol-row-label">{{ volumeDesignation(vol) }}</span>
         </div>
       </div>
 
@@ -81,11 +87,13 @@
 
 <script setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { volumeDesignation } from '../lib/volumes.js'
 
 const props = defineProps({
   canvases:          { type: Array,  default: () => [] },
   currentIndex:      { type: Number, default: 0 },
   collectionVolumes: { type: Array,  default: null },
+  annotationCounts:  { type: Object, default: () => ({}) },
   currentVolumeSlug: { type: String, default: null },
 })
 const emit = defineEmits(['select', 'selectVolume'])
@@ -111,6 +119,16 @@ watch(() => props.currentVolumeSlug, () => {
 watch(activeTab, (tab) => {
   if (tab === 'pages') setTimeout(setupObserver, 50)
 })
+
+// `volume_label` carries the volume designation from the source manifest;
+// `volume_number` is only the ingest sequence, and the two diverge for
+// incomplete sets (surviving volumes 1, 4, 5, 7 are numbered 1-4). Read the
+// number out of the label so the list shows the actual volume, and keep the
+// row to just that designation — titles here are the same work repeated, and
+// some run long enough to wrap the sidebar.
+function annotationCount(vol) {
+  return props.annotationCounts[vol.slug] ?? 0
+}
 
 function onVolClick(vol) {
   if (vol.slug === props.currentVolumeSlug) {
@@ -201,14 +219,19 @@ onUnmounted(() => observer?.disconnect())
 }
 .vol-row:hover { background: rgba(255,255,255,0.04); }
 .vol-row.active { background: var(--vermillion-tint); }
-.vol-row-num {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--vermillion-dot);
+.vol-row-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--vermillion-dot);
   flex-shrink: 0;
-  min-width: 16px;
-  margin-top: 1px;
+  margin-top: 6px;
+  opacity: 0.9;
+  transition: opacity 0.12s;
 }
+/* Volumes with no marks yet keep the same marker, muted */
+.vol-row-dot.empty { background: oklch(45% 0.014 264); opacity: 0.7; }
+.vol-row.active .vol-row-dot { opacity: 1; }
 .vol-row-label {
   font-size: 13px;
   color: var(--text-2);

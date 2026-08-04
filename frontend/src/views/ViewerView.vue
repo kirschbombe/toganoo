@@ -6,6 +6,7 @@
       :canvases="canvases"
       :current-index="pageIndex"
       :collection-volumes="collectionVolumes"
+      :annotation-counts="annotationCounts"
       :current-volume-slug="route.params.slug"
       @select="goToPage"
       @selectVolume="goToVolume"
@@ -16,8 +17,9 @@
       <div class="vol-info-bar" v-if="volume">
         <div class="vol-info-text">
           <div class="vol-info-title">
-            {{ volume.title }}
-            <span class="vol-info-ja">{{ volume.title_local }}</span>
+            {{ displayTitle }}
+            <span class="vol-info-ja">{{ displayTitleLocal }}</span>
+            <span v-if="displayVolume" class="vol-info-vol">| {{ displayVolume }}</span>
           </div>
           <div class="vol-info-meta">
             {{ [volume.institution, volume.date_label, volume.genre].filter(Boolean).join(' · ') }}
@@ -121,6 +123,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore }    from '../stores/auth.js'
 import { useVolumesStore } from '../stores/volumes.js'
 import { getVolumeAnnotations, fetchManifest, fetchCollection, fetchCollectionAnnotations } from '../api/index.js'
+import { volumeDesignation } from '../lib/volumes.js'
 import OsdViewer      from '../components/OsdViewer.vue'
 import CanvasIndex    from '../components/CanvasIndex.vue'
 import AnnotationPanel from '../components/AnnotationPanel.vue'
@@ -145,6 +148,29 @@ const collectionAnnotations = ref(null)   // null = standalone volume
 const isRtl = computed(() => viewingDirection.value === 'right-to-left')
 
 const volume = computed(() => volStore.bySlug(route.params.slug))
+
+// For a set member, `volumes.title` holds whatever the IIIF collection labelled
+// that member — sometimes the full work title, sometimes just "Vol. 1". The
+// collection record carries the work's title consistently, so prefer it and
+// show the volume designation separately.
+const displayTitle = computed(() =>
+  volume.value?.collection?.title || volume.value?.title || ''
+)
+const displayTitleLocal = computed(() =>
+  volume.value?.collection?.title_local || volume.value?.title_local || ''
+)
+const displayVolume = computed(() =>
+  volume.value?.collection ? volumeDesignation(volume.value) : ''
+)
+
+// Annotation count per volume slug, for the Volumes tab markers
+const annotationCounts = computed(() => {
+  const counts = {}
+  for (const group of collectionAnnotations.value ?? []) {
+    counts[group.volume_slug] = group.annotations.length
+  }
+  return counts
+})
 const currentCanvas = computed(() => canvases.value[pageIndex.value] ?? null)
 
 onMounted(async () => {
@@ -341,6 +367,10 @@ function parseCanvases(manifest) {
   font-family: var(--font-serif);
   font-weight: 400;
   color: oklch(65% 0.008 264);
+  margin-left: 10px;
+}
+/* Matches the title's size, weight and colour — only the pipe sets it apart */
+.vol-info-vol {
   margin-left: 10px;
 }
 .vol-info-meta {

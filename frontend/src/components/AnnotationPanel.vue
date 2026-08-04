@@ -47,9 +47,7 @@
           @click="toggleVolumeGroup(group.volume_slug)"
         >
           <span class="vol-group-caret">{{ expandedVolumeSlug === group.volume_slug ? '▼' : '▶' }}</span>
-          <span class="vol-group-title">
-            Vol. {{ group.volume_number }} — {{ group.volume_label || group.volume_title }}
-          </span>
+          <span class="vol-group-title">{{ volumeHeading(group) }}</span>
           <span class="vol-group-count">({{ group.annotations.length }})</span>
         </div>
         <div v-if="expandedVolumeSlug === group.volume_slug" class="anno-list">
@@ -263,6 +261,18 @@ watch(() => props.activeAnnotationId, async (id) => {
   const el = document.querySelector(`[data-anno-id="${id}"]`)
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
 })
+
+// `volume_label` is the designation from the source manifest and is
+// authoritative; `volume_number` is only the ingest sequence, and the two
+// diverge for incomplete sets (e.g. surviving volumes 1, 4, 5, 7 are numbered
+// 1-4). Prefer the label, and fall back to the sequence only when it is absent.
+function volumeHeading(group) {
+  const label = (group.volume_label || '').trim()
+  if (label) return label
+  return group.volume_title
+    ? `Vol. ${group.volume_number} — ${group.volume_title}`
+    : `Vol. ${group.volume_number}`
+}
 
 function toggleVolumeGroup(slug) {
   expandedVolumeSlug.value = expandedVolumeSlug.value === slug ? null : slug
