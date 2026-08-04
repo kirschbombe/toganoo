@@ -35,16 +35,17 @@ const auth = useAuthStore()
   color: inherit;
 }
 .nav-link {
-  color: var(--ink-3);
+  color: var(--text-2);
   text-decoration: none;
-  font-size: 13px;
-  padding: 4px 10px;
-  border-radius: 4px;
-  transition: background 0.15s;
+  font-size: 15px;
+  padding: 8px 10px;
+  border-radius: 7px;
+  transition: background 0.15s, color 0.15s;
 }
 .nav-link:hover,
 .nav-link.router-link-active {
   background: rgba(255,255,255,0.08);
-  color: var(--ink-1);
+  color: var(--text-1);
 }
+#auth-status { display: flex; align-items: center; gap: 12px; }
 </style>

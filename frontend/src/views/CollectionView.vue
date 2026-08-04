@@ -69,6 +69,7 @@ const collectionItems = computed(() =>
     date_label:      null,
     isCollection:    true,
     volumeCount:     c.volume_count,
+    annotationCount: c.annotation_count ?? 0,
     firstVolumeSlug: c.first_volume_slug,
   }))
 )
@@ -77,7 +78,12 @@ const collectionItems = computed(() =>
 const volumeItems = computed(() =>
   store.volumes
     .filter(v => !v.collection_id)
-    .map(v => ({ ...v, _key: `vol-${v.slug}`, isCollection: false }))
+    .map(v => ({
+      ...v,
+      _key: `vol-${v.slug}`,
+      isCollection: false,
+      annotationCount: v.annotation_count ?? 0,
+    }))
 )
 
 // Merge and sort by institution then title
@@ -119,64 +125,74 @@ function openItem(item) {
   flex-direction: column;
   min-height: calc(100vh - var(--topbar-h));
   background: var(--bg);
-  padding: 24px 32px;
+  padding: 40px 48px;
 }
 .collection-toolbar {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 20px;
+  margin-bottom: 32px;
   flex-wrap: wrap;
 }
 .collection-toolbar-left {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 16px;
 }
 .collection-heading {
-  font-size: 1.1rem;
+  font-family: var(--font-serif);
+  font-size: 32px;
   font-weight: 600;
-  color: var(--ink-1);
+  color: var(--text-1);
   margin: 0;
 }
 .collection-count {
-  font-size: 12px;
-  color: var(--ink-3);
+  font-size: 15px;
+  color: var(--text-3);
 }
 .collection-toolbar-right {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   align-items: center;
 }
 .collection-search {
-  background: var(--sidebar-bg);
-  border: 1px solid var(--border);
-  color: var(--ink-1);
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-size: 13px;
-  width: 220px;
+  background: var(--bg-elev);
+  border: 1px solid oklch(38% 0.014 264 / 60%);
+  color: oklch(90% 0.006 264);
+  padding: 11px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  width: 260px;
 }
-.collection-search:focus { outline: 1px solid var(--vermillion); }
+.collection-search::placeholder { color: var(--text-3); }
+.collection-search:focus { outline: none; border-color: var(--vermillion); }
 .filter-select {
-  background: var(--sidebar-bg);
-  border: 1px solid var(--border);
-  color: var(--ink-2);
-  padding: 6px 8px;
-  border-radius: 4px;
-  font-size: 13px;
+  background: var(--bg-elev);
+  border: 1px solid oklch(38% 0.014 264 / 60%);
+  color: oklch(80% 0.008 264);
+  padding: 11px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  width: auto;
 }
+.filter-select:focus { outline: none; border-color: var(--vermillion); }
 .collection-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 24px;
 }
 .collection-loading,
 .collection-empty {
-  color: var(--ink-3);
-  font-size: 14px;
-  padding: 48px;
+  color: var(--text-3);
+  font-size: 16px;
+  padding: 64px;
   text-align: center;
+}
+
+@media (max-width: 720px) {
+  .collection-page { padding: 28px 20px; }
+  .collection-toolbar-right { width: 100%; }
+  .collection-search { flex: 1; width: auto; }
 }
 </style>

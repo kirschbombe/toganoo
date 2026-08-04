@@ -19,7 +19,11 @@ async def list_collections(db=Depends(get_db)):
                COUNT(v.id)                                   AS volume_count,
                MIN(CASE WHEN v.volume_number = (
                    SELECT MIN(v2.volume_number) FROM volumes v2 WHERE v2.collection_id = c.id
-               ) THEN v.slug END)                            AS first_volume_slug
+               ) THEN v.slug END)                            AS first_volume_slug,
+               (SELECT COUNT(*)
+                FROM annotations a
+                JOIN volumes v3 ON a.volume_id = v3.manifest_url
+                WHERE v3.collection_id = c.id)               AS annotation_count
         FROM collections c
         LEFT JOIN volumes v ON v.collection_id = c.id
         GROUP BY c.id
